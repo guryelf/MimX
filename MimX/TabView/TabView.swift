@@ -29,6 +29,9 @@ struct TabView: View {
                 //ADD OR EDIT
                 Button(action: {
                     self.index = 2
+                    withAnimation(.spring) {
+                        
+                    }
                 }, label: {
                     ZStack{
                         Circle()

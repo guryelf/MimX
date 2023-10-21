@@ -10,6 +10,7 @@
 		4389359F2AE40C0200C51516 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4389359E2AE40C0200C51516 /* HomeView.swift */; };
 		438935A12AE40D5000C51516 /* FavouriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438935A02AE40D5000C51516 /* FavouriteView.swift */; };
 		438935A42AE41F5400C51516 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438935A32AE41F5400C51516 /* TabView.swift */; };
+		438935AA2AE4446D00C51516 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438935A92AE4446D00C51516 /* AddButton.swift */; };
 		43D27F162AE2AD0700A97AE8 /* MimXApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D27F152AE2AD0700A97AE8 /* MimXApp.swift */; };
 		43D27F182AE2AD0700A97AE8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D27F172AE2AD0700A97AE8 /* ContentView.swift */; };
 		43D27F1A2AE2AD0700A97AE8 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D27F192AE2AD0700A97AE8 /* Video.swift */; };
@@ -27,6 +28,7 @@
 		4389359E2AE40C0200C51516 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		438935A02AE40D5000C51516 /* FavouriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteView.swift; sourceTree = "<group>"; };
 		438935A32AE41F5400C51516 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
+		438935A92AE4446D00C51516 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		43D27F122AE2AD0700A97AE8 /* MimX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MimX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D27F152AE2AD0700A97AE8 /* MimXApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimXApp.swift; sourceTree = "<group>"; };
 		43D27F172AE2AD0700A97AE8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -77,6 +79,38 @@
 			path = TabView;
 			sourceTree = "<group>";
 		};
+		438935A52AE4443700C51516 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				43D27F172AE2AD0700A97AE8 /* ContentView.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		438935A62AE4444400C51516 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				43D27F192AE2AD0700A97AE8 /* Video.swift */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
+		438935A72AE4444A00C51516 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				43D27F152AE2AD0700A97AE8 /* MimXApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		438935A82AE4445B00C51516 /* ContextMenu */ = {
+			isa = PBXGroup;
+			children = (
+				438935A92AE4446D00C51516 /* AddButton.swift */,
+			);
+			path = ContextMenu;
+			sourceTree = "<group>";
+		};
 		43D27F092AE2AD0700A97AE8 = {
 			isa = PBXGroup;
 			children = (
@@ -96,11 +130,12 @@
 		43D27F142AE2AD0700A97AE8 /* MimX */ = {
 			isa = PBXGroup;
 			children = (
+				438935A82AE4445B00C51516 /* ContextMenu */,
+				438935A72AE4444A00C51516 /* App */,
+				438935A62AE4444400C51516 /* Video */,
+				438935A52AE4443700C51516 /* Root */,
 				438935A22AE41F4A00C51516 /* TabView */,
 				4389359C2AE40BEA00C51516 /* MainView */,
-				43D27F152AE2AD0700A97AE8 /* MimXApp.swift */,
-				43D27F172AE2AD0700A97AE8 /* ContentView.swift */,
-				43D27F192AE2AD0700A97AE8 /* Video.swift */,
 				43D27F1B2AE2AD0900A97AE8 /* Assets.xcassets */,
 				43D27F262AE2FCF000A97AE8 /* GoogleService-Info.plist */,
 				43D27F1D2AE2AD0900A97AE8 /* Preview Content */,
@@ -198,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43D27F182AE2AD0700A97AE8 /* ContentView.swift in Sources */,
+				438935AA2AE4446D00C51516 /* AddButton.swift in Sources */,
 				4389359F2AE40C0200C51516 /* HomeView.swift in Sources */,
 				438935A12AE40D5000C51516 /* FavouriteView.swift in Sources */,
 				43D27F1A2AE2AD0700A97AE8 /* Video.swift in Sources */,
