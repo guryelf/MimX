@@ -33,6 +33,7 @@ struct ContentView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
                         isSettingsActive.toggle()
+                        isAddActive = false
                     }, label: {
                         Image(systemName: "gear.circle.fill")
                             .resizable()
@@ -43,6 +44,8 @@ struct ContentView: View {
             .navigationDestination(isPresented: $isSettingsActive) {
                 SettingsView()
             }
+            .navigationTitle("MIMX")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

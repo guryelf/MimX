@@ -6,24 +6,24 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct ContextMenuView: View {
+    @State var vM = AddViewModel()
     @Binding var isAddActive : Bool
     @State private var isEditTrue = false
     @State private var isAddTrue = false
     var body: some View {
         HStack(spacing:30){
             AddButton(content: {
-                Button {
-                    isAddTrue.toggle()
-                    isAddActive = false
-                } label: {
-                    Image(systemName: "plus.circle.fill")
-                        .resizable()
-                        .frame(width: 40, height: 40)
-                    Text("Add")
-                        .padding(.trailing,20)
-                }
+                    PhotosPicker(selection: $vM.picker,matching: .videos) {
+                        Image(systemName: "plus.circle.fill")
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                        Text("Add")
+                            .padding(.trailing,20)
+                    }
+                    
             }, bgColor: .blue, fgColor: .white)
             AddButton(content: {
                 Button {
@@ -39,10 +39,7 @@ struct ContextMenuView: View {
             }, bgColor: .blue, fgColor: .white)
         }
         .navigationDestination(isPresented: $isEditTrue) {
-            EditView()
-        }
-        .navigationDestination(isPresented: $isAddTrue) {
-            AddView()
+            EditChoose()
         }
     }
 }

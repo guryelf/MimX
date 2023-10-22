@@ -14,10 +14,9 @@ struct TabView: View {
         VStack{
             Divider()
                 .overlay(.blue)
-                .ignoresSafeArea()
                 .padding(.top,20)
             
-            HStack(spacing:25){
+            HStack(spacing:40){
                 //HomeView
                 Button {
                     self.index = 0
@@ -29,7 +28,7 @@ struct TabView: View {
                 }
                 //ADD OR EDIT
                 Button(action: {
-                    withAnimation(.spring()) {
+                    withAnimation(.snappy) {
                         self.isAddActive.toggle()
                     }
                 }, label: {
