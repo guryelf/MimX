@@ -9,9 +9,11 @@
 /* Begin PBXBuildFile section */
 		4304ECE42AE4848F0000D2FA /* ContextMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304ECE32AE4848F0000D2FA /* ContextMenuView.swift */; };
 		4304ECE72AE4A5740000D2FA /* AddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304ECE62AE4A5740000D2FA /* AddViewModel.swift */; };
-		4304ECE92AE4A5780000D2FA /* EditChoose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304ECE82AE4A5780000D2FA /* EditChoose.swift */; };
 		4304ECEB2AE4A7280000D2FA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304ECEA2AE4A7280000D2FA /* SettingsView.swift */; };
 		43571F532AE51638009CB825 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43571F522AE51638009CB825 /* EditView.swift */; };
+		43571F5D2AE588CE009CB825 /* MimXDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43571F5B2AE588CE009CB825 /* MimXDB.xcdatamodeld */; };
+		43571F602AE58FF2009CB825 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43571F5F2AE58FF2009CB825 /* MainViewModel.swift */; };
+		43571F622AE6C004009CB825 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43571F612AE6C004009CB825 /* ContentViewModel.swift */; };
 		4389359F2AE40C0200C51516 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4389359E2AE40C0200C51516 /* HomeView.swift */; };
 		438935A12AE40D5000C51516 /* FavouriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438935A02AE40D5000C51516 /* FavouriteView.swift */; };
 		438935A42AE41F5400C51516 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438935A32AE41F5400C51516 /* TabView.swift */; };
@@ -32,9 +34,11 @@
 /* Begin PBXFileReference section */
 		4304ECE32AE4848F0000D2FA /* ContextMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuView.swift; sourceTree = "<group>"; };
 		4304ECE62AE4A5740000D2FA /* AddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewModel.swift; sourceTree = "<group>"; };
-		4304ECE82AE4A5780000D2FA /* EditChoose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChoose.swift; sourceTree = "<group>"; };
 		4304ECEA2AE4A7280000D2FA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		43571F522AE51638009CB825 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
+		43571F5C2AE588CE009CB825 /* MimXDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MimXDB.xcdatamodel; sourceTree = "<group>"; };
+		43571F5F2AE58FF2009CB825 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		43571F612AE6C004009CB825 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		4389359E2AE40C0200C51516 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		438935A02AE40D5000C51516 /* FavouriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteView.swift; sourceTree = "<group>"; };
 		438935A32AE41F5400C51516 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
@@ -72,10 +76,35 @@
 			path = EditView;
 			sourceTree = "<group>";
 		};
+		43571F542AE54C26009CB825 /* LocalDB */ = {
+			isa = PBXGroup;
+			children = (
+				43571F5B2AE588CE009CB825 /* MimXDB.xcdatamodeld */,
+			);
+			path = LocalDB;
+			sourceTree = "<group>";
+		};
+		43571F632AE6C008009CB825 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				43571F612AE6C004009CB825 /* ContentViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		43571F642AE6C8E4009CB825 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4304ECE62AE4A5740000D2FA /* AddViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		4389359C2AE40BEA00C51516 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
 				4389359D2AE40BF700C51516 /* View */,
+				43571F5F2AE58FF2009CB825 /* MainViewModel.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -100,6 +129,7 @@
 		438935A52AE4443700C51516 /* Root */ = {
 			isa = PBXGroup;
 			children = (
+				43571F632AE6C008009CB825 /* ViewModel */,
 				43D27F172AE2AD0700A97AE8 /* ContentView.swift */,
 				4304ECEA2AE4A7280000D2FA /* SettingsView.swift */,
 			);
@@ -125,10 +155,9 @@
 		438935A82AE4445B00C51516 /* ContextMenu */ = {
 			isa = PBXGroup;
 			children = (
+				43571F642AE6C8E4009CB825 /* ViewModel */,
 				438935A92AE4446D00C51516 /* AddButton.swift */,
 				4304ECE32AE4848F0000D2FA /* ContextMenuView.swift */,
-				4304ECE62AE4A5740000D2FA /* AddViewModel.swift */,
-				4304ECE82AE4A5780000D2FA /* EditChoose.swift */,
 			);
 			path = ContextMenu;
 			sourceTree = "<group>";
@@ -152,6 +181,7 @@
 		43D27F142AE2AD0700A97AE8 /* MimX */ = {
 			isa = PBXGroup;
 			children = (
+				43571F542AE54C26009CB825 /* LocalDB */,
 				43571F512AE5161A009CB825 /* EditView */,
 				438935A82AE4445B00C51516 /* ContextMenu */,
 				438935A72AE4444A00C51516 /* App */,
@@ -255,15 +285,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43571F5D2AE588CE009CB825 /* MimXDB.xcdatamodeld in Sources */,
 				43D27F182AE2AD0700A97AE8 /* ContentView.swift in Sources */,
 				438935AA2AE4446D00C51516 /* AddButton.swift in Sources */,
 				43571F532AE51638009CB825 /* EditView.swift in Sources */,
 				4304ECE72AE4A5740000D2FA /* AddViewModel.swift in Sources */,
 				4389359F2AE40C0200C51516 /* HomeView.swift in Sources */,
 				438935A12AE40D5000C51516 /* FavouriteView.swift in Sources */,
+				43571F602AE58FF2009CB825 /* MainViewModel.swift in Sources */,
 				43D27F1A2AE2AD0700A97AE8 /* Video.swift in Sources */,
-				4304ECE92AE4A5780000D2FA /* EditChoose.swift in Sources */,
 				4304ECE42AE4848F0000D2FA /* ContextMenuView.swift in Sources */,
+				43571F622AE6C004009CB825 /* ContentViewModel.swift in Sources */,
 				438935A42AE41F5400C51516 /* TabView.swift in Sources */,
 				43D27F162AE2AD0700A97AE8 /* MimXApp.swift in Sources */,
 				4304ECEB2AE4A7280000D2FA /* SettingsView.swift in Sources */,
@@ -408,6 +440,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -437,6 +470,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -511,6 +545,19 @@
 			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		43571F5B2AE588CE009CB825 /* MimXDB.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				43571F5C2AE588CE009CB825 /* MimXDB.xcdatamodel */,
+			);
+			currentVersion = 43571F5C2AE588CE009CB825 /* MimXDB.xcdatamodel */;
+			path = MimXDB.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 43D27F0A2AE2AD0700A97AE8 /* Project object */;
 }

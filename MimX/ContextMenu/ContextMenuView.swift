@@ -9,41 +9,49 @@ import SwiftUI
 import PhotosUI
 
 struct ContextMenuView: View {
-    @State var vM = AddViewModel()
-    @Binding var isAddActive : Bool
-    @State private var isEditTrue = false
-    @State private var isAddTrue = false
+    @StateObject var vM = AddViewModel()
+    @ObservedObject var cM : ContentViewModel
     var body: some View {
         HStack(spacing:30){
             AddButton(content: {
-                    PhotosPicker(selection: $vM.picker,matching: .videos) {
-                        Image(systemName: "plus.circle.fill")
-                            .resizable()
-                            .frame(width: 40, height: 40)
-                        Text("Add")
-                            .padding(.trailing,20)
-                    }
-                    
-            }, bgColor: .blue, fgColor: .white)
-            AddButton(content: {
-                Button {
-                    isEditTrue.toggle()
-                    isAddActive = false
-                } label: {
-                    Image(systemName: "pencil.circle.fill")
+                PhotosPicker(selection: $vM.picker,matching: .videos) {
+                    Image(systemName: "plus.circle.fill")
                         .resizable()
                         .frame(width: 40, height: 40)
-                    Text("Edit")
+                    Text("Ekle")
                         .padding(.trailing,20)
                 }
             }, bgColor: .blue, fgColor: .white)
+            Button(action: {
+                withAnimation(.spring) {
+                    cM.isEditActive = false
+                    cM.isAddActive = false
+                }
+            }, label: {
+                Image(systemName: "multiply.circle.fill")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .foregroundStyle(.red)
+            })
+            .padding(.bottom,50)
+            AddButton(content: {
+                Button(action: {
+                    withAnimation(.spring) {
+                        cM.isEditActive = true
+                        cM.isAddActive = false
+                    }
+                }, label: {
+                    Image(systemName: "pencil.circle.fill")
+                        .resizable()
+                        .frame(width: 40, height: 40)
+                    Text("Düzenle")
+                        .padding(.trailing,20)
+                })
+            }, bgColor: .blue, fgColor: .white)
         }
-        .navigationDestination(isPresented: $isEditTrue) {
-            EditChoose()
-        }
+        .background(.opacity(0))
     }
 }
-
 #Preview {
-    ContextMenuView(isAddActive: .constant(true))
+    ContextMenuView(cM: ContentViewModel())
 }

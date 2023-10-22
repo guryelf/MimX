@@ -6,46 +6,60 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct ContentView: View {
-    @State private var isSettingsActive = false
-    @State private var index = 0
-    @State private var isAddActive = false
+    @StateObject var vM = ContentViewModel()
     var body: some View {
         NavigationStack{
-            Divider()
-            Spacer()
-            VStack{
-                if index == 0 {
+            ScrollView{
+                Divider()
+                if vM.index == 0 {
                     HomeView()
-                        .blur(radius: isAddActive == true ? 2 : 0)
-                }else if index == 1{
+                        .transition(.move(edge: .leading))
+                }else if vM.index == 1{
                     FavouriteView()
-                        .blur(radius: isAddActive == true ? 2 : 0)
-                }
-                ContextMenuView(isAddActive: $isAddActive)
-                    .disabled(isAddActive == true ? false : true)
-                    .opacity(isAddActive == true ? 1 : 0)
-                TabView(index: $index, isAddActive: $isAddActive)
-            }
-            .toolbar{
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: {
-                        isSettingsActive.toggle()
-                        isAddActive = false
-                    }, label: {
-                        Image(systemName: "gear.circle.fill")
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                    })
+                        .transition(.move(edge: .trailing))
                 }
             }
-            .navigationDestination(isPresented: $isSettingsActive) {
-                SettingsView()
-            }
-            .navigationTitle("MIMX")
-            .navigationBarTitleDisplayMode(.inline)
+            .disabled(vM.isAddActive ? true : false)
+            .blur(radius: vM.isAddActive ? 2 : 0)
+            ContextMenuView(cM: vM)
+                .frame(maxHeight: vM.isAddActive ? 60 : 0)
+                .disabled(vM.isAddActive ? false : true)
+                .opacity(vM.isAddActive ? 1 : 0)
+            TabView(index: $vM.index, isAddActive: $vM.isAddActive)
+                .navigationTitle("MimX")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar{
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button(action: {
+                            vM.isSettingsActive.toggle()
+                            vM.isAddActive = false
+                        }, label: {
+                            Image(systemName: "gear.circle.fill")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                        })
+                    }
+                    if vM.isEditActive {
+                        ToolbarItem(placement: .topBarLeading) {
+                            Button(action: {
+                                withAnimation(.spring) {
+                                    vM.isEditActive = false
+                                    vM.isAddActive = false
+                                }
+                            }, label: {
+                                Image(systemName: "multiply.circle.fill")
+                                    .resizable()
+                                    .frame(width: 25, height: 25)
+                                    .foregroundStyle(.red)
+                            })
+                        }
+                    }
+                }
+                .navigationDestination(isPresented: $vM.isSettingsActive) {
+                    SettingsView()
+                }
         }
     }
 }

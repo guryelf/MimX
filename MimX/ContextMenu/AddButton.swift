@@ -27,3 +27,38 @@ struct AddButton<Content:View>: View {
         .transition(.scale)
     }
 }
+
+struct AddIcon : View{
+    // Waiting Dark Mode to set up
+    let pref : ColorScheme = ColorScheme.light
+    let icon : String
+    let fgColor : Color
+    var width : CGFloat = 30
+    var height : CGFloat = 30
+    let opacity : Double
+    init(icon: String, fgColor: Color,opacity : Double) {
+        self.icon = icon
+        self.fgColor = fgColor
+        self.opacity = opacity
+    }
+    init(icon: String, fgColor: Color,width:CGFloat,height:CGFloat,opacity:Double) {
+        self.icon = icon
+        self.fgColor = fgColor
+        self.width = width
+        self.height = height
+        self.opacity = opacity
+    }
+    var body: some View{
+        ZStack{
+            Circle()
+                .frame(width: width,height: height)
+                .foregroundStyle(pref != .light ? .white : fgColor)
+                .shadow(color:.blue,radius: 6)
+                .opacity(opacity)
+            Image(systemName: icon)
+                .resizable()
+                .frame(width: width,height: height)
+                .foregroundStyle(.blue)
+        }
+    }
+}

@@ -14,45 +14,48 @@ struct TabView: View {
         VStack{
             Divider()
                 .overlay(.blue)
-                .padding(.top,20)
-            
             HStack(spacing:40){
-                //HomeView
-                Button {
-                    self.index = 0
-                } label: {
-                    Image(systemName: "house")
-                        .resizable()
-                        .frame(width: 30, height: 25)
-                        .padding(.top,30)
+                Group{
+                    //HomeView
+                    Button (action:{
+                        withAnimation {
+                            isAddActive = false
+                            self.index = 0
+                        }
+                    } ,label: {
+                        AddIcon(icon: "house",
+                                fgColor: .cyan,
+                                opacity: !isAddActive && index == 0 ? 1 : 0)
+                    })
+                    .padding(.bottom,index == 0 && !isAddActive ? 50 : 0)
+                    
+                    //ADD OR EDIT
+                    Button(action: {
+                        withAnimation {
+                            isAddActive.toggle()
+                        }
+                    }, label: {
+                        AddIcon(icon: "plus.circle.fill",
+                                fgColor: .white,
+                                width:40,
+                                height:40,
+                                opacity: 1)
+                    })
+                    .padding(.bottom,isAddActive ? 50 : 0)
+                    Button(action: {
+                        withAnimation {
+                            isAddActive = false
+                            self.index = 1
+                        }
+                    }, label: {
+                        AddIcon(icon: "star",
+                                fgColor: .cyan,
+                                opacity: !isAddActive && index == 1 ? 1 : 0)
+                    })
+                    .padding(.bottom,index == 1 && !isAddActive ? 50 : 0)
                 }
-                //ADD OR EDIT
-                Button(action: {
-                    withAnimation(.snappy) {
-                        self.isAddActive.toggle()
-                    }
-                }, label: {
-                    ZStack{
-                        Circle()
-                            .frame(width: 40,height: 40)
-                            .foregroundStyle(.windowBackground)
-                            .shadow(color:.blue,radius: 6)
-                        Image(systemName: "plus.circle.fill")
-                            .resizable()
-                            .frame(width: 40, height: 40)
-                    }
-                    .padding(.bottom,30)
-                })
-                Button(action: {
-                    self.index = 1
-                }, label: {
-                    Image(systemName: "star")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .padding(.top,30)
-                })
+                .foregroundStyle(.blue)
             }
-            .foregroundStyle(.blue)
         }
     }
 }
