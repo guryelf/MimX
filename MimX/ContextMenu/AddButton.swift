@@ -24,5 +24,6 @@ struct AddButton<Content:View>: View {
         .frame(width: 150, height: 50)
         .foregroundStyle(.white)
         .shadow(radius: 10)
+        .transition(.scale)
     }
 }

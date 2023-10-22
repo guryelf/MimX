@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TabView: View {
     @Binding var index : Int
+    @Binding var isAddActive : Bool
     var body: some View {
         VStack{
             Divider()
@@ -28,9 +29,8 @@ struct TabView: View {
                 }
                 //ADD OR EDIT
                 Button(action: {
-                    self.index = 2
-                    withAnimation(.spring) {
-                        
+                    withAnimation(.spring()) {
+                        self.isAddActive.toggle()
                     }
                 }, label: {
                     ZStack{
@@ -59,5 +59,5 @@ struct TabView: View {
 }
 
 #Preview {
-    TabView(index: .constant(1))
+    TabView(index: .constant(1),isAddActive: .constant(true))
 }

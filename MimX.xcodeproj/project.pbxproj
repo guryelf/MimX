@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4304ECE42AE4848F0000D2FA /* ContextMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304ECE32AE4848F0000D2FA /* ContextMenuView.swift */; };
+		4304ECE72AE4A5740000D2FA /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304ECE62AE4A5740000D2FA /* AddView.swift */; };
+		4304ECE92AE4A5780000D2FA /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304ECE82AE4A5780000D2FA /* EditView.swift */; };
+		4304ECEB2AE4A7280000D2FA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304ECEA2AE4A7280000D2FA /* SettingsView.swift */; };
 		4389359F2AE40C0200C51516 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4389359E2AE40C0200C51516 /* HomeView.swift */; };
 		438935A12AE40D5000C51516 /* FavouriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438935A02AE40D5000C51516 /* FavouriteView.swift */; };
 		438935A42AE41F5400C51516 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438935A32AE41F5400C51516 /* TabView.swift */; };
@@ -25,6 +29,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4304ECE32AE4848F0000D2FA /* ContextMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuView.swift; sourceTree = "<group>"; };
+		4304ECE62AE4A5740000D2FA /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
+		4304ECE82AE4A5780000D2FA /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
+		4304ECEA2AE4A7280000D2FA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		4389359E2AE40C0200C51516 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		438935A02AE40D5000C51516 /* FavouriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteView.swift; sourceTree = "<group>"; };
 		438935A32AE41F5400C51516 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
@@ -83,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				43D27F172AE2AD0700A97AE8 /* ContentView.swift */,
+				4304ECEA2AE4A7280000D2FA /* SettingsView.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -107,6 +116,9 @@
 			isa = PBXGroup;
 			children = (
 				438935A92AE4446D00C51516 /* AddButton.swift */,
+				4304ECE32AE4848F0000D2FA /* ContextMenuView.swift */,
+				4304ECE62AE4A5740000D2FA /* AddView.swift */,
+				4304ECE82AE4A5780000D2FA /* EditView.swift */,
 			);
 			path = ContextMenu;
 			sourceTree = "<group>";
@@ -234,11 +246,15 @@
 			files = (
 				43D27F182AE2AD0700A97AE8 /* ContentView.swift in Sources */,
 				438935AA2AE4446D00C51516 /* AddButton.swift in Sources */,
+				4304ECE72AE4A5740000D2FA /* AddView.swift in Sources */,
 				4389359F2AE40C0200C51516 /* HomeView.swift in Sources */,
 				438935A12AE40D5000C51516 /* FavouriteView.swift in Sources */,
 				43D27F1A2AE2AD0700A97AE8 /* Video.swift in Sources */,
+				4304ECE92AE4A5780000D2FA /* EditView.swift in Sources */,
+				4304ECE42AE4848F0000D2FA /* ContextMenuView.swift in Sources */,
 				438935A42AE41F5400C51516 /* TabView.swift in Sources */,
 				43D27F162AE2AD0700A97AE8 /* MimXApp.swift in Sources */,
+				4304ECEB2AE4A7280000D2FA /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

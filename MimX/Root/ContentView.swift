@@ -9,46 +9,40 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+    @State private var isSettingsActive = false
     @State private var index = 0
+    @State private var isAddActive = false
     var body: some View {
-        Spacer()
-        VStack{
-            if index == 0 {
-                HomeView()
-                    .blur(radius: index == 2 ? 3 : 0)
-            }else if index == 1{
-                FavouriteView()
-                    .blur(radius: index == 2 ? 3 : 0)
-            }else if index == 2{
-                withAnimation(.spring) {
-                    HStack(spacing:30){
-                        AddButton(content: {
-                            Button {
-                                
-                            } label: {
-                                Image(systemName: "plus.circle.fill")
-                                    .resizable()
-                                    .frame(width: 40, height: 40)
-                                Text("Add")
-                                    .padding(.trailing,20)
-                            }
-                        }, bgColor: .blue, fgColor: .white)
-                        AddButton(content: {
-                            Button {
-                                
-                            } label: {
-                                Image(systemName: "pencil.circle.fill")
-                                    .resizable()
-                                    .frame(width: 40, height: 40)
-                                Text("Edit")
-                                    .padding(.trailing,20)
-                            }
-                        }, bgColor: .blue, fgColor: .white)
-                    }
-                    .transition(.move(edge: .bottom))
+        NavigationStack{
+            Divider()
+            Spacer()
+            VStack{
+                if index == 0 {
+                    HomeView()
+                        .blur(radius: isAddActive == true ? 2 : 0)
+                }else if index == 1{
+                    FavouriteView()
+                        .blur(radius: isAddActive == true ? 2 : 0)
+                }
+                ContextMenuView(isAddActive: $isAddActive)
+                    .disabled(isAddActive == true ? false : true)
+                    .opacity(isAddActive == true ? 1 : 0)
+                TabView(index: $index, isAddActive: $isAddActive)
+            }
+            .toolbar{
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        isSettingsActive.toggle()
+                    }, label: {
+                        Image(systemName: "gear.circle.fill")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                    })
                 }
             }
-            TabView(index: $index)
+            .navigationDestination(isPresented: $isSettingsActive) {
+                SettingsView()
+            }
         }
     }
 }
