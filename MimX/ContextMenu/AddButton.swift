@@ -50,7 +50,7 @@ struct AddIcon : View{
     }
     var body: some View{
         ZStack{
-            Circle()
+            RoundedRectangle(cornerRadius: 25)
                 .frame(width: width,height: height)
                 .foregroundStyle(pref != .light ? .white : fgColor)
                 .shadow(color:.blue,radius: 6)
@@ -60,5 +60,6 @@ struct AddIcon : View{
                 .frame(width: width,height: height)
                 .foregroundStyle(.blue)
         }
+        
     }
 }

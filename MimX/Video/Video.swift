@@ -17,14 +17,16 @@ final class Video : Hashable,Identifiable{
         
     }
 
-    var id: String
+    let id: String
     var tags : [String]
     var videoURL : String
+    var isFavourite: Bool
     
-    internal init(id: String, tags: [String], videoURL: String) {
+    internal init(id: String, tags: [String], videoURL: String,isFavourite:Bool) {
         self.id = id
         self.tags = tags
         self.videoURL = videoURL
+        self.isFavourite = isFavourite
     }
 
 }

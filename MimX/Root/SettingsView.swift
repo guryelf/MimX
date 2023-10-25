@@ -8,8 +8,20 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @State var darkMode = MimXApp().darkMode
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List{
+            ForEach(ProfileOptionsViewModel.allCases){option in
+                Toggle(isOn: $darkMode, label: {
+                    HStack{
+                        Image(systemName: "\(option.Image)")
+                            .imageScale(.large)
+                            .foregroundStyle(option.ImageColor)
+                        Text(option.title)
+                    }
+                })
+            }
+        }
     }
 }
 

@@ -14,5 +14,6 @@ class ContentViewModel : ObservableObject{
     @Published var isSettingsActive = false
     @Published var index = 0
     @Published var isAddActive = false
-    
+        
+
 }

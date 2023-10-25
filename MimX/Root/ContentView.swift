@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var vM = ContentViewModel()
+    @State private var offset: CGFloat = 0
+    @State private var isDragging = false
     var body: some View {
         NavigationStack{
             ScrollView{
