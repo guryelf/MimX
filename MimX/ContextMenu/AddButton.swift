@@ -20,9 +20,9 @@ struct AddButton<Content:View>: View {
         VStack{
             content
         }
-        .background(RoundedRectangle(cornerRadius: 20).fill(.blue))
+        .background(RoundedRectangle(cornerRadius: 20).fill(bgColor))
         .frame(width: 150, height: 50)
-        .foregroundStyle(.white)
+        .foregroundStyle(fgColor)
         .shadow(radius: 10)
         .transition(.scale)
     }

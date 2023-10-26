@@ -9,16 +9,23 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var columns = Array(repeating: GridItem(), count: 3)
-    @StateObject var vM = ContentViewModel()
+    @ObservedObject var vM : ContentViewModel
+    
     @State var videoUrl : String?
     var body: some View {
         LazyVGrid(columns: columns,spacing: 10, content: {
-            ForEach(0...3,id: \.self){text in
+            ForEach(0...30,id: \.self){text in
                 ZStack{
                     Image(systemName: "gear")
                         .resizable()
                         .frame(width: 100, height: 100)
-                        .border(vM.isEditActive ? .blue : .white,width: vM.isEditActive ? 3 : 0)
+                        .border(.blue,width: vM.isEditActive ? 3 : 0)
+                }
+                .onTapGesture {
+                    if vM.isEditActive{
+                        vM.editView.toggle()
+                        vM.content = text
+                    }
                 }
             }
         })
@@ -27,5 +34,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeView(vM: ContentViewModel())
 }

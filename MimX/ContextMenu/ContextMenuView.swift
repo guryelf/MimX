@@ -24,8 +24,8 @@ struct ContextMenuView: View {
             }, bgColor: .blue, fgColor: .white)
             Button(action: {
                 withAnimation(.spring) {
+                    cM.isAddActive.toggle()
                     cM.isEditActive = false
-                    cM.isAddActive = false
                 }
             }, label: {
                 Image(systemName: "multiply.circle.fill")
@@ -49,7 +49,6 @@ struct ContextMenuView: View {
                 })
             }, bgColor: .blue, fgColor: .white)
         }
-        .background(.opacity(0))
     }
 }
 #Preview {

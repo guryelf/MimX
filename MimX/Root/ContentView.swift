@@ -8,64 +8,70 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var vM = ContentViewModel()
-    @State private var offset: CGFloat = 0
-    @State private var isDragging = false
+    @ObservedObject var vM : ContentViewModel
+    @Environment(\.colorScheme) var colorScheme
+    init() {
+        self._vM = ObservedObject(wrappedValue: ContentViewModel())
+    }
     var body: some View {
         NavigationStack{
             ScrollView{
                 Divider()
                 if vM.index == 0 {
-                    HomeView()
+                    HomeView(vM: vM)
                         .transition(.move(edge: .leading))
                 }else if vM.index == 1{
-                    FavouriteView()
+                    FavouriteView(vM: vM)
                         .transition(.move(edge: .trailing))
                 }
             }
             .disabled(vM.isAddActive ? true : false)
             .blur(radius: vM.isAddActive ? 2 : 0)
-            ContextMenuView(cM: vM)
-                .frame(maxHeight: vM.isAddActive ? 60 : 0)
-                .disabled(vM.isAddActive ? false : true)
-                .opacity(vM.isAddActive ? 1 : 0)
-            TabView(index: $vM.index, isAddActive: $vM.isAddActive)
-                .navigationTitle("MimX")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar{
-                    ToolbarItem(placement: .topBarTrailing) {
+            .navigationTitle("MimX")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar{
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        vM.isSettingsActive.toggle()
+                        vM.isAddActive = false
+                    }, label: {
+                        Image(systemName: "gear.circle.fill")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                    })
+                }
+                if vM.isEditActive {
+                    ToolbarItem(placement: .topBarLeading) {
                         Button(action: {
-                            vM.isSettingsActive.toggle()
-                            vM.isAddActive = false
+                            withAnimation(.spring) {
+                                vM.isEditActive = false
+                                vM.isAddActive = false
+                            }
                         }, label: {
-                            Image(systemName: "gear.circle.fill")
+                            Image(systemName: "multiply.circle.fill")
                                 .resizable()
-                                .frame(width: 30, height: 30)
+                                .frame(width: 25, height: 25)
+                                .foregroundStyle(.red)
                         })
                     }
-                    if vM.isEditActive {
-                        ToolbarItem(placement: .topBarLeading) {
-                            Button(action: {
-                                withAnimation(.spring) {
-                                    vM.isEditActive = false
-                                    vM.isAddActive = false
-                                }
-                            }, label: {
-                                Image(systemName: "multiply.circle.fill")
-                                    .resizable()
-                                    .frame(width: 25, height: 25)
-                                    .foregroundStyle(.red)
-                            })
-                        }
-                    }
                 }
-                .navigationDestination(isPresented: $vM.isSettingsActive) {
-                    SettingsView()
+            }
+            .navigationDestination(isPresented: $vM.isSettingsActive) {
+                SettingsView()
+            }
+            .navigationDestination(isPresented: $vM.editView) {
+                if vM.content != nil{
+                    EditView()
                 }
+            }
+            TabView(vM: vM)
         }
     }
 }
 
 #Preview {
     ContentView()
+    
+    
+    
 }

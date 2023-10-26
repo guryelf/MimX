@@ -8,20 +8,36 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @State var darkMode = MimXApp().darkMode
+    @StateObject var vM : SettingsViewModel
+    @State private var eNum = SettingsViewModel.ProfileOptionsViewModel.allCases
+    @State private var colorScheme : ColorScheme?
+    init() {
+        self._vM = StateObject(wrappedValue: SettingsViewModel())
+        self.colorScheme = vM.selectTheme()
+    }
     var body: some View {
         List{
-            ForEach(ProfileOptionsViewModel.allCases){option in
-                Toggle(isOn: $darkMode, label: {
+            Picker(selection: $vM.systemTheme) {
+                ForEach(eNum){option in
                     HStack{
-                        Image(systemName: "\(option.Image)")
+                        Image(systemName: option.Image)
                             .imageScale(.large)
-                            .foregroundStyle(option.ImageColor)
+                            .foregroundStyle(.blue)
                         Text(option.title)
                     }
-                })
+                }
+            }
+            label: {
+                HStack{
+                    Image(systemName: "lightbulb.2.fill")
+                        .foregroundStyle(.yellow)
+                        .clipShape(Circle())
+                        .imageScale(.large)
+                    Text("System Theme")
+                }
             }
         }
+        .font(.footnote)
     }
 }
 

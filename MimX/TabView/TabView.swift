@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct TabView: View {
-    @Binding var index : Int
-    @Binding var isAddActive : Bool
+    @ObservedObject var vM : ContentViewModel
     var body: some View {
         VStack{
+            ContextMenuView(cM: vM)
+                .frame(maxHeight: vM.isAddActive ? 60 : 0)
+                .disabled(vM.isAddActive ? false : true)
+                .opacity(vM.isAddActive ? 1 : 0)
             Divider()
                 .overlay(.blue)
             HStack(spacing:40){
@@ -19,20 +22,20 @@ struct TabView: View {
                     //HomeView
                     Button (action:{
                         withAnimation {
-                            isAddActive = false
-                            self.index = 0
+                            vM.isAddActive = false
+                            vM.index = 0
                         }
                     } ,label: {
                         AddIcon(icon: "house",
                                 fgColor: .cyan,
-                                opacity: !isAddActive && index == 0 ? 1 : 0)
+                                opacity: !vM.isAddActive && vM.index == 0 ? 1 : 0)
                     })
-                    .padding(.bottom,index == 0 && !isAddActive ? 50 : 0)
+                    .padding(.bottom,vM.index == 0 && !vM.isAddActive ? 50 : 0)
                     
                     //ADD OR EDIT
                     Button(action: {
                         withAnimation {
-                            isAddActive.toggle()
+                            vM.isAddActive.toggle()
                         }
                     }, label: {
                         AddIcon(icon: "plus.circle.fill",
@@ -41,18 +44,18 @@ struct TabView: View {
                                 height:40,
                                 opacity: 1)
                     })
-                    .padding(.bottom,isAddActive ? 50 : 0)
+                    .padding(.bottom,vM.isAddActive ? 50 : 0)
                     Button(action: {
                         withAnimation {
-                            isAddActive = false
-                            self.index = 1
+                            vM.isAddActive = false
+                            vM.index = 1
                         }
                     }, label: {
                         AddIcon(icon: "star",
                                 fgColor: .cyan,
-                                opacity: !isAddActive && index == 1 ? 1 : 0)
+                                opacity: !vM.isAddActive && vM.index == 1 ? 1 : 0)
                     })
-                    .padding(.bottom,index == 1 && !isAddActive ? 50 : 0)
+                    .padding(.bottom,vM.index == 1 && !vM.isAddActive ? 50 : 0)
                 }
                 .foregroundStyle(.blue)
             }
@@ -61,5 +64,5 @@ struct TabView: View {
 }
 
 #Preview {
-    TabView(index: .constant(1),isAddActive: .constant(true))
+    TabView(vM: ContentViewModel())
 }

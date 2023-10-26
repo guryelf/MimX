@@ -12,11 +12,10 @@ import FirebaseCore
 @main
 struct MimXApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @AppStorage("darkMode") var darkMode = false
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .preferredColorScheme(darkMode ? .dark : .light)
+                .preferredColorScheme(Environment(\.colorScheme).wrappedValue)
         }
     }
 }
