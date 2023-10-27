@@ -6,10 +6,15 @@
 //
 
 import Foundation
+import SwiftUI
+
+let vM = EditViewModel()
+
 
 enum ToolEnum : Int , CaseIterable{
     case speed
     case pitch
+    case text
     
     var title : String{
         switch self {
@@ -17,6 +22,8 @@ enum ToolEnum : Int , CaseIterable{
             return "Speed"
         case .pitch:
             return "Pitch"
+        case .text:
+            return "Text"
         }
     }
     
@@ -26,8 +33,21 @@ enum ToolEnum : Int , CaseIterable{
             return "forward.end.alt.fill"
         case .pitch:
             return "goforward"
+        case .text:
+            return "character"
         }
     }
-    
-    
+    func toggleViewMode(vM : EditViewModel){
+        switch self {
+        case .speed:
+            vM.isSpeed.toggle()
+        case .pitch:
+            vM.isPitch.toggle()
+        case .text:
+            vM.isText.toggle()
+        }
+    }
 }
+
+
+

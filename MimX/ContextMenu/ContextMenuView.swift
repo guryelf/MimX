@@ -9,8 +9,8 @@ import SwiftUI
 import PhotosUI
 
 struct ContextMenuView: View {
-    @StateObject var vM = AddViewModel()
-    @ObservedObject var cM : ContentViewModel
+    @ObservedObject var vM = AddViewModel()
+    @ObservedObject var cM = ContentViewModel()
     var body: some View {
         HStack(spacing:30){
             AddButton(content: {

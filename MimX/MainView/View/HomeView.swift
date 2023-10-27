@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var columns = Array(repeating: GridItem(), count: 3)
-    @ObservedObject var vM : ContentViewModel
+    @ObservedObject var vM = ContentViewModel()
     
     @State var videoUrl : String?
     var body: some View {

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FavouriteView: View {
-    @ObservedObject var vM : ContentViewModel
+    @ObservedObject var vM = ContentViewModel()
     var body: some View {
         ScrollView{
             Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)

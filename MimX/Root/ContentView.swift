@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var vM : ContentViewModel
+    @ObservedObject var vM = ContentViewModel()
     @Environment(\.colorScheme) var colorScheme
     init() {
-        self._vM = ObservedObject(wrappedValue: ContentViewModel())
+       
     }
     var body: some View {
         NavigationStack{
@@ -64,8 +64,8 @@ struct ContentView: View {
                     EditView()
                 }
             }
-            TabView(vM: vM)
         }
+        TabView(vM: vM)
     }
 }
 

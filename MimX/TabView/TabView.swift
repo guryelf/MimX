@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TabView: View {
-    @ObservedObject var vM : ContentViewModel
+    @ObservedObject var vM = ContentViewModel()
     var body: some View {
         VStack{
             ContextMenuView(cM: vM)

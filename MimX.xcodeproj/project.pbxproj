@@ -10,6 +10,7 @@
 		4304ECE42AE4848F0000D2FA /* ContextMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304ECE32AE4848F0000D2FA /* ContextMenuView.swift */; };
 		4304ECE72AE4A5740000D2FA /* AddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304ECE62AE4A5740000D2FA /* AddViewModel.swift */; };
 		4304ECEB2AE4A7280000D2FA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304ECEA2AE4A7280000D2FA /* SettingsView.swift */; };
+		4316E35F2AF018F2004296BB /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4316E35E2AF018F2004296BB /* EditViewModel.swift */; };
 		43571F532AE51638009CB825 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43571F522AE51638009CB825 /* EditView.swift */; };
 		43571F5D2AE588CE009CB825 /* MimXDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43571F5B2AE588CE009CB825 /* MimXDB.xcdatamodeld */; };
 		43571F602AE58FF2009CB825 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43571F5F2AE58FF2009CB825 /* MainViewModel.swift */; };
@@ -37,6 +38,7 @@
 		4304ECE32AE4848F0000D2FA /* ContextMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuView.swift; sourceTree = "<group>"; };
 		4304ECE62AE4A5740000D2FA /* AddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewModel.swift; sourceTree = "<group>"; };
 		4304ECEA2AE4A7280000D2FA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		4316E35E2AF018F2004296BB /* EditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
 		43571F522AE51638009CB825 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		43571F5C2AE588CE009CB825 /* MimXDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MimXDB.xcdatamodel; sourceTree = "<group>"; };
 		43571F5F2AE58FF2009CB825 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -72,9 +74,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4316E35D2AF018EB004296BB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4316E35E2AF018F2004296BB /* EditViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		43571F512AE5161A009CB825 /* EditView */ = {
 			isa = PBXGroup;
 			children = (
+				4316E35D2AF018EB004296BB /* ViewModel */,
 				43571F522AE51638009CB825 /* EditView.swift */,
 				4370FF422AEAD3170038F609 /* ToolEnum.swift */,
 			);
@@ -295,6 +306,7 @@
 				43D27F182AE2AD0700A97AE8 /* ContentView.swift in Sources */,
 				438935AA2AE4446D00C51516 /* AddButton.swift in Sources */,
 				43571F532AE51638009CB825 /* EditView.swift in Sources */,
+				4316E35F2AF018F2004296BB /* EditViewModel.swift in Sources */,
 				4304ECE72AE4A5740000D2FA /* AddViewModel.swift in Sources */,
 				436F30DD2AE9406B0056CFDD /* SettingsViewModel.swift in Sources */,
 				4389359F2AE40C0200C51516 /* HomeView.swift in Sources */,
