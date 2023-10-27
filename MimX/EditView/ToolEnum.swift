@@ -14,6 +14,7 @@ enum ToolEnum : Int , CaseIterable{
     var title : String{
         switch self {
         case .speed:
+            
             return "Speed"
         case .pitch:
             return "Pitch"
