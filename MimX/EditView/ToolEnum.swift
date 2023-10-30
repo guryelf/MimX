@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-let vM = EditViewModel()
+
 
 
 enum ToolEnum : Int , CaseIterable{

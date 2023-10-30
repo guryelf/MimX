@@ -11,17 +11,20 @@ import AVFoundation
 
 struct EditView: View {
     @State private var columns = Array(repeating: GridItem(.fixed(100)), count: 3)
-    @State private var isToggle = false
-    @State private var url = URL(string: "https://firebasestorage.googleapis.com/v0/b/mimx-ee4d4.appspot.com/o/ssstwitter.com_1697653735844.mp4?alt=media&token=54b821c3-2f1e-46b6-a775-3792185bd70d")
+    @State var player = AVPlayer(url: URL(string: "https://firebasestorage.googleapis.com/v0/b/mimx-ee4d4.appspot.com/o/ssstwitter.com_1697653735844.mp4?alt=media&token=54b821c3-2f1e-46b6-a775-3792185bd70d")!)
+    @StateObject var vM = EditViewModel()
+    @State var isButton = false
     var body: some View {
         VStack{
-            VideoPlayer(player: AVPlayer(url: url!))
-                .frame(width: UIScreen.main.bounds.width, height: 300)
+            PlayerView(player: player)
+                .overlay{
+                    vM.playbackButtons(player: player)
+                }
             LazyVGrid(columns : columns){
                 ForEach(ToolEnum.allCases,id: \.self){button in
                     AddButton(content: {
                         Button(action: {
-                            isToggle.toggle()
+                            isButton.toggle()
                         }, label: {
                             VStack(spacing:10,content: {
                                 Image(systemName: button.image)
@@ -41,5 +44,7 @@ struct EditView: View {
 }
 
 #Preview {
-    EditView()
+    EditView(vM: EditViewModel())
 }
+
+
