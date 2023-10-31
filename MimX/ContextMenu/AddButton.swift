@@ -21,7 +21,7 @@ struct AddButton<Content:View>: View {
             content
         }
         .background(RoundedRectangle(cornerRadius: 20).fill(bgColor))
-        .frame(width: 150, height: 50)
+        .frame(width: 100, height: 50)
         .foregroundStyle(fgColor)
         .shadow(radius: 10)
         .transition(.scale)

@@ -4,29 +4,26 @@
 //
 //  Created by Furkan Güryel on 21.10.2023.
 //
-
+import Kingfisher
 import SwiftUI
 
 struct HomeView: View {
     @State private var columns = Array(repeating: GridItem(), count: 3)
     @ObservedObject var vM = ContentViewModel()
-    
+    @StateObject var mVM = MainViewModel()
     @State var videoUrl : String?
     var body: some View {
         LazyVGrid(columns: columns,spacing: 10, content: {
-            ForEach(0...30,id: \.self){text in
-                ZStack{
-                    Image(systemName: "gear")
-                        .resizable()
-                        .frame(width: 100, height: 100)
-                        .border(.blue,width: vM.isEditActive ? 3 : 0)
-                }
-                .onTapGesture {
+            ForEach(mVM.videos){video in
+                Button(action: {
                     if vM.isEditActive{
                         vM.editView.toggle()
-                        vM.content = text
                     }
-                }
+                }, label: {
+                    KFImage(URL(string: video.thumbnail))
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                })
             }
         })
         
@@ -34,5 +31,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView(vM: ContentViewModel())
+    HomeView()
 }

@@ -8,7 +8,17 @@
 import Foundation
 
 
-final class Video : Hashable,Identifiable{
+struct Video : Identifiable,Decodable{
+
+    let id: String
+    var tags : String
+    var videoURL : String
+    var isFavourite: Bool
+    
+
+}
+
+extension Video : Hashable {
     static func == (lhs: Video, rhs: Video) -> Bool {
         return lhs.id == rhs.id
     }
@@ -16,17 +26,6 @@ final class Video : Hashable,Identifiable{
     func hash(into hasher: inout Hasher) {
         
     }
-
-    let id: String
-    var tags : [String]
-    var videoURL : String
-    var isFavourite: Bool
     
-    internal init(id: String, tags: [String], videoURL: String,isFavourite:Bool) {
-        self.id = id
-        self.tags = tags
-        self.videoURL = videoURL
-        self.isFavourite = isFavourite
-    }
-
+    static let mockVideo = Video(id: UUID().uuidString, tags: " ", videoURL:"https://firebasestorage.googleapis.com/v0/b/mimx-ee4d4.appspot.com/o/ssstwitter.com_1697653735844.mp4?alt=media&token=54b821c3-2f1e-46b6-a775-3792185bd70d" , isFavourite: false)
 }
