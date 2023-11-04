@@ -28,6 +28,7 @@ struct MimView: View {
         }
         .onTapGesture {
             self.isPlaying.toggle()
+            player.volume = 1
             if isPlaying{
                 player.play()
             }else if !isPlaying{

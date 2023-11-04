@@ -13,7 +13,6 @@ import FirebaseFirestoreSwift
 class MainViewModel : ObservableObject{
 
     @Published var videos = [Video]()
-    @Published var isVideo = false
     
     
     init(){

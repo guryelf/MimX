@@ -13,6 +13,8 @@ class SettingsViewModel : ObservableObject{
     @AppStorage("systemTheme") var systemTheme : Int = PrefScheme.allCases.first!.rawValue
     @Environment(\.colorScheme) var colorScheme
     
+    // Video Volume to be set
+    
     
     enum PrefScheme : Int,CaseIterable,Identifiable{
         var id : Self {
