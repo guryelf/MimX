@@ -13,22 +13,30 @@ struct MimView: View {
     var video : Video
     @StateObject var vM = MainViewModel()
     @State var isPlaying = false
+    @State var player : AVPlayer
+    init(video:Video) {
+        self.video = video
+        self.player = AVPlayer(url: URL(string: video.videoURL)!)
+    }
     var body: some View {
         ZStack{
             KFImage(URL(string: video.thumbnail))
                 .resizable()
-                .clipShape(RoundedRectangle(cornerRadius: 15))
-            PlayerView(player: AVPlayer(url: URL(string: video.videoURL)!))
-                .clipShape(RoundedRectangle(cornerRadius: 15))
-                .disabled(self.isPlaying ? false : true)
-                .opacity(self.isPlaying ? 1 : 0)
+            if isPlaying{
+                PlayerView(player: player)
+            }
         }
         .onTapGesture {
             self.isPlaying.toggle()
+            if isPlaying{
+                player.play()
+            }else if !isPlaying{
+                player.pause()
+            }
         }
     }
 }
 
-#Preview {
-    MimView(video: Video.mockVideo)
-}
+//#Preview {
+//    MimView(video: Video.mockVideo, player: <#AVPlayer#>)
+//}

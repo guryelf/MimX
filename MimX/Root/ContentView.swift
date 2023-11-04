@@ -10,9 +10,6 @@ import SwiftUI
 struct ContentView: View {
     @StateObject var vM = ContentViewModel()
     @Environment(\.colorScheme) var colorScheme
-    init() {
-       
-    }
     var body: some View {
         NavigationStack{
             ScrollView{

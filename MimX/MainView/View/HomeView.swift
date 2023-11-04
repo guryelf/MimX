@@ -17,6 +17,7 @@ struct HomeView: View {
             ForEach(mVM.videos){video in
                 MimView(video: video)
                     .frame(width: 125, height: 125)
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
             }
         })
     }

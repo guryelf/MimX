@@ -18,7 +18,7 @@ class MainViewModel : ObservableObject{
     
     init(){
         Task{
-            self.videos = await loadVideos()
+            await self.videos.append(contentsOf: loadVideos())
         }
         
     }
