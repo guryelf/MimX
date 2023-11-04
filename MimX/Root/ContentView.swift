@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var vM = ContentViewModel()
+    @StateObject var vM = ContentViewModel()
     @Environment(\.colorScheme) var colorScheme
     init() {
        

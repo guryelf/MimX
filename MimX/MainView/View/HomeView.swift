@@ -6,30 +6,23 @@
 //
 import Kingfisher
 import SwiftUI
+import AVKit
 
 struct HomeView: View {
-    @State private var columns = Array(repeating: GridItem(), count: 3)
-    @ObservedObject var vM = ContentViewModel()
+    @State private var columns = Array(repeating: GridItem(.fixed(125)), count: 3)
+    @StateObject var vM = ContentViewModel()
     @StateObject var mVM = MainViewModel()
-    @State var videoUrl : String?
     var body: some View {
         LazyVGrid(columns: columns,spacing: 10, content: {
             ForEach(mVM.videos){video in
-                Button(action: {
-                    if vM.isEditActive{
-                        vM.editView.toggle()
-                    }
-                }, label: {
-                    KFImage(URL(string: video.thumbnail))
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                })
+                MimView(video: video)
+                    .frame(width: 125, height: 125)
             }
         })
-        
     }
 }
 
 #Preview {
     HomeView()
 }
+

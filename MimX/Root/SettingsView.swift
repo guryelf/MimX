@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @StateObject var vM : SettingsViewModel
+    @StateObject var vM = SettingsViewModel()
     @State private var eNum = SettingsViewModel.ProfileOptionsViewModel.allCases
     @State private var colorScheme : ColorScheme?
     init() {
-        self._vM = StateObject(wrappedValue: SettingsViewModel())
         self.colorScheme = vM.selectTheme()
     }
     var body: some View {

@@ -9,9 +9,11 @@ import Firebase
 import SwiftUI
 import FirebaseFirestoreSwift
 
+@MainActor
 class MainViewModel : ObservableObject{
 
     @Published var videos = [Video]()
+    @Published var isVideo = false
     
     
     init(){
@@ -20,7 +22,7 @@ class MainViewModel : ObservableObject{
         }
         
     }
-    
+    @MainActor
     func loadVideos() async -> [Video]{
         let path = Firestore.firestore().collection("videos")
         guard let videoData = try? await path.getDocuments() else { return []}
