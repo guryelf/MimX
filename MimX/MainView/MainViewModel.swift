@@ -9,6 +9,7 @@ import Firebase
 import SwiftUI
 import FirebaseFirestoreSwift
 
+@MainActor
 class MainViewModel : ObservableObject{
 
     @Published var videos = [Video]()
@@ -16,7 +17,7 @@ class MainViewModel : ObservableObject{
     
     init(){
         Task{
-            self.videos = await loadVideos()
+            await self.videos.append(contentsOf: loadVideos())
         }
         
     }
