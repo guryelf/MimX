@@ -15,7 +15,8 @@ struct ContentView: View {
             ScrollView{
                 Divider()
                 if vM.index == 0 {
-                    HomeView(vM: vM)
+                    HomeView()
+                        .environmentObject(vM)
                         .transition(.move(edge: .leading))
                 }else if vM.index == 1{
                     FavouriteView(vM: vM)
@@ -26,6 +27,7 @@ struct ContentView: View {
             .blur(radius: vM.isAddActive ? 2 : 0)
             .navigationTitle("MimX")
             .navigationBarTitleDisplayMode(.inline)
+            CustomTabView(vM: vM)
             .toolbar{
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
@@ -57,12 +59,11 @@ struct ContentView: View {
                 SettingsView()
             }
             .navigationDestination(isPresented: $vM.editView) {
-                if vM.content != nil{
-                    EditView()
+                if vM.selectedVideo != nil{
+                    EditView(video: vM.selectedVideo!)
                 }
             }
         }
-        TabView(vM: vM)
     }
 }
 

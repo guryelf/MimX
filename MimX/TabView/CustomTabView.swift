@@ -1,5 +1,5 @@
 //
-//  TabView.swift
+//  CustomTabView.swift
 //  MimX
 //
 //  Created by Furkan Güryel on 21.10.2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TabView: View {
+struct CustomTabView: View {
     @ObservedObject var vM = ContentViewModel()
     var body: some View {
         VStack{
@@ -64,5 +64,5 @@ struct TabView: View {
 }
 
 #Preview {
-    TabView(vM: ContentViewModel())
+    CustomTabView(vM: ContentViewModel())
 }

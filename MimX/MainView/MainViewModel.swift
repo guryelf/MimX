@@ -28,5 +28,6 @@ class MainViewModel : ObservableObject{
         let videos = videoData.documents.compactMap { try? $0.data(as: Video.self) }
         return videos
     }
+ 
     
 }

@@ -14,16 +14,8 @@ class ContentViewModel : ObservableObject{
     @Published var isSettingsActive = false
     @Published var index = 0
     @Published var isAddActive = false
-    @Published var content : Int?
     @Published var editView = false
+    @Published var selectedVideo : Video?
     
-    init(isEditActive: Bool = false, isSettingsActive: Bool = false, index: Int = 0, isAddActive: Bool = false, content: Int? = nil, editView: Bool = false) {
-        self.isEditActive = isEditActive
-        self.isSettingsActive = isSettingsActive
-        self.index = index
-        self.isAddActive = isAddActive
-        self.content = content
-        self.editView = editView
-    }
-
+ 
 }

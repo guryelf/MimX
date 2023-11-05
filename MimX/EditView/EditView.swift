@@ -10,9 +10,14 @@ import AVKit
 import AVFoundation
 
 struct EditView: View {
-    @State var player = AVPlayer(url: URL(string: "https://firebasestorage.googleapis.com/v0/b/mimx-ee4d4.appspot.com/o/ssstwitter.com_1697653735844.mp4?alt=media&token=54b821c3-2f1e-46b6-a775-3792185bd70d")!)
+    let video : Video
+    @State var player : AVPlayer
     @StateObject var vM = EditViewModel()
     @State var isButton = false
+    init(video:Video) {
+        self.video = video
+        self.player = AVPlayer(url: URL(string: video.videoURL)!)
+    }
     var body: some View {
         VStack{
             PlayerView(player: player)
@@ -44,7 +49,7 @@ struct EditView: View {
 }
 
 #Preview {
-    EditView(vM: EditViewModel())
+    EditView(video: Video.mockVideo)
 }
 
 

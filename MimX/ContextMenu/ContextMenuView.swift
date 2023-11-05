@@ -10,7 +10,7 @@ import PhotosUI
 
 struct ContextMenuView: View {
     @ObservedObject var vM = AddViewModel()
-    @ObservedObject var cM = ContentViewModel()
+    @StateObject var cM = ContentViewModel()
     var body: some View {
         HStack(spacing:30){
             AddButton(content: {
@@ -39,6 +39,7 @@ struct ContextMenuView: View {
                     withAnimation(.spring) {
                         cM.isEditActive = true
                         cM.isAddActive = false
+                        print(cM.isEditActive)
                     }
                 }, label: {
                     Image(systemName: "pencil.circle.fill")
@@ -47,6 +48,7 @@ struct ContextMenuView: View {
                     Text("Düzenle")
                         .padding(.trailing,20)
                 })
+                .frame(width: 130)
             }, bgColor: .blue, fgColor: .white)
         }
     }

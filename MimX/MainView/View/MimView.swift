@@ -11,6 +11,7 @@ import AVKit
 
 struct MimView: View {
     var video : Video
+    @EnvironmentObject var cM : ContentViewModel
     @StateObject var vM = MainViewModel()
     @State var isPlaying = false
     @State var player : AVPlayer
@@ -27,17 +28,31 @@ struct MimView: View {
             }
         }
         .onTapGesture {
-            self.isPlaying.toggle()
-            player.volume = 1
-            if isPlaying{
-                player.play()
-            }else if !isPlaying{
-                player.pause()
+            cM.selectedVideo = video
+            if !cM.isEditActive{
+                play(player: player)
+            }else{
+                cM.editView.toggle()
             }
         }
     }
 }
 
+extension MimView{
+
+    func play(player : AVPlayer){
+        self.isPlaying.toggle()
+        cM.selectedVideo = video
+        if isPlaying {
+            player.seek(to: .zero, toleranceBefore: .zero , toleranceAfter: .zero)
+            player.play()
+        }else if !isPlaying{
+            player.pause()
+        }
+    }
+    
+    
+}
 //#Preview {
 //    MimView(video: Video.mockVideo, player: <#AVPlayer#>)
 //}
