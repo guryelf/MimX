@@ -35,6 +35,9 @@ struct MimView: View {
                 cM.editView.toggle()
             }
         }
+        .onDisappear(perform: {
+            player.pause()
+        })
     }
 }
 
