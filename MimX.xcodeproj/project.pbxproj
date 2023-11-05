@@ -20,6 +20,7 @@
 		436F30DD2AE9406B0056CFDD /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F30DC2AE9406B0056CFDD /* SettingsViewModel.swift */; };
 		4370FF432AEAD3170038F609 /* ToolEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4370FF422AEAD3170038F609 /* ToolEnum.swift */; };
 		438200AB2AF039C00071B1B0 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438200AA2AF039C00071B1B0 /* PlayerView.swift */; };
+		4386013E2AF8068E00B54464 /* MimVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4386013D2AF8068E00B54464 /* MimVideoView.swift */; };
 		4389359F2AE40C0200C51516 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4389359E2AE40C0200C51516 /* HomeView.swift */; };
 		438935A12AE40D5000C51516 /* FavouriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438935A02AE40D5000C51516 /* FavouriteView.swift */; };
 		438935A42AE41F5400C51516 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438935A32AE41F5400C51516 /* CustomTabView.swift */; };
@@ -50,6 +51,7 @@
 		436F30DC2AE9406B0056CFDD /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		4370FF422AEAD3170038F609 /* ToolEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolEnum.swift; sourceTree = "<group>"; };
 		438200AA2AF039C00071B1B0 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		4386013D2AF8068E00B54464 /* MimVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimVideoView.swift; sourceTree = "<group>"; };
 		4389359E2AE40C0200C51516 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		438935A02AE40D5000C51516 /* FavouriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteView.swift; sourceTree = "<group>"; };
 		438935A32AE41F5400C51516 /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				4389359E2AE40C0200C51516 /* HomeView.swift */,
 				438935A02AE40D5000C51516 /* FavouriteView.swift */,
 				4317050E2AF681D30008F508 /* MimView.swift */,
+				4386013D2AF8068E00B54464 /* MimVideoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				43D27F1A2AE2AD0700A97AE8 /* Video.swift in Sources */,
 				4304ECE42AE4848F0000D2FA /* ContextMenuView.swift in Sources */,
 				43571F622AE6C004009CB825 /* ContentViewModel.swift in Sources */,
+				4386013E2AF8068E00B54464 /* MimVideoView.swift in Sources */,
 				4370FF432AEAD3170038F609 /* ToolEnum.swift in Sources */,
 				438935A42AE41F5400C51516 /* CustomTabView.swift in Sources */,
 				43D27F162AE2AD0700A97AE8 /* MimXApp.swift in Sources */,

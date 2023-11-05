@@ -13,7 +13,6 @@ struct Video : Identifiable,Decodable{
     let id: String
     var tags : String
     var videoURL : String
-    var isFavourite: Bool
     var thumbnail : String
     
 
@@ -28,5 +27,5 @@ extension Video : Hashable {
         
     }
     
-    static let mockVideo = Video(id: UUID().uuidString, tags: " ", videoURL:"https://firebasestorage.googleapis.com/v0/b/mimx-ee4d4.appspot.com/o/ssstwitter.com_1697653735844.mp4?alt=media&token=54b821c3-2f1e-46b6-a775-3792185bd70d" , isFavourite: false, thumbnail: "")
+    static let mockVideo = Video(id: UUID().uuidString, tags: " ", videoURL:"https://firebasestorage.googleapis.com/v0/b/mimx-ee4d4.appspot.com/o/ssstwitter.com_1697653735844.mp4?alt=media&token=54b821c3-2f1e-46b6-a775-3792185bd70d" , thumbnail: "")
 }
