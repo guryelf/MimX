@@ -9,15 +9,11 @@ import SwiftUI
 
 struct SettingsView: View {
     @StateObject var vM = SettingsViewModel()
-    @State private var eNum = SettingsViewModel.ProfileOptionsViewModel.allCases
     @State private var colorScheme : ColorScheme?
-    init() {
-        self.colorScheme = vM.selectTheme()
-    }
     var body: some View {
         List{
             Picker(selection: $vM.systemTheme) {
-                ForEach(eNum){option in
+                ForEach(SettingsViewModel.PrefScheme.allCases){option in
                     HStack{
                         Image(systemName: option.Image)
                             .imageScale(.large)

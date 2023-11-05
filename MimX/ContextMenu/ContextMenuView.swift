@@ -39,7 +39,6 @@ struct ContextMenuView: View {
                     withAnimation(.spring) {
                         cM.isEditActive = true
                         cM.isAddActive = false
-                        print(cM.isEditActive)
                     }
                 }, label: {
                     Image(systemName: "pencil.circle.fill")

@@ -27,6 +27,16 @@ struct MimView: View {
                 PlayerView(player: player)
             }
         }
+        .overlay(alignment:.topTrailing,content: {
+            Button(action: {
+                print("favourite")
+            }, label: {
+                Image(systemName: "star.circle.fill")
+                    .imageScale(.large)
+                    .foregroundStyle(.white)
+                    .clipShape(Circle())
+            })
+        })
         .onTapGesture {
             cM.selectedVideo = video
             if !cM.isEditActive{
@@ -35,6 +45,9 @@ struct MimView: View {
                 cM.editView.toggle()
             }
         }
+        .onDisappear(perform: {
+            player.pause()
+        })
     }
 }
 

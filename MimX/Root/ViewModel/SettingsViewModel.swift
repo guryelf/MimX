@@ -23,33 +23,11 @@ class SettingsViewModel : ObservableObject{
         case system
         case dark
         case light
-    }
-    
-    func selectTheme() -> ColorScheme{
-        guard let theme = PrefScheme(rawValue: systemTheme) else {return colorScheme}
-        
-        switch theme {
-        case .dark:
-            return .dark
-        case .light:
-            return .light
-        default:
-            return colorScheme
-        }
-        
-    }
-    
-    enum ProfileOptionsViewModel : Int, CaseIterable , Identifiable{
-        var id: Int{return self.rawValue}
-        
-        case system
-        case dark
-        case light
         
         var Image : String{
             switch self{
-            
-            
+                
+                
             case .dark: return "moon.circle.fill"
             case .system:
                 return "gear"
@@ -72,11 +50,27 @@ class SettingsViewModel : ObservableObject{
                 
             case .dark: return "Dark Mode"
             case .system:
-                return "System Preference"
+                return "System"
             case .light:
                 return "Light Mode"
             }
             
         }
     }
+    
+    func selectTheme() -> ColorScheme{
+        guard let theme = PrefScheme(rawValue: systemTheme) else {return colorScheme}
+        
+        switch theme {
+        case .dark:
+            return .dark
+        case .light:
+            return .light
+        default:
+            return colorScheme
+        }
+        
+    }
+    
+    
 }

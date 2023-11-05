@@ -17,5 +17,7 @@ class ContentViewModel : ObservableObject{
     @Published var editView = false
     @Published var selectedVideo : Video?
     
+    
+    
  
 }
