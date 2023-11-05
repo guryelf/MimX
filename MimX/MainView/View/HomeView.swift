@@ -15,12 +15,17 @@ struct HomeView: View {
     var body: some View {
         LazyVGrid(columns: columns,spacing: 10, content: {
             ForEach(mVM.videos){video in
-                ZStack{
+                if vM.selectedVideo == video{
+                    MimVideoView(video: video)
+                }else{
                     MimView(video: video)
                         .frame(width: 125, height: 125)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                 }
             }
+        })
+        .onDisappear(perform: {
+            vM.selectedVideo = nil
         })
     }
 }
