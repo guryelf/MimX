@@ -8,23 +8,23 @@
 import SwiftUI
 
 struct FavouriteView: View {
-    @ObservedObject var vM = ContentViewModel()
+    @State private var columns = Array(repeating: GridItem(.fixed(125)), count: 3)
+    @StateObject var mVM = MainViewModel()
+    @EnvironmentObject var vM : ContentViewModel
     var body: some View {
-        VStack(spacing:30){
-            Text("Favori özelliğini kullanmak için \n kayıt olmanız gerekmektedir.")
-                .font(.headline)
-            AddButton(content: {
-                Button(action: {
-                    print("kayıt")
-                }, label: {
-                    Text("Şimdi kayıt olun")
-                })
-                .frame(width: 200,height: 40)
-            }, bgColor: .blue, fgColor: .white)
-        }
+        LazyVGrid(columns: columns,spacing: 10, content: {
+            ForEach(mVM.videos){video in
+                if vM.selectedVideo == video{
+                    MimVideoView(video: video)
+                }else{
+                    MimView(video: video)
+                        .frame(width: 125,height: 125)
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                }
+            }
+        })
     }
 }
-
 #Preview {
-    FavouriteView(vM: ContentViewModel())
+    FavouriteView()
 }

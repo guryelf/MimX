@@ -19,13 +19,14 @@ struct ContentView: View {
                         .environmentObject(vM)
                         .transition(.move(edge: .leading))
                 }else if vM.index == 1{
-                    FavouriteView(vM: vM)
+                    FavouriteView()
+                        .environmentObject(vM)
                         .transition(.move(edge: .trailing))
                 }
             }
             .disabled(vM.isAddActive ? true : false)
             .blur(radius: vM.isAddActive ? 2 : 0)
-            .navigationTitle("MimX")
+            .navigationTitle(vM.index == 0 ?  "MimX - Home" : "MimX - Favourites")
             .navigationBarTitleDisplayMode(.inline)
             CustomTabView(vM: vM)
             .toolbar{
@@ -58,11 +59,17 @@ struct ContentView: View {
             .navigationDestination(isPresented: $vM.isSettingsActive) {
                 SettingsView()
             }
-            .navigationDestination(isPresented: $vM.editView) {
+            .sheet(isPresented: $vM.editView) {
                 if vM.selectedVideo != nil{
                     EditView(video: vM.selectedVideo!)
+                        .presentationDetents([.fraction(0.9)])
+                        .onDisappear(perform: {
+                            vM.selectedVideo = nil
+                            vM.isEditActive = false
+                        })
                 }
             }
+            
         }
     }
 }

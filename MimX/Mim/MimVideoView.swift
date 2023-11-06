@@ -27,7 +27,6 @@ struct MimVideoView: View {
                 })
                 .onTapGesture {
                     self.isPlaying.toggle()
-                    cM.selectedVideo = video
                 }
                 .onChange(of: isPlaying, perform: { value in
                     if !cM.isEditActive{
@@ -49,7 +48,6 @@ struct MimVideoView: View {
 extension MimVideoView{
     func play(player : AVPlayer){
         self.isPlaying.toggle()
-        cM.selectedVideo = video
         if isPlaying {
             player.seek(to: .zero, toleranceBefore: .zero , toleranceAfter: .zero)
             player.play()

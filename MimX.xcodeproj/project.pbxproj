@@ -127,6 +127,16 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		4367714E2AF966D200EC883A /* Mim */ = {
+			isa = PBXGroup;
+			children = (
+				4317050E2AF681D30008F508 /* MimView.swift */,
+				4386013D2AF8068E00B54464 /* MimVideoView.swift */,
+				4367714B2AF916DF00EC883A /* MimOverlayView.swift */,
+			);
+			path = Mim;
+			sourceTree = "<group>";
+		};
 		438200A92AF039B80071B1B0 /* Player */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,9 +159,6 @@
 			children = (
 				4389359E2AE40C0200C51516 /* HomeView.swift */,
 				438935A02AE40D5000C51516 /* FavouriteView.swift */,
-				4317050E2AF681D30008F508 /* MimView.swift */,
-				4386013D2AF8068E00B54464 /* MimVideoView.swift */,
-				4367714B2AF916DF00EC883A /* MimOverlayView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -219,6 +226,7 @@
 		43D27F142AE2AD0700A97AE8 /* MimX */ = {
 			isa = PBXGroup;
 			children = (
+				4367714E2AF966D200EC883A /* Mim */,
 				438200A92AF039B80071B1B0 /* Player */,
 				43571F542AE54C26009CB825 /* LocalDB */,
 				43571F512AE5161A009CB825 /* EditView */,

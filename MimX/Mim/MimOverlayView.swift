@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MimOverlayView: View {
+    @EnvironmentObject var vM : ContentViewModel
     var body: some View {
         RoundedRectangle(cornerRadius: 15)
             .frame(height: 20)
@@ -32,6 +33,7 @@ struct MimOverlayView: View {
                     })
                 }
             }
+            .opacity(vM.isEditActive ? 0 : 1)
     }
 }
 
