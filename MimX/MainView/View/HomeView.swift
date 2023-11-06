@@ -24,9 +24,6 @@ struct HomeView: View {
                 }
             }
         })
-        .onDisappear(perform: {
-            vM.selectedVideo = nil
-        })
     }
 }
 
