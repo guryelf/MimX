@@ -14,21 +14,16 @@ struct MimView: View {
     @EnvironmentObject var cM : ContentViewModel
     @StateObject var vM = MainViewModel()
     var body: some View {
-        KFImage(URL(string: video.thumbnail))
-            .resizable()
-            .onTapGesture {
-                cM.selectedVideo = video
-            }
-            .overlay(alignment:.topTrailing,content: {
-                Button(action: {
-                    print("favourite")
-                }, label: {
-                    Image(systemName: "star.circle.fill")
-                        .imageScale(.large)
-                        .foregroundStyle(.white)
-                        .clipShape(Circle())
-                })
-            })
+        VStack{
+            KFImage(URL(string: video.thumbnail))
+                .resizable()
+                .overlay(alignment: .bottom) {
+                    MimOverlayView()
+                }
+                .onTapGesture {
+                    cM.selectedVideo = video
+                }
+        }
     }
 }
 

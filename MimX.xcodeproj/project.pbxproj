@@ -17,6 +17,7 @@
 		43571F5D2AE588CE009CB825 /* MimXDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43571F5B2AE588CE009CB825 /* MimXDB.xcdatamodeld */; };
 		43571F602AE58FF2009CB825 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43571F5F2AE58FF2009CB825 /* MainViewModel.swift */; };
 		43571F622AE6C004009CB825 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43571F612AE6C004009CB825 /* ContentViewModel.swift */; };
+		4367714C2AF916DF00EC883A /* MimOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4367714B2AF916DF00EC883A /* MimOverlayView.swift */; };
 		436F30DD2AE9406B0056CFDD /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F30DC2AE9406B0056CFDD /* SettingsViewModel.swift */; };
 		4370FF432AEAD3170038F609 /* ToolEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4370FF422AEAD3170038F609 /* ToolEnum.swift */; };
 		438200AB2AF039C00071B1B0 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438200AA2AF039C00071B1B0 /* PlayerView.swift */; };
@@ -48,6 +49,7 @@
 		43571F5C2AE588CE009CB825 /* MimXDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MimXDB.xcdatamodel; sourceTree = "<group>"; };
 		43571F5F2AE58FF2009CB825 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		43571F612AE6C004009CB825 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		4367714B2AF916DF00EC883A /* MimOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimOverlayView.swift; sourceTree = "<group>"; };
 		436F30DC2AE9406B0056CFDD /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		4370FF422AEAD3170038F609 /* ToolEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolEnum.swift; sourceTree = "<group>"; };
 		438200AA2AF039C00071B1B0 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				438935A02AE40D5000C51516 /* FavouriteView.swift */,
 				4317050E2AF681D30008F508 /* MimView.swift */,
 				4386013D2AF8068E00B54464 /* MimVideoView.swift */,
+				4367714B2AF916DF00EC883A /* MimOverlayView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				43571F5D2AE588CE009CB825 /* MimXDB.xcdatamodeld in Sources */,
 				43D27F182AE2AD0700A97AE8 /* ContentView.swift in Sources */,
 				438935AA2AE4446D00C51516 /* AddButton.swift in Sources */,
+				4367714C2AF916DF00EC883A /* MimOverlayView.swift in Sources */,
 				43571F532AE51638009CB825 /* EditView.swift in Sources */,
 				4316E35F2AF018F2004296BB /* EditViewModel.swift in Sources */,
 				4304ECE72AE4A5740000D2FA /* AddViewModel.swift in Sources */,

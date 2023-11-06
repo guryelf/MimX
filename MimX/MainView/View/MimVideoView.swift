@@ -19,6 +19,9 @@ struct MimVideoView: View {
     var body: some View {
         VStack{
             PlayerView(player: player)
+                .overlay(alignment:.bottom,content: {
+                    MimOverlayView()
+                })
                 .onAppear(perform: {
                     self.isPlaying.toggle()
                 })
@@ -35,16 +38,6 @@ struct MimVideoView: View {
                 })
                 .onDisappear(perform: {
                     player.pause()
-                })
-                .overlay(alignment:.topTrailing,content: {
-                    Button(action: {
-                        print("favourite")
-                    }, label: {
-                        Image(systemName: "star.circle.fill")
-                            .imageScale(.large)
-                            .foregroundStyle(.white)
-                            .clipShape(Circle())
-                    })
                 })
         }
         .frame(width: 125, height: 125)
