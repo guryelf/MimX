@@ -1,5 +1,5 @@
 //
-//  VideosContainer.swift
+//  FavouriteContainer.swift
 //  MimX
 //
 //  Created by Furkan Güryel on 8.11.2023.
@@ -8,17 +8,17 @@
 import Foundation
 import CoreData
 
-class VideosContainer{
+class FavouriteVideosContainer {
     let persistentContainer : NSPersistentContainer
     
-    init(){
-        persistentContainer = NSPersistentContainer(name: "MimXDB")
+    init() {
+        persistentContainer = NSPersistentContainer(name: "CoreVideo")
         persistentContainer.loadPersistentStores { _, error in
-            if let error {
-                print("Persistent Container failed \(error.localizedDescription)")
+            if let error{
+                print(error.localizedDescription)
             }
         }
-        
     }
+    
     
 }

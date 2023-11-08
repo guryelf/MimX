@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import SwiftData
+import CoreData
 import FirebaseCore
 
 @main
@@ -15,6 +15,7 @@ struct MimXApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.managedObjectContext, FavouriteVideosContainer().persistentContainer.viewContext)
                 .preferredColorScheme(Environment(\.colorScheme).wrappedValue)
         }
     }

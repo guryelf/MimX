@@ -18,7 +18,7 @@ struct MimView: View {
             KFImage(URL(string: video.thumbnail))
                 .resizable()
                 .overlay(alignment: .bottom) {
-                    MimOverlayView()
+                    MimOverlayView(video: video)
                 }
                 .onTapGesture {
                     cM.selectedVideo = video

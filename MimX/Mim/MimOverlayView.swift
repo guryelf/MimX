@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MimOverlayView: View {
     @EnvironmentObject var vM : ContentViewModel
+    @State var video: Video
     var body: some View {
         RoundedRectangle(cornerRadius: 15)
             .frame(height: 20)
@@ -16,7 +17,7 @@ struct MimOverlayView: View {
             .overlay {
                 HStack(spacing:30){
                     Button(action: {
-                        print("favourite")
+                        vM.createData(selectedVideo: video)
                     }, label: {
                         Image(systemName: "star.circle.fill")
                             .imageScale(.medium)
@@ -24,9 +25,9 @@ struct MimOverlayView: View {
                             .clipShape(Circle())
                     })
                     Button(action: {
-                        print("favourite")
+                        print("share")
                     }, label: {
-                        Image(systemName: "star.circle.fill")
+                        Image(systemName: "square.and.arrow.up.fill")
                             .imageScale(.medium)
                             .foregroundStyle(.white)
                             .clipShape(Circle())
@@ -38,5 +39,5 @@ struct MimOverlayView: View {
 }
 
 #Preview {
-    MimOverlayView()
+    MimOverlayView(video: Video.mockVideo)
 }

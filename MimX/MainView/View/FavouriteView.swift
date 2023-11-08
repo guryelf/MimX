@@ -10,19 +10,22 @@ import SwiftUI
 struct FavouriteView: View {
     @State private var columns = Array(repeating: GridItem(.fixed(125)), count: 3)
     @Environment(\.managedObjectContext) var moc
-    private var videos : FetchedResults<VideoDB>?
     @StateObject var mVM = MainViewModel()
     @EnvironmentObject var vM : ContentViewModel
     var body: some View {
         LazyVGrid(columns: columns,spacing: 10, content: {
-            if videos != nil{
-                ForEach(videos!){video in
-                    MimVideoView(videoURL: video.url!)
+            ForEach(vM.favourites){video in
+                if vM.selectedVideo == video{
+                    MimVideoView(video: video)
+                }else{
+                    MimView(video: video)
+                        .frame(width: 125,height: 125)
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
                 }
             }
         })
     }
 }
-#Preview {
-    FavouriteView()
-}
+//#Preview {
+//    FavouriteView()
+//}

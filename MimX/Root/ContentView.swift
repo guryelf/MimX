@@ -20,7 +20,7 @@ struct ContentView: View {
                         .transition(.move(edge: .leading))
                 }else if vM.index == 1{
                     FavouriteView()
-                        .environment(\.managedObjectContext, VideosContainer().persistentContainer.viewContext)
+                        .environmentObject(vM)
                         .transition(.move(edge: .trailing))
                 }
             }

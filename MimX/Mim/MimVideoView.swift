@@ -8,19 +8,19 @@
 import SwiftUI
 import AVKit
 struct MimVideoView: View {
-    let videoURL : String
+    let video : Video
     @State var player : AVPlayer
     @State var isPlaying = false
     @EnvironmentObject var cM : ContentViewModel
-    init(videoURL:String) {
-        self.videoURL = videoURL
-        self.player = AVPlayer(url: URL(string: videoURL)!)
+    init(video:Video) {
+        self.video = video
+        self.player = AVPlayer(url: URL(string: video.videoURL)!)
     }
     var body: some View {
         VStack{
             PlayerView(player: player)
                 .overlay(alignment:.bottom,content: {
-                    MimOverlayView()
+                    MimOverlayView(video: video)
                 })
                 .onAppear(perform: {
                     self.isPlaying.toggle()
@@ -58,5 +58,5 @@ extension MimVideoView{
 }
 
 #Preview {
-    MimVideoView(videoURL: Video.mockVideo.videoURL)
+    MimVideoView(video: Video.mockVideo)
 }
