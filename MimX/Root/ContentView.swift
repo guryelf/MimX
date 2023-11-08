@@ -24,6 +24,11 @@ struct ContentView: View {
                         .transition(.move(edge: .trailing))
                 }
             }
+            .onChange(of: vM.index, perform: { _ in
+                withAnimation(.default) {
+                    vM.selectedVideo = nil
+                }
+            })
             .disabled(vM.isAddActive ? true : false)
             .blur(radius: vM.isAddActive ? 2 : 0)
             .navigationTitle(vM.index == 0 ?  "MimX - Home" : "MimX - Favourites")
