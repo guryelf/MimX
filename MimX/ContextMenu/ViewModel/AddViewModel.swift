@@ -20,7 +20,7 @@ class AddViewModel : ObservableObject{
     func loadPhoto() async throws{
         guard let item = picker else {return}
         guard let videoData = try await item.loadTransferable(type: Data.self) else {return}
-        
+
     }
     
     

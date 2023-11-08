@@ -15,8 +15,8 @@ struct HomeView: View {
     var body: some View {
         LazyVGrid(columns: columns,spacing: 10, content: {
             ForEach(mVM.videos){video in
-                if vM.selectedVideo == video{
-                    MimVideoView(video: video)
+                if vM.selectedVideo?.videoURL ?? "" == video.videoURL{
+                    MimVideoView(videoURL: video.videoURL)
                 }else{
                     MimView(video: video)
                         .frame(width: 125,height: 125)

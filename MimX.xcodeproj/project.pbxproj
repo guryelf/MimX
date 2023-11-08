@@ -26,6 +26,7 @@
 		438935A12AE40D5000C51516 /* FavouriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438935A02AE40D5000C51516 /* FavouriteView.swift */; };
 		438935A42AE41F5400C51516 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438935A32AE41F5400C51516 /* CustomTabView.swift */; };
 		438935AA2AE4446D00C51516 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438935A92AE4446D00C51516 /* AddButton.swift */; };
+		4389DE032AFB174A00FD41DB /* VideosContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4389DE022AFB174A00FD41DB /* VideosContainer.swift */; };
 		43D27F162AE2AD0700A97AE8 /* MimXApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D27F152AE2AD0700A97AE8 /* MimXApp.swift */; };
 		43D27F182AE2AD0700A97AE8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D27F172AE2AD0700A97AE8 /* ContentView.swift */; };
 		43D27F1A2AE2AD0700A97AE8 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D27F192AE2AD0700A97AE8 /* Video.swift */; };
@@ -58,6 +59,7 @@
 		438935A02AE40D5000C51516 /* FavouriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteView.swift; sourceTree = "<group>"; };
 		438935A32AE41F5400C51516 /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
 		438935A92AE4446D00C51516 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
+		4389DE022AFB174A00FD41DB /* VideosContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosContainer.swift; sourceTree = "<group>"; };
 		43D27F122AE2AD0700A97AE8 /* MimX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MimX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D27F152AE2AD0700A97AE8 /* MimXApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimXApp.swift; sourceTree = "<group>"; };
 		43D27F172AE2AD0700A97AE8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				43571F5B2AE588CE009CB825 /* MimXDB.xcdatamodeld */,
+				4389DE022AFB174A00FD41DB /* VideosContainer.swift */,
 			);
 			path = LocalDB;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43571F5D2AE588CE009CB825 /* MimXDB.xcdatamodeld in Sources */,
+				4389DE032AFB174A00FD41DB /* VideosContainer.swift in Sources */,
 				43D27F182AE2AD0700A97AE8 /* ContentView.swift in Sources */,
 				438935AA2AE4446D00C51516 /* AddButton.swift in Sources */,
 				4367714C2AF916DF00EC883A /* MimOverlayView.swift in Sources */,

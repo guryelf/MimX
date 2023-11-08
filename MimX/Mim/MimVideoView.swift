@@ -8,13 +8,13 @@
 import SwiftUI
 import AVKit
 struct MimVideoView: View {
-    let video : Video
+    let videoURL : String
     @State var player : AVPlayer
     @State var isPlaying = false
     @EnvironmentObject var cM : ContentViewModel
-    init(video:Video) {
-        self.video = video
-        self.player = AVPlayer(url: URL(string: video.videoURL)!)
+    init(videoURL:String) {
+        self.videoURL = videoURL
+        self.player = AVPlayer(url: URL(string: videoURL)!)
     }
     var body: some View {
         VStack{
@@ -58,5 +58,5 @@ extension MimVideoView{
 }
 
 #Preview {
-    MimVideoView(video: Video.mockVideo)
+    MimVideoView(videoURL: Video.mockVideo.videoURL)
 }
