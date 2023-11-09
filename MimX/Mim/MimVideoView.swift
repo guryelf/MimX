@@ -19,9 +19,6 @@ struct MimVideoView: View {
     var body: some View {
         VStack{
             PlayerView(player: player)
-                .overlay(alignment:.bottom,content: {
-                    MimOverlayView(video: video)
-                })
                 .onAppear(perform: {
                     self.isPlaying.toggle()
                 })

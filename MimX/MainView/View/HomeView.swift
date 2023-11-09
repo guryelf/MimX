@@ -19,6 +19,9 @@ struct HomeView: View {
                     MimVideoView(video: video)
                 }else{
                     MimView(video: video)
+                        .overlay(alignment:.bottom,content: {
+                            MimOverlayView(video: video)
+                        })
                         .frame(width: 125,height: 125)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                 }

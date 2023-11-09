@@ -14,7 +14,6 @@ struct Video : Identifiable,Decodable{
     var tags : String
     var videoURL : String
     var thumbnail : String
-    
 
 }
 

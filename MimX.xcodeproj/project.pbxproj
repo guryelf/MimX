@@ -40,6 +40,7 @@
 		43D27F5C2AE2FD4600A97AE8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 43D27F5B2AE2FD4600A97AE8 /* FirebaseStorage */; };
 		43FF91702AFC2A610056B64F /* FavouriteVideos+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF916E2AFC2A610056B64F /* FavouriteVideos+CoreDataClass.swift */; };
 		43FF91712AFC2A610056B64F /* FavouriteVideos+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF916F2AFC2A610056B64F /* FavouriteVideos+CoreDataProperties.swift */; };
+		43FF91732AFC558A0056B64F /* FavouriteOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF91722AFC558A0056B64F /* FavouriteOverlayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,7 @@
 		43D27F262AE2FCF000A97AE8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		43FF916E2AFC2A610056B64F /* FavouriteVideos+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavouriteVideos+CoreDataClass.swift"; sourceTree = "<group>"; };
 		43FF916F2AFC2A610056B64F /* FavouriteVideos+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavouriteVideos+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		43FF91722AFC558A0056B64F /* FavouriteOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteOverlayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 				4317050E2AF681D30008F508 /* MimView.swift */,
 				4386013D2AF8068E00B54464 /* MimVideoView.swift */,
 				4367714B2AF916DF00EC883A /* MimOverlayView.swift */,
+				43FF91722AFC558A0056B64F /* FavouriteOverlayView.swift */,
 			);
 			path = Mim;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				43D27F1A2AE2AD0700A97AE8 /* Video.swift in Sources */,
 				4304ECE42AE4848F0000D2FA /* ContextMenuView.swift in Sources */,
 				43571F622AE6C004009CB825 /* ContentViewModel.swift in Sources */,
+				43FF91732AFC558A0056B64F /* FavouriteOverlayView.swift in Sources */,
 				4386013E2AF8068E00B54464 /* MimVideoView.swift in Sources */,
 				4370FF432AEAD3170038F609 /* ToolEnum.swift in Sources */,
 				4389DE0C2AFBDFB800FD41DB /* CoreVideo.xcdatamodeld in Sources */,
