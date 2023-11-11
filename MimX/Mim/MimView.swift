@@ -16,6 +16,7 @@ struct MimView: View {
     var body: some View {
         VStack{
             KFImage(URL(string: video.thumbnail))
+                .cacheOriginalImage()
                 .resizable()
                 .overlay(alignment: .bottom) {
                     MimOverlayView(video: video)
@@ -24,6 +25,8 @@ struct MimView: View {
                     cM.selectedVideo = video
                 }
         }
+        .frame(width: 125, height: 125)
+        .clipShape(RoundedRectangle(cornerRadius: 15))
     }
 }
 
