@@ -41,6 +41,7 @@
 		43FF91702AFC2A610056B64F /* FavouriteVideos+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF916E2AFC2A610056B64F /* FavouriteVideos+CoreDataClass.swift */; };
 		43FF91712AFC2A610056B64F /* FavouriteVideos+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF916F2AFC2A610056B64F /* FavouriteVideos+CoreDataProperties.swift */; };
 		43FF91732AFC558A0056B64F /* FavouriteOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF91722AFC558A0056B64F /* FavouriteOverlayView.swift */; };
+		43FF91752B0004510056B64F /* CRUDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF91742B0004510056B64F /* CRUDManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		43FF916E2AFC2A610056B64F /* FavouriteVideos+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavouriteVideos+CoreDataClass.swift"; sourceTree = "<group>"; };
 		43FF916F2AFC2A610056B64F /* FavouriteVideos+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavouriteVideos+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		43FF91722AFC558A0056B64F /* FavouriteOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteOverlayView.swift; sourceTree = "<group>"; };
+		43FF91742B0004510056B64F /* CRUDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRUDManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				4389DE112AFBE08C00FD41DB /* FavouriteContainer.swift */,
 				43FF916E2AFC2A610056B64F /* FavouriteVideos+CoreDataClass.swift */,
 				43FF916F2AFC2A610056B64F /* FavouriteVideos+CoreDataProperties.swift */,
+				43FF91742B0004510056B64F /* CRUDManager.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				4389359F2AE40C0200C51516 /* HomeView.swift in Sources */,
 				438935A12AE40D5000C51516 /* FavouriteView.swift in Sources */,
 				438200AB2AF039C00071B1B0 /* PlayerView.swift in Sources */,
+				43FF91752B0004510056B64F /* CRUDManager.swift in Sources */,
 				43571F602AE58FF2009CB825 /* MainViewModel.swift in Sources */,
 				43D27F1A2AE2AD0700A97AE8 /* Video.swift in Sources */,
 				4304ECE42AE4848F0000D2FA /* ContextMenuView.swift in Sources */,

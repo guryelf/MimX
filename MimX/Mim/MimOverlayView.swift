@@ -17,7 +17,7 @@ struct MimOverlayView: View {
             .overlay {
                 HStack(spacing:30){
                     Button(action: {
-                        vM.createData(selectedVideo: video)
+                        vM.write(selectedVideo: video)
                     }, label: {
                         Image(systemName: "star.circle.fill")
                             .imageScale(.medium)
