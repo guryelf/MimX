@@ -10,7 +10,7 @@ import CoreData
 
 class CRUDManager{
     
-    static let manager = CRUDManager()
+    static let shared = CRUDManager()
     private let container = FavouriteVideosContainer().persistentContainer
     private let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "FavouriteVideos")
     
@@ -44,23 +44,14 @@ class CRUDManager{
         }
     }
     
-    func retrieveData(){
+    func retrieveData() -> [NSManagedObject]{
         let context = container.viewContext
+        var result = [NSManagedObject]()
         do {
-            let result = try context.fetch(self.fetchRequest)
-            for data in result as! [NSManagedObject] {
-                let id = data.value(forKey: "id") as! String
-                let thumbnail = data.value(forKey: "thumbnail") as! String
-                let videoURL = data.value(forKey: "videoURL") as! String
-                let tags = data.value(forKey: "tags") as! String
-                let video = Video(id: id , tags: tags, videoURL: videoURL, thumbnail: thumbnail)
-                if let index = self.favourites.firstIndex(where: { $0.videoURL == video.videoURL }){
-                    self.favourites.remove(at: index)
-                }
-                self.favourites.append(video)
-            }
+            result = try context.fetch(self.fetchRequest) as! [NSManagedObject]
         } catch {
             print(error.localizedDescription)
         }
+        return result
     }
 }
