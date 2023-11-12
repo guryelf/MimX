@@ -35,8 +35,8 @@ class ContentViewModel : ObservableObject{
     
 //    private func deleteAllData(forEntity entity: String) {
 //        
-//        let deleteRequest = NSBatchDeleteRequest(fetchRequest: self.request)
-//        
+//        let deleteRequest = NSBatchDeleteRequest(fetchRequest: self.fetchRequest)
+//
 //        do {
 //            try container.viewContext.execute(deleteRequest)
 //        } catch {
