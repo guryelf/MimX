@@ -28,7 +28,7 @@ struct SettingsView: View {
                         .foregroundStyle(.yellow)
                         .clipShape(Circle())
                         .imageScale(.large)
-                    Text("System Theme")
+                    Text("Tema")
                 }
             }
         }

@@ -48,11 +48,11 @@ class SettingsViewModel : ObservableObject{
         var title : String{
             switch self{
                 
-            case .dark: return "Dark Mode"
+            case .dark: return "Karanlık"
             case .system:
-                return "System"
+                return "Sistem"
             case .light:
-                return "Light Mode"
+                return "Aydınlık"
             }
             
         }

@@ -31,7 +31,7 @@ struct ContentView: View {
             })
             .disabled(vM.isAddActive ? true : false)
             .blur(radius: vM.isAddActive ? 2 : 0)
-            .navigationTitle(vM.index == 0 ?  "MimX - Home" : "MimX - Favourites")
+            .navigationTitle(vM.index == 0 ?  "MimX - Ana Sayfa" : "MimX - Favoriler")
             .navigationBarTitleDisplayMode(.inline)
             CustomTabView(vM: vM)
             .toolbar{

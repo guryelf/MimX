@@ -23,6 +23,4 @@ extension FavouriteVideos {
 
 }
 
-extension FavouriteVideos : Identifiable {
-
-}
+extension FavouriteVideos : Identifiable {}

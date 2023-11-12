@@ -43,6 +43,7 @@
 		43FF91732AFC558A0056B64F /* FavouriteOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF91722AFC558A0056B64F /* FavouriteOverlayView.swift */; };
 		43FF91752B0004510056B64F /* CRUDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF91742B0004510056B64F /* CRUDManager.swift */; };
 		43FF91772B0149030056B64F /* VideoCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF91762B0149030056B64F /* VideoCacheManager.swift */; };
+		43FF91792B0174F40056B64F /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF91782B0174F40056B64F /* FileManager+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,7 @@
 		43FF91722AFC558A0056B64F /* FavouriteOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteOverlayView.swift; sourceTree = "<group>"; };
 		43FF91742B0004510056B64F /* CRUDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRUDManager.swift; sourceTree = "<group>"; };
 		43FF91762B0149030056B64F /* VideoCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCacheManager.swift; sourceTree = "<group>"; };
+		43FF91782B0174F40056B64F /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				43FF916F2AFC2A610056B64F /* FavouriteVideos+CoreDataProperties.swift */,
 				43FF91742B0004510056B64F /* CRUDManager.swift */,
 				43FF91762B0149030056B64F /* VideoCacheManager.swift */,
+				43FF91782B0174F40056B64F /* FileManager+Extension.swift */,
 			);
 			path = LocalDB;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				438935AA2AE4446D00C51516 /* AddButton.swift in Sources */,
 				4367714C2AF916DF00EC883A /* MimOverlayView.swift in Sources */,
 				43571F532AE51638009CB825 /* EditView.swift in Sources */,
+				43FF91792B0174F40056B64F /* FileManager+Extension.swift in Sources */,
 				4316E35F2AF018F2004296BB /* EditViewModel.swift in Sources */,
 				4304ECE72AE4A5740000D2FA /* AddViewModel.swift in Sources */,
 				436F30DD2AE9406B0056CFDD /* SettingsViewModel.swift in Sources */,
