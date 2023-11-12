@@ -42,6 +42,7 @@
 		43FF91712AFC2A610056B64F /* FavouriteVideos+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF916F2AFC2A610056B64F /* FavouriteVideos+CoreDataProperties.swift */; };
 		43FF91732AFC558A0056B64F /* FavouriteOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF91722AFC558A0056B64F /* FavouriteOverlayView.swift */; };
 		43FF91752B0004510056B64F /* CRUDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF91742B0004510056B64F /* CRUDManager.swift */; };
+		43FF91772B0149030056B64F /* VideoCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF91762B0149030056B64F /* VideoCacheManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		43FF916F2AFC2A610056B64F /* FavouriteVideos+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavouriteVideos+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		43FF91722AFC558A0056B64F /* FavouriteOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteOverlayView.swift; sourceTree = "<group>"; };
 		43FF91742B0004510056B64F /* CRUDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRUDManager.swift; sourceTree = "<group>"; };
+		43FF91762B0149030056B64F /* VideoCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCacheManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +114,7 @@
 			path = EditView;
 			sourceTree = "<group>";
 		};
-		43571F542AE54C26009CB825 /* CoreData */ = {
+		43571F542AE54C26009CB825 /* LocalDB */ = {
 			isa = PBXGroup;
 			children = (
 				4389DE0A2AFBDFB800FD41DB /* CoreVideo.xcdatamodeld */,
@@ -120,8 +122,9 @@
 				43FF916E2AFC2A610056B64F /* FavouriteVideos+CoreDataClass.swift */,
 				43FF916F2AFC2A610056B64F /* FavouriteVideos+CoreDataProperties.swift */,
 				43FF91742B0004510056B64F /* CRUDManager.swift */,
+				43FF91762B0149030056B64F /* VideoCacheManager.swift */,
 			);
-			path = CoreData;
+			path = LocalDB;
 			sourceTree = "<group>";
 		};
 		43571F632AE6C008009CB825 /* ViewModel */ = {
@@ -243,7 +246,7 @@
 			children = (
 				4367714E2AF966D200EC883A /* Mim */,
 				438200A92AF039B80071B1B0 /* Player */,
-				43571F542AE54C26009CB825 /* CoreData */,
+				43571F542AE54C26009CB825 /* LocalDB */,
 				43571F512AE5161A009CB825 /* EditView */,
 				438935A82AE4445B00C51516 /* ContextMenu */,
 				438935A72AE4444A00C51516 /* App */,
@@ -358,6 +361,7 @@
 				4304ECE72AE4A5740000D2FA /* AddViewModel.swift in Sources */,
 				436F30DD2AE9406B0056CFDD /* SettingsViewModel.swift in Sources */,
 				4389359F2AE40C0200C51516 /* HomeView.swift in Sources */,
+				43FF91772B0149030056B64F /* VideoCacheManager.swift in Sources */,
 				438935A12AE40D5000C51516 /* FavouriteView.swift in Sources */,
 				438200AB2AF039C00071B1B0 /* PlayerView.swift in Sources */,
 				43FF91752B0004510056B64F /* CRUDManager.swift in Sources */,

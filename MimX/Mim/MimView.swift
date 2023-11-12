@@ -22,6 +22,8 @@ struct MimView: View {
                     MimOverlayView(video: video)
                 }
                 .onTapGesture {
+                    let cachedAsset = AVAsset(url: URL(string: video.videoURL)!)
+                    VideoCacheManager.shared.addToCache(key: video.id, value: cachedAsset)
                     cM.selectedVideo = video
                 }
         }
