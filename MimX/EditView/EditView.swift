@@ -44,6 +44,9 @@ struct EditView: View {
             }
             .frame(height: 200)
         }
+        .onDisappear(perform: {
+            player.pause()
+        })
         .background(Color(.systemGray5))
     }
 }

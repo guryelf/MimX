@@ -43,7 +43,6 @@ class ContentViewModel : ObservableObject{
 //            print("Failed to delete data: \(error)")
 //        }
 //    }
-    
     func retrieveData(){
         let context = container.viewContext
         let objects = CRUDManager.shared.retrieveData()

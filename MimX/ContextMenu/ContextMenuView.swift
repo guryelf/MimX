@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PhotosUI
+import AlertKit
 
 struct ContextMenuView: View {
     @ObservedObject var vM = AddViewModel()
@@ -24,6 +25,7 @@ struct ContextMenuView: View {
             }, bgColor: .blue, fgColor: .white)
             Button(action: {
                 withAnimation(.spring) {
+                    
                     cM.isAddActive.toggle()
                     cM.isEditActive = false
                 }
