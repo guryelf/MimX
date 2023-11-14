@@ -19,7 +19,6 @@ enum ToolEnum : Int , CaseIterable{
     var title : String{
         switch self {
         case .speed:
-            
             return "Speed"
         case .pitch:
             return "Pitch"
@@ -38,16 +37,7 @@ enum ToolEnum : Int , CaseIterable{
             return "character"
         }
     }
-    func toggleViewMode(vM : EditViewModel){
-        switch self {
-        case .speed:
-            vM.isSpeed.toggle()
-        case .pitch:
-            vM.isPitch.toggle()
-        case .text:
-            vM.isText.toggle()
-        }
-    }
+    
 }
 
 

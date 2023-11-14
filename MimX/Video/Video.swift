@@ -28,7 +28,7 @@ extension Video : Hashable {
         
     }
     
-    static let mockVideo = Video(id: UUID().uuidString, tags: " ", videoURL:"https://firebasestorage.googleapis.com/v0/b/mimx-ee4d4.appspot.com/o/ssstwitter.com_1697653735844.mp4?alt=media&token=54b821c3-2f1e-46b6-a775-3792185bd70d" , thumbnail: "")
+    static let mockVideo = Video(id: UUID().uuidString, tags: " ", videoURL:"https://firebasestorage.googleapis.com/v0/b/mimx-ee4d4.appspot.com/o/Videos%2Fssstwitter.com_1698952443849.mp4?alt=media&token=bbdf85ed-8ce7-432f-803a-9c0fc18a076f" , thumbnail: "")
 }
 
 extension Video: Transferable {
