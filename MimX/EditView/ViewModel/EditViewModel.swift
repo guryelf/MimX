@@ -12,30 +12,28 @@ import AVKit
 
 
 class EditViewModel : ObservableObject{
+    @Published var images = [Data]()
     
     
-    @Published var isPitch = false
-    @Published var isSpeed = false
-    @Published var isText = false
-    @Published var isPlaying = false
-    
-    
-    @ViewBuilder func playbackButtons(player : AVPlayer) -> some View{
-        Button(action: {
-            self.isPlaying.toggle()
-            if self.isPlaying {
-                player.play()
-            }else if !self.isPlaying{
-                player.pause()
+    func generateImage(url: URL, secondRange : ClosedRange<Int> , compressionQuality: Double = 0.05) {
+        let imgGenerator = AVAssetImageGenerator(asset: AVAsset(url: url))
+        for second in secondRange{
+            print(second)
+            do{
+                let cgImage = try imgGenerator.copyCGImage(at: .init(seconds: Double(second), preferredTimescale: 1), actualTime: nil)
+                let uiImage = UIImage(cgImage: cgImage)
+                let imageData = uiImage.jpegData(compressionQuality: compressionQuality)
+                self.images.append(imageData!)
+            }catch{
+                print(error.localizedDescription)
             }
-        }, label: {
-            Image(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill" )
-                .resizable()
-                .frame(width: 50, height: 50)
-                .background(Circle().fill(.black).opacity(0.5))
-        })
+            
+        }
+        print("images:",self.images.count)
     }
-
+    
+    
+    
 }
 
 

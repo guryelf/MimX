@@ -14,14 +14,16 @@ struct ContentView: View {
         NavigationStack{
             ScrollView{
                 Divider()
-                if vM.index == 0 {
-                    HomeView()
-                        .environmentObject(vM)
-                        .transition(.move(edge: .leading))
-                }else if vM.index == 1{
-                    FavouriteView()
-                        .environmentObject(vM)
-                        .transition(.move(edge: .trailing))
+                ZStack{
+                    if vM.index == 0 {
+                        HomeView()
+                            .environmentObject(vM)
+                            .transition(.move(edge: .leading))
+                    }else if vM.index == 1{
+                        FavouriteView()
+                            .environmentObject(vM)
+                            .transition(.move(edge: .trailing))
+                    }
                 }
             }
             .onChange(of: vM.index, perform: { _ in
@@ -33,6 +35,8 @@ struct ContentView: View {
             .blur(radius: vM.isAddActive ? 2 : 0)
             .navigationTitle(vM.index == 0 ?  "MimX - Ana Sayfa" : "MimX - Favoriler")
             .navigationBarTitleDisplayMode(.inline)
+            
+            //MARK: TAB VIEW
             CustomTabView(vM: vM)
             .toolbar{
                 ToolbarItem(placement: .topBarTrailing) {

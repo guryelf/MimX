@@ -7,13 +7,15 @@
 
 import SwiftUI
 import AVKit
-import AVFoundation
 
 struct EditView: View {
+    @State var pitch = false
+    @State var speed = false
+    @State var text = false
+    @State var isPlaying = false
     let video : Video
     @State var player : AVPlayer
     @StateObject var vM = EditViewModel()
-    @State var isButton = false
     init(video:Video) {
         self.video = video
         self.player = AVPlayer(url: URL(string: video.videoURL)!)
@@ -21,15 +23,13 @@ struct EditView: View {
     var body: some View {
         VStack{
             PlayerView(player: player)
-                .overlay{
-                    vM.playbackButtons(player: player)
-                }
                 .frame(width: UIScreen.main.bounds.width, height: 300)
+            TimelineSliderView(player: $player, video: video)
             HStack(spacing:25){
                 ForEach(ToolEnum.allCases,id: \.self){button in
                     AddButton(content: {
                         Button(action: {
-                            isButton.toggle()
+                            
                         }, label: {
                             VStack(spacing:10,content: {
                                 Image(systemName: button.image)
@@ -54,5 +54,6 @@ struct EditView: View {
 #Preview {
     EditView(video: Video.mockVideo)
 }
+
 
 

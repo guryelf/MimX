@@ -10,7 +10,9 @@ import PhotosUI
 import AVKit
 import CoreData
 
-
+// This view model receives the image from the user and converts it to the "Video" struct which conforms to the "Transferable"
+// and generates custom thumbnail for the video with "generateImage" function and creates another instance of struct.
+// For me it was better if the selected video shows in favourites so I decided to use "CRUDManager" to write to the "FavouriteVideos".
 class AddViewModel : ObservableObject{
     @Published var picker : PhotosPickerItem?{
         didSet {
