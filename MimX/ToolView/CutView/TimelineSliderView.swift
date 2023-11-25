@@ -71,7 +71,7 @@ fileprivate struct Bar : View {
             .overlay {
                 HStack(spacing:0){
                     ForEach(vM.images,id: \.self) { image in
-                        Image(uiImage: UIImage(data: image))
+                        Image(uiImage: UIImage(data: image)!)
                             .resizable()
                             .frame(width: 40,height: proxy.size.height-20)
                     }

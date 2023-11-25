@@ -44,7 +44,6 @@ class ContentViewModel : ObservableObject{
 //        }
 //    }
     func retrieveData(){
-        let context = container.viewContext
         let objects = CRUDManager.shared.retrieveData()
         for object in objects {
             let videoURL = object.value(forKey: "videoURL") as! String

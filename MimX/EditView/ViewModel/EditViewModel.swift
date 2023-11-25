@@ -27,7 +27,6 @@ class EditViewModel : ObservableObject{
             }catch{
                 print(error.localizedDescription)
             }
-            
         }
         print("images:",self.images.count)
     }

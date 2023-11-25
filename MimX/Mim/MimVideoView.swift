@@ -15,7 +15,7 @@ struct MimVideoView: View {
     @EnvironmentObject var cM : ContentViewModel
     init(video:Video) {
         self.video = video
-        self.player = AVPlayer(url: URL(string: video.videoURL)!)
+        self.player = AVPlayer(url: URL(string: video.videoURL ) ?? URL(fileURLWithPath: video.videoURL))
         self.cachedAsset = VideoCacheManager.shared.getFromCache(key: video.id)
     }
     var body: some View {

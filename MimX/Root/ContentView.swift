@@ -25,6 +25,9 @@ struct ContentView: View {
                             .transition(.move(edge: .trailing))
                     }
                 }
+                .onDisappear(perform: {
+                    vM.selectedVideo = nil
+                })
             }
             .onChange(of: vM.index, perform: { _ in
                 withAnimation(.default) {
