@@ -9,22 +9,24 @@ import SwiftUI
 import AVKit
 
 struct EditView: View {
-    @State var pitch = false
-    @State var speed = false
-    @State var text = false
-    @State var isPlaying = false
-    let video : Video
-    @State var player : AVPlayer
-    @StateObject var vM = EditViewModel()
+    private var pitch = false
+    private var speed = false
+    private var text = false
+    private var isPlaying = false
+    private var images = [URL]()
+    private var video : Video
+    private var player : AVPlayer
+    @StateObject var vM = EditViewViewModel()
     init(video:Video) {
         self.video = video
         self.player = AVPlayer(url: URL(string: video.videoURL)!)
+        self.images = vM.generateSliderView(url: URL(string: video.videoURL)!)!
     }
     var body: some View {
         VStack{
             PlayerView(player: player)
                 .frame(width: UIScreen.main.bounds.width, height: 300)
-            TimelineSliderView(player: $player, video: video)
+            TimelineSliderView(video:video,images:images)
             HStack(spacing:25){
                 ForEach(ToolEnum.allCases,id: \.self){button in
                     AddButton(content: {
@@ -44,6 +46,9 @@ struct EditView: View {
             }
             .frame(height: 200)
         }
+        .onAppear(perform: {
+            
+        })
         .onDisappear(perform: {
             player.pause()
         })
