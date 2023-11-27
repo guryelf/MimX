@@ -25,20 +25,11 @@ struct ContentView: View {
                             .transition(.move(edge: .trailing))
                     }
                 }
-                .onDisappear(perform: {
-                    vM.selectedVideo = nil
-                })
             }
-            .onChange(of: vM.index, perform: { _ in
-                withAnimation(.default) {
-                    vM.selectedVideo = nil
-                }
-            })
             .disabled(vM.isAddActive ? true : false)
             .blur(radius: vM.isAddActive ? 2 : 0)
             .navigationTitle(vM.index == 0 ?  "MimX - Ana Sayfa" : "MimX - Favoriler")
             .navigationBarTitleDisplayMode(.inline)
-            
             //MARK: TAB VIEW
             CustomTabView(vM: vM)
             .toolbar{
@@ -81,14 +72,10 @@ struct ContentView: View {
                         })
                 }
             }
-            
         }
     }
 }
 
 #Preview {
     ContentView()
-    
-    
-    
 }

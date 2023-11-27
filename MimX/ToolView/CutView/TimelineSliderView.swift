@@ -10,21 +10,12 @@ import Kingfisher
 import AVKit
 
 struct TimelineSliderView: View {
-    @Binding var player : AVPlayer
-    let video : Video
     let startTime : Float = 0
-    var endTime : Float
-    init(player:Binding<AVPlayer>,video:Video) {
-        self._player = player
-        self.video = video
-        self.endTime = Float(CMTimeGetSeconds(AVAsset(url: URL(string: video.videoURL)!).duration))
-    }
+    @StateObject var vM = EditViewViewModel()
     var body: some View {
         GeometryReader{ proxy in
-            Text("\(endTime.formatted())")
-                .position(x: proxy.size.width,y:proxy.size.height.remainder(dividingBy: proxy.size.height))
             ZStack{
-                Bar(proxy: proxy, highlighted: true,endTime: endTime,video: video)
+                Bar(proxy: proxy, highlighted: true)
                     .position(x:proxy.size.width/2,y:proxy.size.height/2)
                 Thumb(proxy: proxy, imageName: "chevron.left")
                     .position(x:proxy.size.width.remainder(dividingBy: proxy.size.width),y:proxy.size.height/2)
@@ -53,16 +44,15 @@ fileprivate struct Thumb : View {
     }
 }
 fileprivate struct Bar : View {
-    @StateObject var vM = EditViewModel()
+    @StateObject var vM = EditViewViewModel()
     let proxy : GeometryProxy
     var highlighted : Bool
     var highlightedOpacity: Double{
         return highlighted ? 0.3 : 1.0
     }
-    init(proxy:GeometryProxy,highlighted:Bool,endTime:Float,video:Video){
+    init(proxy:GeometryProxy,highlighted:Bool){
         self.proxy = proxy
         self.highlighted = highlighted
-        vM.generateImage(url: URL(string: video.videoURL)!, secondRange: 0...Int(endTime.rounded()))
     }
     var body: some View {
         Rectangle()
@@ -70,19 +60,17 @@ fileprivate struct Bar : View {
             .frame(height: proxy.size.height-20)
             .overlay {
                 HStack(spacing:0){
-                    ForEach(vM.images,id: \.self) { image in
-                        Image(uiImage: UIImage(data: image)!)
+                    ForEach(vM.images,id: \.accessibilityIdentifier) { image in
+                        Image(uiImage: image)
                             .resizable()
                             .frame(width: 40,height: proxy.size.height-20)
                     }
                 }
             }
-        
-        
     }
 }
 
 #Preview {
-    TimelineSliderView(player: .constant(AVPlayer(url: URL(string: "https://firebasestorage.googleapis.com/v0/b/mimx-ee4d4.appspot.com/o/Videos%2Fssstwitter.com_1698952443849.mp4?alt=media&token=bbdf85ed-8ce7-432f-803a-9c0fc18a076f")!)), video: Video.mockVideo)
+    TimelineSliderView()
 }
 

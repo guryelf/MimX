@@ -15,16 +15,17 @@ struct EditView: View {
     @State var isPlaying = false
     let video : Video
     @State var player : AVPlayer
-    @StateObject var vM = EditViewModel()
+    @StateObject var vM = EditViewViewModel()
     init(video:Video) {
         self.video = video
         self.player = AVPlayer(url: URL(string: video.videoURL)!)
+        vM.returnAsset(video: video)
     }
     var body: some View {
         VStack{
             PlayerView(player: player)
                 .frame(width: UIScreen.main.bounds.width, height: 300)
-            TimelineSliderView(player: $player, video: video)
+            TimelineSliderView()
             HStack(spacing:25){
                 ForEach(ToolEnum.allCases,id: \.self){button in
                     AddButton(content: {

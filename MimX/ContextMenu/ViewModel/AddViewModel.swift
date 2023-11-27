@@ -14,6 +14,7 @@ import CoreData
 // and generates custom thumbnail for the video with "generateImage" function and creates another instance of struct.
 // For me it was better if the selected video shows in favourites so I decided to use "CRUDManager" to write to the "FavouriteVideos".
 class AddViewModel : ObservableObject{
+    
     @Published var picker : PhotosPickerItem?{
         didSet {
             Task{
@@ -21,7 +22,7 @@ class AddViewModel : ObservableObject{
             }
         }
     }
-    func generateImage(url: URL, second : Int = 1 , compressionQuality: Double = 0.05) -> URL?{
+    func generateThumbnail(url: URL, second : Int = 1 , compressionQuality: Double = 0.05) -> URL?{
         let imgGenerator = AVAssetImageGenerator(asset: AVAsset(url: url))
         guard let cgImage = try? imgGenerator.copyCGImage(at: .init(seconds: Double(second), preferredTimescale: 1), actualTime: nil) else { return nil}
         let uiImage = UIImage(cgImage: cgImage)
@@ -40,7 +41,7 @@ class AddViewModel : ObservableObject{
     func loadVideo() async throws {
         guard let item = picker else {return  }
         guard let videoData = try await item.loadTransferable(type: Video.self) else {return  }
-        let thumbnail = generateImage(url: URL(string: videoData.videoURL)!)
+        let thumbnail = generateThumbnail(url: URL(string: videoData.videoURL)!)
         let video = Video(id: videoData.id, tags: videoData.tags, videoURL: videoData.videoURL, thumbnail: thumbnail?.absoluteString ?? "")
         CRUDManager.shared.createData(selectedVideo: video)
     }
