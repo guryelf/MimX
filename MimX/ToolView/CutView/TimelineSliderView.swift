@@ -10,16 +10,14 @@ import Kingfisher
 import AVKit
 
 struct TimelineSliderView: View {
-    private var images : [URL]
     private var video: Video
-    init(video:Video,images:[URL]) {
+    init(video:Video) {
         self.video = video
-        self.images = images
     }
     var body: some View {
         GeometryReader{ proxy in
             ZStack{
-                Bar(proxy: proxy, highlighted: true,images: images)
+                Bar(proxy: proxy, highlighted: true, video: video)
                     .position(x:proxy.size.width/2,y:proxy.size.height/2)
                 Thumb(proxy: proxy, imageName: "chevron.left")
                     .position(x:proxy.size.width.remainder(dividingBy: proxy.size.width),y:proxy.size.height/2)
@@ -28,8 +26,6 @@ struct TimelineSliderView: View {
             }
         }
         .frame(width: UIScreen.main.bounds.width-100, height: 100, alignment: .center)
-        
-        
     }
 }
 fileprivate struct Thumb : View {
@@ -49,15 +45,19 @@ fileprivate struct Thumb : View {
 }
 fileprivate struct Bar : View {
     let proxy : GeometryProxy
-    var images : [URL]
+    var images = [URL]()
     var highlighted : Bool
+    var video: Video
+    @StateObject var vM = EditViewViewModel()
     var highlightedOpacity: Double{
         return highlighted ? 0.3 : 1.0
     }
-    init(proxy:GeometryProxy,highlighted:Bool,images : [URL]){
+    init(proxy:GeometryProxy,highlighted:Bool,video:Video){
         self.proxy = proxy
         self.highlighted = highlighted
-        self.images = images
+        self.video = video
+        self.images = vM.generateSliderView(url: URL(string: video.videoURL)!)!
+        
     }
     var body: some View {
         Rectangle()
@@ -76,6 +76,6 @@ fileprivate struct Bar : View {
 }
 
 #Preview {
-    TimelineSliderView(video: Video.mockVideo, images: [])
+    TimelineSliderView(video: Video.mockVideo)
 }
 

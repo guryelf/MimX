@@ -26,7 +26,7 @@ class AddViewModel : ObservableObject{
     func loadVideo() async throws {
         guard let item = picker else {return  }
         guard let videoData = try await item.loadTransferable(type: Video.self) else {return  }
-        let thumbnail = ImageGenerator().generateThumbnail(url: URL(string:videoData.videoURL)!)
+        let thumbnail = await ImageGenerator().generateThumbnail(url: URL(string:videoData.videoURL)!)
         let video = Video(id: videoData.id, tags: videoData.tags, videoURL: videoData.videoURL, thumbnail: thumbnail?.absoluteString ?? "")
         CRUDManager.shared.createData(selectedVideo: video)
     }

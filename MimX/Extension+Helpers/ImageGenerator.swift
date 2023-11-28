@@ -9,6 +9,7 @@ import Foundation
 import AVFoundation
 import SwiftUI
 
+@MainActor
 class ImageGenerator{
     
     static let shared = ImageGenerator()

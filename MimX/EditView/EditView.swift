@@ -13,20 +13,17 @@ struct EditView: View {
     private var speed = false
     private var text = false
     private var isPlaying = false
-    private var images = [URL]()
     private var video : Video
     private var player : AVPlayer
-    @StateObject var vM = EditViewViewModel()
     init(video:Video) {
         self.video = video
         self.player = AVPlayer(url: URL(string: video.videoURL)!)
-        self.images = vM.generateSliderView(url: URL(string: video.videoURL)!)!
     }
     var body: some View {
         VStack{
-            PlayerView(player: player)
+            PlayerView(player: player,resizeAspect: .resizeAspectFill)
                 .frame(width: UIScreen.main.bounds.width, height: 300)
-            TimelineSliderView(video:video,images:images)
+            TimelineSliderView(video:video)
             HStack(spacing:25){
                 ForEach(ToolEnum.allCases,id: \.self){button in
                     AddButton(content: {
