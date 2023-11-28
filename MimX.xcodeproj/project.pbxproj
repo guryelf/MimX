@@ -17,7 +17,7 @@
 		43571F602AE58FF2009CB825 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43571F5F2AE58FF2009CB825 /* MainViewModel.swift */; };
 		43571F622AE6C004009CB825 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43571F612AE6C004009CB825 /* ContentViewModel.swift */; };
 		43616BB52B14D55B009369D0 /* EditView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43616BB42B14D55B009369D0 /* EditView-ViewModel.swift */; };
-		43616BB82B151207009369D0 /* AVAsset+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43616BB72B151207009369D0 /* AVAsset+Extension.swift */; };
+		43616BB82B151207009369D0 /* ImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43616BB72B151207009369D0 /* ImageGenerator.swift */; };
 		4367714C2AF916DF00EC883A /* MimOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4367714B2AF916DF00EC883A /* MimOverlayView.swift */; };
 		436F30DD2AE9406B0056CFDD /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F30DC2AE9406B0056CFDD /* SettingsViewModel.swift */; };
 		4370FF432AEAD3170038F609 /* ToolEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4370FF422AEAD3170038F609 /* ToolEnum.swift */; };
@@ -61,7 +61,7 @@
 		43571F5F2AE58FF2009CB825 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		43571F612AE6C004009CB825 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		43616BB42B14D55B009369D0 /* EditView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditView-ViewModel.swift"; sourceTree = "<group>"; };
-		43616BB72B151207009369D0 /* AVAsset+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVAsset+Extension.swift"; sourceTree = "<group>"; };
+		43616BB72B151207009369D0 /* ImageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGenerator.swift; sourceTree = "<group>"; };
 		4367714B2AF916DF00EC883A /* MimOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimOverlayView.swift; sourceTree = "<group>"; };
 		436F30DC2AE9406B0056CFDD /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		4370FF422AEAD3170038F609 /* ToolEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolEnum.swift; sourceTree = "<group>"; };
@@ -165,13 +165,13 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		43616BB62B150562009369D0 /* Extension */ = {
+		43616BB62B150562009369D0 /* Extension+Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				43FF91782B0174F40056B64F /* FileManager+Extension.swift */,
-				43616BB72B151207009369D0 /* AVAsset+Extension.swift */,
+				43616BB72B151207009369D0 /* ImageGenerator.swift */,
 			);
-			path = Extension;
+			path = "Extension+Helpers";
 			sourceTree = "<group>";
 		};
 		4367714E2AF966D200EC883A /* Mim */ = {
@@ -290,7 +290,7 @@
 		43D27F142AE2AD0700A97AE8 /* MimX */ = {
 			isa = PBXGroup;
 			children = (
-				43616BB62B150562009369D0 /* Extension */,
+				43616BB62B150562009369D0 /* Extension+Helpers */,
 				4387B1482B02DFE500B728C7 /* ToolView */,
 				43571F512AE5161A009CB825 /* EditView */,
 				4387B1452B028D4B00B728C7 /* AppError */,
@@ -421,7 +421,7 @@
 				43571F602AE58FF2009CB825 /* MainViewModel.swift in Sources */,
 				43D27F1A2AE2AD0700A97AE8 /* Video.swift in Sources */,
 				4304ECE42AE4848F0000D2FA /* ContextMenuView.swift in Sources */,
-				43616BB82B151207009369D0 /* AVAsset+Extension.swift in Sources */,
+				43616BB82B151207009369D0 /* ImageGenerator.swift in Sources */,
 				43571F622AE6C004009CB825 /* ContentViewModel.swift in Sources */,
 				4387B14A2B02DFF400B728C7 /* TimelineSliderView.swift in Sources */,
 				43FF91732AFC558A0056B64F /* FavouriteOverlayView.swift in Sources */,

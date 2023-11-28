@@ -11,10 +11,10 @@ import AVKit
 class EditViewViewModel : ObservableObject{
     
     func generateSliderView(url:URL) -> [URL]?{
-        var imageURLS = [Data]()
-        ImageGenerator().generateImages(url: url) { images in
-            imageURLS = images
+        var imageData = [Data]()
+        ImageGenerator.shared.generateImages(url: url) { images in
+            imageData = images
         }
-        return ImageGenerator().saveImages(url: url, images: imageURLS)
+        return ImageGenerator.shared.saveImages(url: url, images: imageData)
     }
 }

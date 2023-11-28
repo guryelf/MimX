@@ -11,6 +11,8 @@ import SwiftUI
 
 class ImageGenerator{
     
+    static let shared = ImageGenerator()
+    
     func generateThumbnail(url: URL, second : Int = 1 , compressionQuality: Double = 0.05) -> URL?{
         let imgGenerator = AVAssetImageGenerator(asset: AVURLAsset(url: url))
         guard let cgImage = try? imgGenerator.copyCGImage(at: .init(seconds: Double(second), preferredTimescale: 1), actualTime: nil) else { return nil}
@@ -47,19 +49,7 @@ class ImageGenerator{
         completion(imageData)
     }
     func saveImages(url: URL,images: [Data]) -> [URL]{
-        var direct = FileManager.default.getDocDirect()
-        let path = direct.appendingPathComponent(url.absoluteString)
-        let fileExists = FileManager.default.fileExists(atPath: path.path)
-        if !fileExists{
-           try? FileManager.default.createDirectory(atPath: path.path, withIntermediateDirectories: true)
-        }
-        do{
-            let fileURL = path.appendingPathComponent(url.absoluteString)
-            try images.compactMap{try $0.write(to: fileURL)}
-        }catch{
-            print("generateImage function error: ", error)
-        }
-        let imageURLS = try? FileManager.default.contentsOfDirectory(at: path, includingPropertiesForKeys: .none, options: .skipsHiddenFiles)
-        return imageURLS!
+        let manager = FileManager.default
+        return manager.createFolderAndSave(name: url.absoluteString, dataToWrite: images)
     }
 }
