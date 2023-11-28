@@ -27,16 +27,14 @@ extension FileManager{
         return folderPath
     }
     
-    func createFolderAndSave(name:String,dataToWrite:[Data]) -> [URL]{
+    func isExists(name:String) -> [URL]?{
         let folderName = name
         var url = [URL]()
         let fileManager = FileManager.default
         if let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
             let folderURL = documentsDirectory.appendingPathComponent(folderName)
             do {
-                if !fileManager.fileExists(atPath: folderURL.path) {
-                    try fileManager.createDirectory(at: folderURL, withIntermediateDirectories: true, attributes: nil)
-                } else {
+                if fileManager.fileExists(atPath: folderURL.path) {
                     print("Folder does exist : \(folderURL.path)")
                     url = try contentsOfDirectory(at: folderURL, includingPropertiesForKeys: nil)
                     url.sort { url9, url8 in
@@ -55,10 +53,29 @@ extension FileManager{
                     }
                     return url
                 }
-                dataToWrite.forEach { 
+            } catch {
+                print("Error: \(error.localizedDescription)")
+            }
+        } else {
+            print("Direct not found")
+        }
+        return nil
+    }
+    
+    func createFolderAndSave(name:String,dataToWrite:[Data]) -> [URL]{
+        let folderName = name
+        var url = [URL]()
+        let fileManager = FileManager.default
+        if let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let folderURL = documentsDirectory.appendingPathComponent(folderName)
+            do {
+                if !fileManager.fileExists(atPath: folderURL.path) {
+                    try fileManager.createDirectory(at: folderURL, withIntermediateDirectories: true, attributes: nil)
+                }
+                dataToWrite.forEach {
                     let fileURL = folderURL.appendingPathComponent("name,\(UUID().uuidString).jpg")
                     try? $0.write(to: fileURL) }
-                url = try contentsOfDirectory(at: folderURL, includingPropertiesForKeys: nil)
+                url = try contentsOfDirectory(at: folderURL, includingPropertiesForKeys: .none)
             } catch {
                 print("Error: \(error.localizedDescription)")
             }
