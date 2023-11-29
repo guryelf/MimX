@@ -7,15 +7,21 @@
 
 import Foundation
 import AVKit
+import SwiftUI
 
 @MainActor
 class EditViewViewModel : ObservableObject{
-    @Published var pitch = false
-    @Published var speed = false
-    @Published var text = false
+    
+    var asset : AVAsset
+    
+    init(video:Video) {
+        self.asset = AVAsset(url: URL(string:video.videoURL)!)
+    }
+    
     
     func generateSliderView(url:URL) -> [URL]?{
         let manager = FileManager.default
+        var urls = [URL]()
         if let urls = manager.isExists(name: url.absoluteString){
             return urls
         }
@@ -23,6 +29,20 @@ class EditViewViewModel : ObservableObject{
         ImageGenerator.shared.generateImages(url: url) { images in
             imageData = images
         }
-        return ImageGenerator.shared.saveImages(url: url, images: imageData)
+        urls = ImageGenerator.shared.saveImages(url: url, images: imageData)
+        return urls
     }
+    
+    @ViewBuilder
+    func sheetContent(tool:ToolEnum,speed:Binding<Float>) -> some View {
+        switch tool{
+         case .speed:
+             SpeedView(value: speed)
+         case .text:
+             TextView()
+         case .pitch:
+             PitchView()
+         }
+     }
+
 }

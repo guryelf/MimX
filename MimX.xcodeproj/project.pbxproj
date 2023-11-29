@@ -13,6 +13,10 @@
 		4316E35F2AF018F2004296BB /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4316E35E2AF018F2004296BB /* EditViewModel.swift */; };
 		4317050D2AF47DEC0008F508 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4317050C2AF47DEC0008F508 /* Kingfisher */; };
 		4317050F2AF681D30008F508 /* MimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4317050E2AF681D30008F508 /* MimView.swift */; };
+		4333AAEC2B17C6A4009C709E /* PitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4333AAEB2B17C6A4009C709E /* PitchView.swift */; };
+		4333AAEE2B17C6AC009C709E /* SpeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4333AAED2B17C6AC009C709E /* SpeedView.swift */; };
+		4333AAF02B17C6B1009C709E /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4333AAEF2B17C6B1009C709E /* TextView.swift */; };
+		4333AAF22B17CA94009C709E /* ToolSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4333AAF12B17CA94009C709E /* ToolSheetView.swift */; };
 		43571F532AE51638009CB825 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43571F522AE51638009CB825 /* EditView.swift */; };
 		43571F602AE58FF2009CB825 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43571F5F2AE58FF2009CB825 /* MainViewModel.swift */; };
 		43571F622AE6C004009CB825 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43571F612AE6C004009CB825 /* ContentViewModel.swift */; };
@@ -58,6 +62,10 @@
 		4304ECEA2AE4A7280000D2FA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		4316E35E2AF018F2004296BB /* EditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
 		4317050E2AF681D30008F508 /* MimView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimView.swift; sourceTree = "<group>"; };
+		4333AAEB2B17C6A4009C709E /* PitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchView.swift; sourceTree = "<group>"; };
+		4333AAED2B17C6AC009C709E /* SpeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedView.swift; sourceTree = "<group>"; };
+		4333AAEF2B17C6B1009C709E /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		4333AAF12B17CA94009C709E /* ToolSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolSheetView.swift; sourceTree = "<group>"; };
 		43571F522AE51638009CB825 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		43571F5F2AE58FF2009CB825 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		43571F612AE6C004009CB825 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
@@ -117,6 +125,30 @@
 				4316E35E2AF018F2004296BB /* EditViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4333AAE82B17C690009C709E /* SpeedView */ = {
+			isa = PBXGroup;
+			children = (
+				4333AAED2B17C6AC009C709E /* SpeedView.swift */,
+			);
+			path = SpeedView;
+			sourceTree = "<group>";
+		};
+		4333AAE92B17C694009C709E /* PitchView */ = {
+			isa = PBXGroup;
+			children = (
+				4333AAEB2B17C6A4009C709E /* PitchView.swift */,
+			);
+			path = PitchView;
+			sourceTree = "<group>";
+		};
+		4333AAEA2B17C69B009C709E /* TextView */ = {
+			isa = PBXGroup;
+			children = (
+				4333AAEF2B17C6B1009C709E /* TextView.swift */,
+			);
+			path = TextView;
 			sourceTree = "<group>";
 		};
 		4341884A2B10F53E006608CC /* CutView */ = {
@@ -207,7 +239,11 @@
 		4387B1482B02DFE500B728C7 /* ToolView */ = {
 			isa = PBXGroup;
 			children = (
+				4333AAEA2B17C69B009C709E /* TextView */,
+				4333AAE92B17C694009C709E /* PitchView */,
+				4333AAE82B17C690009C709E /* SpeedView */,
 				4341884A2B10F53E006608CC /* CutView */,
+				4333AAF12B17CA94009C709E /* ToolSheetView.swift */,
 			);
 			path = ToolView;
 			sourceTree = "<group>";
@@ -416,16 +452,19 @@
 				4316E35F2AF018F2004296BB /* EditViewModel.swift in Sources */,
 				4304ECE72AE4A5740000D2FA /* AddViewModel.swift in Sources */,
 				436F30DD2AE9406B0056CFDD /* SettingsViewModel.swift in Sources */,
+				4333AAEC2B17C6A4009C709E /* PitchView.swift in Sources */,
 				4389359F2AE40C0200C51516 /* HomeView.swift in Sources */,
 				43FF91772B0149030056B64F /* VideoCacheManager.swift in Sources */,
 				438935A12AE40D5000C51516 /* FavouriteView.swift in Sources */,
 				438200AB2AF039C00071B1B0 /* PlayerView.swift in Sources */,
+				4333AAEE2B17C6AC009C709E /* SpeedView.swift in Sources */,
 				43FF91752B0004510056B64F /* CRUDManager.swift in Sources */,
 				43571F602AE58FF2009CB825 /* MainViewModel.swift in Sources */,
 				43D27F1A2AE2AD0700A97AE8 /* Video.swift in Sources */,
 				4304ECE42AE4848F0000D2FA /* ContextMenuView.swift in Sources */,
 				43616BB82B151207009369D0 /* ImageGenerator.swift in Sources */,
 				43571F622AE6C004009CB825 /* ContentViewModel.swift in Sources */,
+				4333AAF22B17CA94009C709E /* ToolSheetView.swift in Sources */,
 				4387B14A2B02DFF400B728C7 /* TimelineSliderView.swift in Sources */,
 				43FF91732AFC558A0056B64F /* FavouriteOverlayView.swift in Sources */,
 				4386013E2AF8068E00B54464 /* MimVideoView.swift in Sources */,
@@ -438,6 +477,7 @@
 				43D27F162AE2AD0700A97AE8 /* MimXApp.swift in Sources */,
 				43FF91712AFC2A610056B64F /* FavouriteVideos+CoreDataProperties.swift in Sources */,
 				4317050F2AF681D30008F508 /* MimView.swift in Sources */,
+				4333AAF02B17C6B1009C709E /* TextView.swift in Sources */,
 				4387B1472B028D5200B728C7 /* AppError.swift in Sources */,
 				4304ECEB2AE4A7280000D2FA /* SettingsView.swift in Sources */,
 			);

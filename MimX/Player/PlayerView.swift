@@ -17,6 +17,10 @@ struct PlayerView: UIViewControllerRepresentable {
     init(player: AVPlayer?) {
         self.player = player
     }
+    init(player: AVPlayer?,rate:Float) {
+        self.player = player
+        self.rate = rate
+    }
     
     init(player: AVPlayer?,resizeAspect: AVLayerVideoGravity) {
         self.player = player

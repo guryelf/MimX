@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct AddButton<Content:View>: View {
-    let content : Content
+struct AddButton<T:View>: View {
+    let content : T
     let bgColor : Color
     let fgColor : Color
-    init(@ViewBuilder content:() -> Content, bgColor: Color, fgColor: Color) {
+    init(@ViewBuilder content:() -> T, bgColor: Color, fgColor: Color) {
         self.content = content()
         self.bgColor = bgColor
         self.fgColor = fgColor
