@@ -23,6 +23,5 @@ class EditViewViewModel : ObservableObject{
         ImageGenerator.shared.generateImages(url: url) { images in
             imageData = images
         }
-        return ImageGenerator.shared.saveImages(url: url, images: imageData)
     }
 }
