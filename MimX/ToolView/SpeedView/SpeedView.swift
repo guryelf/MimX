@@ -11,6 +11,7 @@ struct SpeedView: View {
     @Binding var value : Float
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
+        GeometryReader{proxy in
             VStack(spacing:30){
                 Text("\(value,specifier: "%.1f")x")
                     .font(.title)
@@ -24,7 +25,9 @@ struct SpeedView: View {
                     print("onEditingChanged: \(value)")
                 }
             }
-        .frame(height: 250)
+            .frame(width: proxy.size.width, height: proxy.size.height,alignment: .center)
+        }
+        .ignoresSafeArea()
         .background(Color(.systemGray5))
         .clipShape(RoundedRectangle(cornerRadius: 20))
     }

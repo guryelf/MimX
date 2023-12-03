@@ -13,6 +13,7 @@ enum AppError: Error , LocalizedError {
     case storageError(description: String)
     case databaseError(description: String)
     case filemanagerError(description:String)
+    case imageGenerator(description: String)
     
     var errorDescription: String? {
         switch self {
@@ -24,13 +25,15 @@ enum AppError: Error , LocalizedError {
             return NSLocalizedString("Database Error:\n " + description, comment: "")
         case .filemanagerError(description: let description):
             return NSLocalizedString("File Manager Error:\n " + description , comment: "")
+        case .imageGenerator(description: let description):
+            return NSLocalizedString("Image Generator Error:\n " + description,comment: "")
         }
     }
 }
 
-struct ErrorType: Identifiable{
+struct ErrorType: Identifiable , Error{
     var id = UUID()
-    var errorType : AppError
+    var errorType : AppError?
 }
 
 
