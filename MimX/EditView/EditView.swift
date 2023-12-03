@@ -11,7 +11,6 @@ import AVKit
 struct EditView: View {
     @State private var selectedTool : ToolEnum?
     @State private var isShowing = false
-    @State private var duration : Double
     private var isPlaying = false
     private var video : Video
     private var player : AVPlayer
@@ -20,16 +19,14 @@ struct EditView: View {
     init(video:Video) {
         self.video = video
         self.player = AVPlayer(url: URL(string: video.videoURL)!)
-        self.duration = AVAsset(url: URL(string: video.videoURL)!).duration.seconds
         self._vM = StateObject(wrappedValue: EditViewViewModel(video: video))
     }
     var body: some View {
         NavigationStack {
             VStack(spacing:20){
                 PlayerView(player: player,rate:rate)
-                    .frame(width: UIScreen.main.bounds.width, height: 300)
-                TimelineSliderView(video:video, range: 0...duration)
-                
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/3)
+                TimelineSliderView(video:video, range: 0...vM.asset.duration.seconds)
                 HStack(spacing:25){
                     ForEach(ToolEnum.allCases,id: \.self){button in
                         AddButton(content: {
@@ -68,11 +65,10 @@ struct EditView: View {
                         }
                     }
                     .ignoresSafeArea()
+                    .frame(width:UIScreen.main.bounds.width,height: UIScreen.main.bounds.height/4 + 10)
                     
                 }
             }
-            .frame(width: UIScreen.main.bounds.width
-                   , height: UIScreen.main.bounds.height)
             .onDisappear(perform: {
                 player.pause()
         })

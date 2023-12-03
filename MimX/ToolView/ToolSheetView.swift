@@ -17,30 +17,34 @@ struct ToolSheetView<Content:View>: View {
     var body: some View {
         GeometryReader{ proxy in
             if isPresented{
-                    content
-                        .frame(width: UIScreen.main.bounds.width)
-                        .background(.white)
-                        .transition(.move(edge: .bottom))
-            }
-            HStack{
-                Button(action: {
-                   withAnimation{
-                       isPresented = false
-                   }
-                }, label: {
-                    RoundedRectangle(cornerRadius: 10)
-                        .frame(width: 40, height: 40)
-                        .foregroundColor(Color(.systemGray4))
-                        .overlay(
-                            Image(systemName: "arrow.down")
-                                .resizable()
-                                .frame(width: 20, height: 20)
-                                .foregroundColor(.white)
-                        )
-                })
-                Spacer()
+                content
+                    .frame(width: proxy.size.width, height: proxy.size.height)
+                    .background(.white)
+                    .transition(.move(edge: .bottom))
+                    .overlay(alignment:.topLeading){
+                        Button(action: {
+                            withAnimation{
+                                isPresented = false
+                            }
+                        }, label: {
+                            RoundedRectangle(cornerRadius: 10)
+                                .frame(width: 40, height: 40)
+                                .foregroundColor(Color(.systemGray4))
+                                .overlay(
+                                    Image(systemName: "arrow.down")
+                                        .resizable()
+                                        .frame(width: 20, height: 20)
+                                        .foregroundColor(.white)
+                                )
+                        })
+                    }
             }
         }
-        .frame(height: 250)
+    }
+}
+
+#Preview {
+    ToolSheetView(isPresented: .constant(true)) {
+        SpeedView(value: .constant(1))
     }
 }

@@ -26,8 +26,11 @@ class EditViewViewModel : ObservableObject{
             return urls
         }
         var imageData = [Data]()
-        ImageGenerator.shared.generateImages(url: url) { images in
-            imageData = images
+        ImageGenerator.shared.generateImages(url: url) { images,error  in
+            guard error.isEmpty else {
+                print(error)
+                return }
+            imageData = images!
         }
         urls = ImageGenerator.shared.saveImages(url: url, images: imageData)
         return urls
