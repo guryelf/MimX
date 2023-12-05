@@ -45,6 +45,6 @@ struct ToolSheetView<Content:View>: View {
 
 #Preview {
     ToolSheetView(isPresented: .constant(true)) {
-        SpeedView(value: .constant(1))
+        SpeedView(rate: .constant(1.0))
     }
 }

@@ -30,9 +30,8 @@ class ImageGenerator{
         return save
     }
     
-    func generateImages(url: URL, compressionQuality: Double = 0.05,completion:@escaping ([Data]?,[Error])->()) {
+    func generateImages(url: URL, compressionQuality: Double = 0.05,completion:@escaping ([Data])->()) {
         let asset = AVAsset(url: url)
-        var localError = [AppError]()
         var imageData = [Data]()
         let duration = CMTimeGetSeconds(asset.duration)
         let step = duration/8
@@ -45,10 +44,10 @@ class ImageGenerator{
                 let data = uiImage.jpegData(compressionQuality: compressionQuality)
                 imageData.append(data!)
             }catch{
-                localError.append(.imageGenerator(description: error.localizedDescription))
+                print(error.localizedDescription)
             }
         }
-        completion(imageData,localError)
+        completion(imageData)
     }
     func saveImages(url: URL,images: [Data]) -> [URL]{
         let manager = FileManager.default

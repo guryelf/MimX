@@ -12,13 +12,19 @@ import SwiftUI
 @MainActor
 class EditViewViewModel : ObservableObject{
     
+    var images : [URL]{
+        get{
+             generateSliderView(url: URL(string: video.videoURL)!)!
+        }
+    }
     var asset : AVAsset
-    
+    var video: Video
     init(video:Video) {
+        self.video = video
         self.asset = AVAsset(url: URL(string:video.videoURL)!)
     }
     
-    
+
     func generateSliderView(url:URL) -> [URL]?{
         let manager = FileManager.default
         var urls = [URL]()
@@ -34,10 +40,10 @@ class EditViewViewModel : ObservableObject{
     }
     
     @ViewBuilder
-    func sheetContent(tool:ToolEnum,speed:Binding<Float>) -> some View {
+    func sheetContent(tool:ToolEnum,rate: Binding<Float>) -> some View {
         switch tool{
          case .speed:
-             SpeedView(value: speed)
+            SpeedView(rate: rate)
          case .text:
              TextView()
          case .pitch:

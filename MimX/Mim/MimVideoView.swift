@@ -41,6 +41,7 @@ struct MimVideoView: View {
                 play(player: player)
             }else if cM.isEditActive{
                 cM.editView.toggle()
+                player.pause()
             }
         })
         .onDisappear(perform: {

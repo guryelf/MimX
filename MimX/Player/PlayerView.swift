@@ -11,25 +11,15 @@ import AVKit
 struct PlayerView: UIViewControllerRepresentable {
     
     let player : AVPlayer?
-    var rate : Float = 1.0
     var resizeAspect : AVLayerVideoGravity = .resizeAspect
     
+
     init(player: AVPlayer?) {
         self.player = player
     }
-    init(player: AVPlayer?,rate:Float) {
-        self.player = player
-        self.rate = rate
-    }
     
-    init(player: AVPlayer?,resizeAspect: AVLayerVideoGravity) {
+    init(player:AVPlayer?,resizeAspect: AVLayerVideoGravity) {
         self.player = player
-        self.resizeAspect = resizeAspect
-    }
-    
-    init(player:AVPlayer?,rate:Float,resizeAspect: AVLayerVideoGravity) {
-        self.player = player
-        self.rate = rate
         self.resizeAspect = resizeAspect
     }
     
@@ -39,12 +29,12 @@ struct PlayerView: UIViewControllerRepresentable {
         playerViewController.showsPlaybackControls = false
         playerViewController.videoGravity = resizeAspect
         playerViewController.allowsVideoFrameAnalysis = false
-        playerViewController.selectSpeed(AVPlaybackSpeed(rate: rate, localizedName: "Custom"))
         return playerViewController
     }
     
 
     func updateUIViewController(_ uiViewController: AVPlayerViewController, context: Context) {
+
     }
     
 }

@@ -8,21 +8,20 @@
 import SwiftUI
 
 struct SpeedView: View {
-    @Binding var value : Float
-    @Environment(\.presentationMode) var presentationMode
+    @Binding var rate : Float
     var body: some View {
         GeometryReader{proxy in
             VStack(spacing:30){
-                Text("\(value,specifier: "%.1f")x")
+                Text("\(rate,specifier: "%.1f")x")
                     .font(.title)
-                Slider(value: $value, in: 0...3,  step: 0.1) {
+                Slider(value: $rate, in: 0.5...3,  step: 0.1) {
                     Text("Speed")
                 } minimumValueLabel: {
-                    Text("0.0x")
+                    Text("0.5x")
                 } maximumValueLabel: {
                     Text("3.0x")
                 }onEditingChanged: { value in
-                    print("onEditingChanged: \(value)")
+                    print("onEditingChanged: \(rate)")
                 }
             }
             .frame(width: proxy.size.width, height: proxy.size.height,alignment: .center)
@@ -34,5 +33,5 @@ struct SpeedView: View {
 }
 
 #Preview {
-    SpeedView(value: .constant(1))
+    SpeedView(rate: .constant(1.0))
 }

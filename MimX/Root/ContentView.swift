@@ -67,8 +67,8 @@ struct ContentView: View {
                     EditView(video: vM.selectedVideo!)
                         .presentationDetents([.fraction(0.9)])
                         .onDisappear(perform: {
-                            vM.selectedVideo = nil
                             vM.isEditActive = false
+                            vM.selectedVideo = nil
                         })
                 }
             }
