@@ -12,7 +12,7 @@ struct MimOverlayView: View {
     @State var video: Video
     var body: some View {
         RoundedRectangle(cornerRadius: 15)
-            .frame(height: 20)
+            .frame(height: 30)
             .foregroundStyle(Color(.systemGray6).opacity(0.2))
             .overlay {
                 HStack(spacing:30){
@@ -32,9 +32,20 @@ struct MimOverlayView: View {
                             .foregroundStyle(.white)
                             .clipShape(Circle())
                     })
+                    Button(action: {
+                        withAnimation {
+                            vM.selectedVideo = video
+                            vM.editView.toggle()
+                        }
+                    }, label: {
+                        Image(systemName: "pencil.circle.fill")
+                            .imageScale(.medium)
+                            .foregroundStyle(.white)
+                            .clipShape(Circle())
+                    })
                 }
             }
-            .opacity(vM.isEditActive ? 0 : 1)
+            
     }
 }
 

@@ -12,11 +12,13 @@ import FirebaseCore
 @main
 struct MimXApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, FavouriteVideosContainer().persistentContainer.viewContext)
-                .preferredColorScheme(Environment(\.colorScheme).wrappedValue)
+                .environmentObject(SettingsViewModel())
+                
         }
     }
 }

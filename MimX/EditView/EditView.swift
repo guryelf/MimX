@@ -7,12 +7,14 @@
 
 import SwiftUI
 import AVKit
+import AVFoundation
 
 struct EditView: View {
     @State private var selectedTool : ToolEnum?
     @State private var isShowing = false
     @State private var isPlaying = false
     @State private var rate : Float = 1.0
+    @State private var pitch : Float = 0
     @State private var player : AVPlayer
     private var video : Video
     @StateObject private var vM : EditViewViewModel
@@ -31,6 +33,7 @@ struct EditView: View {
                         player.rate = rate
                         isPlaying = true
                     })
+                //pitch implement
                     .onAppear(perform: {
                         player.pause()
                     })
@@ -94,7 +97,7 @@ struct EditView: View {
                 if isShowing{
                     ToolSheetView(isPresented: $isShowing) {
                         if let selectedTool = selectedTool{
-                            vM.sheetContent(tool: selectedTool, rate: $rate)
+                            vM.sheetContent(tool: selectedTool, rate: $rate, pitch: $pitch)
                         }
                     }
                     .ignoresSafeArea()
@@ -102,9 +105,6 @@ struct EditView: View {
                     
                 }
             }
-            .onDisappear(perform: {
-                eVM.player.pause()
-            })
         }
     }
 }

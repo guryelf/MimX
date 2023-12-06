@@ -6,15 +6,13 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct CustomTabView: View {
     @ObservedObject var vM = ContentViewModel()
+    @StateObject var aVM = AddViewModel()
     var body: some View {
         VStack{
-            ContextMenuView(cM: vM)
-                .frame(maxHeight: vM.isAddActive ? 60 : 0)
-                .disabled(vM.isAddActive ? false : true)
-                .opacity(vM.isAddActive ? 1 : 0)
             Divider()
                 .overlay(.blue)
             HStack(spacing:40){
@@ -22,40 +20,32 @@ struct CustomTabView: View {
                     //HomeView
                     Button (action:{
                         withAnimation {
-                            vM.isAddActive = false
                             vM.index = 0
                         }
                     } ,label: {
                         AddIcon(icon: "house",
                                 fgColor: .cyan,
-                                opacity: !vM.isAddActive && vM.index == 0 ? 1 : 0)
+                                opacity: vM.index == 0 ? 1 : 0)
                     })
-                    .padding(.bottom,vM.index == 0 && !vM.isAddActive ? 50 : 0)
-                    
                     //ADD OR EDIT
-                    Button(action: {
-                        withAnimation {
-                            vM.isAddActive.toggle()
-                        }
-                    }, label: {
+                    PhotosPicker(selection: $aVM.picker, label: {
                         AddIcon(icon: "plus.circle.fill",
                                 fgColor: .white,
                                 width:40,
                                 height:40,
                                 opacity: 1)
                     })
-                    .padding(.bottom,vM.isAddActive ? 50 : 0)
+                    .padding(.bottom,50)
                     Button(action: {
                         withAnimation {
-                            vM.isAddActive = false
                             vM.index = 1
                         }
                     }, label: {
                         AddIcon(icon: "star",
                                 fgColor: .cyan,
-                                opacity: !vM.isAddActive && vM.index == 1 ? 1 : 0)
+                                opacity: vM.index == 1 ? 1 : 0)
                     })
-                    .padding(.bottom,vM.index == 1 && !vM.isAddActive ? 50 : 0)
+                    
                 }
                 .foregroundStyle(.blue)
             }

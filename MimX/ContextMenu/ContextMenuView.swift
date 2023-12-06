@@ -26,8 +26,7 @@ struct ContextMenuView: View {
             Button(action: {
                 withAnimation(.spring) {
                     
-                    cM.isAddActive.toggle()
-                    cM.isEditActive = false
+                
                 }
             }, label: {
                 Image(systemName: "multiply.circle.fill")
@@ -39,8 +38,7 @@ struct ContextMenuView: View {
             AddButton(content: {
                 Button(action: {
                     withAnimation(.spring) {
-                        cM.isEditActive = true
-                        cM.isAddActive = false
+                        
                     }
                 }, label: {
                     Image(systemName: "pencil.circle.fill")

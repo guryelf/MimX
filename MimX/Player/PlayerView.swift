@@ -29,6 +29,8 @@ struct PlayerView: UIViewControllerRepresentable {
         playerViewController.showsPlaybackControls = false
         playerViewController.videoGravity = resizeAspect
         playerViewController.allowsVideoFrameAnalysis = false
+        player?.volume = 0
+        player?.currentItem?.audioTimePitchAlgorithm = .init(rawValue: "Custom Pitch")
         return playerViewController
     }
     

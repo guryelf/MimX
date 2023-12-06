@@ -9,27 +9,34 @@ import SwiftUI
 
 struct SettingsView: View {
     @StateObject var vM = SettingsViewModel()
-    @State private var colorScheme : ColorScheme?
+    @AppStorage("systemTheme")private var systemTheme : Int = PrefScheme.allCases.first!.rawValue
+    @State private var volume = 0.0
     var body: some View {
         List{
-            Picker(selection: $vM.systemTheme) {
-                ForEach(SettingsViewModel.PrefScheme.allCases){option in
+            Section("Tema") {
+                Picker(selection: $vM.systemTheme) {
+                    ForEach(PrefScheme.allCases){option in
+                        HStack{
+                            Image(systemName: option.Image)
+                                .imageScale(.large)
+                                .foregroundStyle(.blue)
+                            Text(option.title)
+                        }
+                        .tag(option.rawValue)
+                    }
+                }
+                label: {
                     HStack{
-                        Image(systemName: option.Image)
+                        Image(systemName: "lightbulb.2.fill")
+                            .foregroundStyle(.yellow)
+                            .clipShape(Circle())
                             .imageScale(.large)
-                            .foregroundStyle(.blue)
-                        Text(option.title)
+                        Text("Tema")
                     }
                 }
             }
-            label: {
-                HStack{
-                    Image(systemName: "lightbulb.2.fill")
-                        .foregroundStyle(.yellow)
-                        .clipShape(Circle())
-                        .imageScale(.large)
-                    Text("Tema")
-                }
+            Section("Oynatıcı") {
+                
             }
         }
         .font(.footnote)

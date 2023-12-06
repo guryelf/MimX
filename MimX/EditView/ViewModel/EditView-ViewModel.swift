@@ -40,14 +40,14 @@ class EditViewViewModel : ObservableObject{
     }
     
     @ViewBuilder
-    func sheetContent(tool:ToolEnum,rate: Binding<Float>) -> some View {
+    func sheetContent(tool:ToolEnum,rate: Binding<Float>,pitch:Binding<Float>) -> some View {
         switch tool{
          case .speed:
             SpeedView(rate: rate)
          case .text:
              TextView()
          case .pitch:
-             PitchView()
+            PitchView(pitch:pitch)
          }
      }
 

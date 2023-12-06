@@ -11,10 +11,8 @@ import CoreData
 import Combine
 
 class ContentViewModel : ObservableObject{
-    @Published var isEditActive = false
     @Published var isSettingsActive = false
     @Published var index = 0
-    @Published var isAddActive = false
     @Published var editView = false
     @Published var selectedVideo : Video?
     private let container = FavouriteVideosContainer().persistentContainer
