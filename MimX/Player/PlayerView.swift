@@ -13,6 +13,7 @@ struct PlayerView: UIViewControllerRepresentable {
     let player : AVPlayer?
     var resizeAspect : AVLayerVideoGravity = .resizeAspect
     
+    
 
     init(player: AVPlayer?) {
         self.player = player
@@ -29,7 +30,6 @@ struct PlayerView: UIViewControllerRepresentable {
         playerViewController.showsPlaybackControls = false
         playerViewController.videoGravity = resizeAspect
         playerViewController.allowsVideoFrameAnalysis = false
-        player?.volume = 0
         player?.currentItem?.audioTimePitchAlgorithm = .init(rawValue: "Custom Pitch")
         return playerViewController
     }

@@ -31,13 +31,22 @@ struct MimVideoView: View {
         .frame(width: 125, height: 125)
         .clipShape(RoundedRectangle(cornerRadius: 15))
         .onAppear(perform: {
-            self.isPlaying.toggle()
+            player.play()
         })
         .onTapGesture {
             self.isPlaying.toggle()
         }
-        .onChange(of: isPlaying, perform: { value in
-            play(player: player)
+        .onChange(of: cM.editView, perform: { _ in
+            player.pause()
+        })
+        .onChange(of: isPlaying, perform: { _ in
+            if !cM.editView{
+                player.volume = cM.volume
+                play(player: player)
+            }
+        })
+        .onChange(of: cM.volume, perform: { _ in
+            player.volume = cM.volume
         })
         .onDisappear(perform: {
             player.pause()
@@ -48,12 +57,20 @@ struct MimVideoView: View {
 
 extension MimVideoView{
     func play(player : AVPlayer){
-        self.isPlaying.toggle()
+        player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1.0, preferredTimescale: CMTimeScale(NSEC_PER_SEC)), queue: nil) { value in
+            if value == player.currentItem?.duration{
+                player.seek(to: .zero)
+                isPlaying = false
+            }
+        }
         if isPlaying {
             player.seek(to: .zero, toleranceBefore: .zero , toleranceAfter: .zero)
             player.play()
         }else if !isPlaying{
             player.pause()
+        }else if isPlaying && player.currentTime() == player.currentItem?.duration{
+            player.seek(to: .zero, toleranceBefore: .zero , toleranceAfter: .zero)
+            player.play()
         }
     }
 }

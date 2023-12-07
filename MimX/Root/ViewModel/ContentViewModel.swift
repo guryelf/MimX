@@ -14,6 +14,8 @@ class ContentViewModel : ObservableObject{
     @Published var isSettingsActive = false
     @Published var index = 0
     @Published var editView = false
+    @Published var isVolume = false
+    @Published var volume : Float = 1
     @Published var selectedVideo : Video?
     private let container = FavouriteVideosContainer().persistentContainer
     @Published var favourites = [Video]()

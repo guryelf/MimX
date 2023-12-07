@@ -15,7 +15,7 @@ struct HomeView: View {
     var body: some View {
         LazyVGrid(columns: columns,spacing: 10, content: {
             ForEach(mVM.videos){video in
-                if vM.selectedVideo == video    {
+                if vM.selectedVideo == video{
                     MimVideoView(video: video)
                         .overlay(alignment:.bottom,content: {
                             MimOverlayView(video: video)

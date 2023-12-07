@@ -28,7 +28,7 @@ struct CustomTabView: View {
                                 opacity: vM.index == 0 ? 1 : 0)
                     })
                     //ADD OR EDIT
-                    PhotosPicker(selection: $aVM.picker, label: {
+                    PhotosPicker(selection: $aVM.picker, matching: .videos, label: {
                         AddIcon(icon: "plus.circle.fill",
                                 fgColor: .white,
                                 width:40,

@@ -102,6 +102,7 @@ struct EditView: View {
                     }
                     .ignoresSafeArea()
                     .frame(width:UIScreen.main.bounds.width,height: UIScreen.main.bounds.height/4 + 10)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
                     
                 }
             }

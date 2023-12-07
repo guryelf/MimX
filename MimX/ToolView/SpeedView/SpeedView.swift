@@ -28,7 +28,6 @@ struct SpeedView: View {
         }
         .ignoresSafeArea()
         .background(Color(.systemGray5))
-        .clipShape(RoundedRectangle(cornerRadius: 20))
     }
 }
 
