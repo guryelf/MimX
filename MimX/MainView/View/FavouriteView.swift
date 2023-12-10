@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct FavouriteView: View {
     @State private var columns = Array(repeating: GridItem(.fixed(125)), count: 3)
@@ -17,15 +18,13 @@ struct FavouriteView: View {
             ForEach(vM.favourites){video in
                 if vM.selectedVideo == video{
                     MimVideoView(video: video)
-                     
                         .overlay(alignment:.bottom,content: {
-                            FavouriteOverlayView(video: video)
+                            MimOverlayView(video: video)
                         })
                 }else{
                     MimView(video: video)
-                      
                         .overlay(alignment:.bottom,content: {
-                            FavouriteOverlayView(video: video)
+                            MimOverlayView(video: video)
                         })
                         .frame(width: 125,height: 125)
                         .clipShape(RoundedRectangle(cornerRadius: 15))

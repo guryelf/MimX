@@ -16,6 +16,7 @@ class ContentViewModel : ObservableObject{
     @Published var index = 0
     @Published var editView = false
     @Published var isVolume = false
+    @Published var isLoading = false
     @Published var volume : Float = 1
     @Published var selectedVideo : Video?
     private let container = FavouriteVideosContainer().persistentContainer
@@ -44,13 +45,7 @@ class ContentViewModel : ObservableObject{
 //            print("Failed to delete data: \(error)")
 //        }
 //    }
-    func exportVideo(asset:AVAsset,outputURL : URL,completion: @escaping (Error?)->()) -> URL?{
-        guard let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality) else {
-            completion(NSError(domain: "Export Error", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to create export session"]))
-            return nil
-        }
-        return outputURL
-    }
+    
     
     func retrieveData(){
         let objects = CRUDManager.shared.retrieveData()

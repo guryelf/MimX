@@ -21,14 +21,15 @@ class MainViewModel : ObservableObject{
             self.videos = await downloadVideos()
         }
     }
-    @MainActor
+    
+    
+    
     func downloadVideos() async -> [Video]{
         let path = Firestore.firestore().collection("videos")
         guard let videoData = try? await path.getDocuments() else { return []}
         let videos = videoData.documents.compactMap { try? $0.data(as: Video.self) }
         return videos
     }
-
  
     
 }

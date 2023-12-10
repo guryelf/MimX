@@ -6,24 +6,32 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct ContentView: View {
     @StateObject var vM = ContentViewModel()
     @EnvironmentObject var sVM : SettingsViewModel
+    @State private var isLoading = false
     var body: some View {
         NavigationStack{
             ScrollView{
                 Divider()
-                if vM.index == 0 {
-                    HomeView()
-                        .environmentObject(vM)
-                        .transition(.move(edge: .leading))
-                }else if vM.index == 1{
-                    FavouriteView()
-                        .environmentObject(vM)
-                        .transition(.move(edge: .trailing))
+                ZStack(alignment:.center){
+                    if vM.index == 0 {
+                        HomeView()
+                            .environmentObject(vM)
+                            .transition(.move(edge: .leading))
+                    }else if vM.index == 1{
+                        FavouriteView()
+                            .environmentObject(vM)
+                            .transition(.move(edge: .trailing))
+                    }
+                    AnimatedImage(name: "Loading.gif", isAnimating: .constant(true))
+                        .resizable()
+                        .frame(width: vM.isLoading ? 200 : 0, height:  vM.isLoading ? 200 : 0)
                 }
             }
+            .shadow(radius: vM.isLoading ? 100 : 0)
             .onTapGesture {
                 withAnimation(.easeInOut) {
                     vM.isVolume = false
@@ -66,7 +74,7 @@ struct ContentView: View {
                 }
             //MARK: Edit View
                 .sheet(isPresented: $vM.editView) {
-                    if vM.selectedVideo != nil{
+                    if vM.selectedVideo != nil {
                         EditView(video: vM.selectedVideo!)
                             .presentationDetents([.fraction(0.9)])
                             .onDisappear(perform: {

@@ -9,9 +9,27 @@ import Foundation
 
 extension FileManager{
     
-    func getDocDirect() -> URL{
-        return self.urls(for: .documentDirectory, in: .userDomainMask).first!
+    func calculateCachesDirectorySize() -> Int {
+        let manager = FileManager.default
+        let caches = manager.urls(for: .cachesDirectory, in: .userDomainMask).first!
+        do {
+            let files = try manager.contentsOfDirectory(at: caches, includingPropertiesForKeys: nil, options: [])
+            var totalSize = 0
+            for file in files {
+                let attributes = try manager.attributesOfItem(atPath: file.path)
+                if let fileSize = attributes[.size] as? Int {
+                    totalSize += fileSize
+                }
+            }
+            let totalSizeInMB = totalSize / (1024 * 1024)
+            return totalSizeInMB
+        } catch {
+            print(error.localizedDescription)
+            return 0
+        }
     }
+    
+    
     
     func createFilePath(name:String) -> URL{
         let folderName = name
@@ -53,8 +71,8 @@ extension FileManager{
         let folderName = name
         var url = [URL]()
         let fileManager = FileManager.default
-        if let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let folderURL = documentsDirectory.appendingPathComponent(folderName)
+        if let cachesDirectory = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first {
+            let folderURL = cachesDirectory.appendingPathComponent(folderName)
             do {
                 if !fileManager.fileExists(atPath: folderURL.path) {
                     try fileManager.createDirectory(at: folderURL, withIntermediateDirectories: true, attributes: nil)

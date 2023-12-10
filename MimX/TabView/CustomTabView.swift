@@ -50,6 +50,9 @@ struct CustomTabView: View {
                 .foregroundStyle(.blue)
             }
         }
+        .onChange(of: aVM.picker, perform: { _ in
+            vM.changes.toggle()
+        })
     }
 }
 

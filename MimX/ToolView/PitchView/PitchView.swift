@@ -12,8 +12,6 @@ struct PitchView: View {
     var body: some View {
         GeometryReader{proxy in
             VStack(spacing:30){
-                Text("\(pitch,specifier: "%.1f")x")
-                    .font(.title)
                 Slider(value: $pitch, in: -2400...2400,  step: 100) {
                     Text("Speed")
                 }onEditingChanged: { value in

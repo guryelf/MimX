@@ -18,13 +18,14 @@ struct MimOverlayView: View {
             .overlay {
                 HStack(spacing:30){
                     Button(action: {
-                        withAnimation {
-                            vM.write(selectedVideo: video)
+                        withAnimation(.snappy(duration: 0.25)) {
+                            vM.index == 0 ? vM.write(selectedVideo: video) : vM.deleteData(selectedVideo: video)
                         }
                     }, label: {
-                        Image(systemName: "star.circle.fill")
+                        Image(systemName: vM.index == 0 ? "star.circle.fill" : "star.slash.fill")
                             .imageScale(.medium)
                             .foregroundStyle(.white)
+                            .background(.blue)
                             .clipShape(Circle())
                     })
                     ShareLink(item: video, preview: SharePreview("MimX-Video", image: Image(video.thumbnail))) {
@@ -36,8 +37,8 @@ struct MimOverlayView: View {
                     }
                     Button(action: {
                         withAnimation {
-                            vM.selectedVideo = video
-                            vM.editView.toggle()
+                                vM.selectedVideo = video
+                                vM.editView.toggle()
                         }
                     }, label: {
                         Image(systemName: "pencil.circle.fill")

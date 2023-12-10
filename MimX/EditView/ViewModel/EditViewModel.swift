@@ -13,8 +13,8 @@ import AVKit
 
 class EditViewModel : ObservableObject{
     
-    @Published var player : AVPlayer
-    @Published var rate : Float = 1.0
+    var player : AVPlayer
+    var rate : Float = 1.0
     
     init(video:Video) {
         self.player = AVPlayer(url: URL(string: video.videoURL)!)

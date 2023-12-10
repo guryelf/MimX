@@ -25,18 +25,31 @@ struct SettingsView: View {
                         .tag(option.rawValue)
                     }
                 }
-                label: {
-                    HStack{
-                        Image(systemName: "lightbulb.2.fill")
-                            .foregroundStyle(.yellow)
-                            .clipShape(Circle())
-                            .imageScale(.large)
-                        Text("Tema")
-                    }
+            label: {
+                HStack{
+                    Image(systemName: "lightbulb.2.fill")
+                        .foregroundStyle(.yellow)
+                        .clipShape(Circle())
+                        .imageScale(.large)
+                    Text("Tema")
                 }
             }
-            Section("Oynatıcı") {
-                
+            }
+            Section("Önbellek") {
+                HStack{
+                    Button {
+                        vM.deleteCache()
+                    } label: {
+                        HStack{
+                            Image(systemName: "trash")
+                                .imageScale(.large)
+                                .foregroundStyle(.red)
+                            Text("Önbelleği Temizle")
+                            Spacer()
+                            Text("\(vM.totalSize) MB")
+                        }
+                    }
+                }
             }
         }
         .font(.footnote)

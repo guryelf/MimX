@@ -12,57 +12,59 @@ import AVFoundation
 struct EditView: View {
     @State private var selectedTool : ToolEnum?
     @State private var isShowing = false
-    @State private var isPlaying = false
-    @State private var rate : Float = 1.0
-    @State private var pitch : Float = 0
-    @State private var player : AVPlayer
     private var video : Video
     @StateObject private var vM : EditViewViewModel
     @StateObject private var eVM : EditViewModel
+    @StateObject private var aM = AudioEngineManager()
     init(video:Video) {
         self.video = video
         self._vM = StateObject(wrappedValue: EditViewViewModel(video: video))
         self._eVM = StateObject(wrappedValue: EditViewModel(video: video))
-        self.player = AVPlayer(url: URL(string: video.videoURL)!)
     }
     var body: some View {
         NavigationStack{
             VStack(spacing:20){
-                PlayerView(player: player)
-                    .onChange(of: rate, perform: { newValue in
-                        player.rate = rate
-                        isPlaying = true
+                PlayerView(player: vM.player)
+                    .onChange(of: vM.rate, perform: { newValue in
+                        vM.player?.rate = vM.rate
+                        vM.isPlaying = true
+                    })
+                    .onChange(of: vM.pitch, perform: { _ in
+                        aM.setPitchValue(vM.pitch)
+                        aM.startEngine()
                     })
                 //pitch implement
                     .onAppear(perform: {
-                        player.pause()
+                        aM.startEngine()
+                        vM.player?.pause()
                     })
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/3)
-                    .overlay(alignment: .center) {
-                        Button(action: {
-                            withAnimation {
-                                if isPlaying{
-                                    player.pause()
-                                    isPlaying = false
-                                }else{
-                                    player.play()
-                                    player.rate = rate
-                                    isPlaying = true
-                                }
+                HStack(spacing: 0, content: {
+                    Button(action: {
+                        withAnimation {
+                            if vM.isPlaying{
+                                vM.player?.pause()
+                                vM.isPlaying = false
+                            }else{
+                                vM.player?.play()
+                                vM.player?.rate = vM.rate
+                                vM.isPlaying = true
                             }
-                        }, label: {
-                            ZStack{
-                                Circle()
-                                    .fill(Color.gray.opacity(0.5))
-                                    .frame(width: 60, height: 60)
-                                Image(systemName: isPlaying ? "pause.fill" : "play.fill")
-                                    .resizable()
-                                    .frame(width: 30, height: 30)
-                                    .foregroundColor(.blue)
-                            }
-                        })
-                    }
-                TimelineSliderView(video:video, range: 0...vM.asset.duration.seconds)
+                        }
+                    }, label: {
+                        ZStack{
+                            Circle()
+                                .fill(Color.gray.opacity(0.5))
+                                .frame(width: 60, height: 60)
+                            Image(systemName: vM.isPlaying ? "pause.fill" : "play.fill")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.blue)
+                        }
+                    })
+                    TimelineSliderView(video:video, images: vM.images)
+                })
+                
                 HStack(spacing:25){
                     ForEach(ToolEnum.allCases,id: \.self){button in
                         AddButton(content: {
@@ -97,7 +99,7 @@ struct EditView: View {
                 if isShowing{
                     ToolSheetView(isPresented: $isShowing) {
                         if let selectedTool = selectedTool{
-                            vM.sheetContent(tool: selectedTool, rate: $rate, pitch: $pitch)
+                            vM.sheetContent(tool: selectedTool, rate: $vM.rate, pitch: $vM.pitch)
                         }
                     }
                     .ignoresSafeArea()

@@ -16,6 +16,9 @@ class SettingsViewModel : ObservableObject{
     @Environment(\.colorScheme) var colorScheme
     
     //MARK: Video Volume to be set
+    var totalSize : Int{
+        return FileManager.default.calculateCachesDirectorySize()
+    }
     
     func selectTheme() -> ColorScheme?{
         guard let theme = PrefScheme(rawValue: systemTheme) else {return nil}
@@ -28,6 +31,17 @@ class SettingsViewModel : ObservableObject{
             return nil
         }
     }
+    
+    func deleteCache(){
+        if let caches = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first{
+            do{
+                try FileManager.default.removeItem(at: caches)
+            }catch{
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     
     
 }

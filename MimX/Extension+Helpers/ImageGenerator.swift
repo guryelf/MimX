@@ -51,6 +51,7 @@ class ImageGenerator{
         }
         completion(imageData)
     }
+    
     func saveImages(url: URL,images: [Data]) -> [URL]{
         let manager = FileManager.default
         return manager.createFolderAndSave(name: url.absoluteString, dataToWrite: images)

@@ -25,7 +25,10 @@
 		435F99BF2B1FD55E00533BBE /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435F99BE2B1FD55E00533BBE /* AudioEngine.swift */; };
 		43616BB52B14D55B009369D0 /* EditView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43616BB42B14D55B009369D0 /* EditView-ViewModel.swift */; };
 		43616BB82B151207009369D0 /* ImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43616BB72B151207009369D0 /* ImageGenerator.swift */; };
+		43667E402B26177100D25545 /* VideoCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43667E3F2B26177100D25545 /* VideoCacheManager.swift */; };
 		4367714C2AF916DF00EC883A /* MimOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4367714B2AF916DF00EC883A /* MimOverlayView.swift */; };
+		436944AA2B2671AF00154328 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 436944A92B2671AF00154328 /* SDWebImageSwiftUI */; };
+		436944B42B2687B500154328 /* Loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 436944B32B2687B500154328 /* Loading.gif */; };
 		436F30DD2AE9406B0056CFDD /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436F30DC2AE9406B0056CFDD /* SettingsViewModel.swift */; };
 		4370FF432AEAD3170038F609 /* ToolEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4370FF422AEAD3170038F609 /* ToolEnum.swift */; };
 		437A031E2B2103E800718582 /* PreferredScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437A031D2B2103E800718582 /* PreferredScheme.swift */; };
@@ -54,9 +57,7 @@
 		43D5F8512B24B02C0000811E /* AVPlayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F8502B24B02C0000811E /* AVPlayer+Extension.swift */; };
 		43FF91702AFC2A610056B64F /* FavouriteVideos+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF916E2AFC2A610056B64F /* FavouriteVideos+CoreDataClass.swift */; };
 		43FF91712AFC2A610056B64F /* FavouriteVideos+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF916F2AFC2A610056B64F /* FavouriteVideos+CoreDataProperties.swift */; };
-		43FF91732AFC558A0056B64F /* FavouriteOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF91722AFC558A0056B64F /* FavouriteOverlayView.swift */; };
 		43FF91752B0004510056B64F /* CRUDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF91742B0004510056B64F /* CRUDManager.swift */; };
-		43FF91772B0149030056B64F /* VideoCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF91762B0149030056B64F /* VideoCacheManager.swift */; };
 		43FF91792B0174F40056B64F /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF91782B0174F40056B64F /* FileManager+Extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,7 +79,10 @@
 		435F99BE2B1FD55E00533BBE /* AudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngine.swift; sourceTree = "<group>"; };
 		43616BB42B14D55B009369D0 /* EditView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditView-ViewModel.swift"; sourceTree = "<group>"; };
 		43616BB72B151207009369D0 /* ImageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGenerator.swift; sourceTree = "<group>"; };
+		43667E3F2B26177100D25545 /* VideoCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCacheManager.swift; sourceTree = "<group>"; };
 		4367714B2AF916DF00EC883A /* MimOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimOverlayView.swift; sourceTree = "<group>"; };
+		436944B32B2687B500154328 /* Loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = Loading.gif; path = ../../../../.Trash/Loading.gif; sourceTree = "<group>"; };
+		436944B52B2687BF00154328 /* Loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Loading.gif; sourceTree = "<group>"; };
 		436F30DC2AE9406B0056CFDD /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		4370FF422AEAD3170038F609 /* ToolEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolEnum.swift; sourceTree = "<group>"; };
 		437A031D2B2103E800718582 /* PreferredScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferredScheme.swift; sourceTree = "<group>"; };
@@ -102,9 +106,7 @@
 		43D5F8502B24B02C0000811E /* AVPlayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+Extension.swift"; sourceTree = "<group>"; };
 		43FF916E2AFC2A610056B64F /* FavouriteVideos+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavouriteVideos+CoreDataClass.swift"; sourceTree = "<group>"; };
 		43FF916F2AFC2A610056B64F /* FavouriteVideos+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavouriteVideos+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		43FF91722AFC558A0056B64F /* FavouriteOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteOverlayView.swift; sourceTree = "<group>"; };
 		43FF91742B0004510056B64F /* CRUDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRUDManager.swift; sourceTree = "<group>"; };
-		43FF91762B0149030056B64F /* VideoCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCacheManager.swift; sourceTree = "<group>"; };
 		43FF91782B0174F40056B64F /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +119,7 @@
 				43D27F3C2AE2FD4500A97AE8 /* FirebaseDatabase in Frameworks */,
 				4387B1442B026F8200B728C7 /* AlertKit in Frameworks */,
 				43D27F422AE2FD4500A97AE8 /* FirebaseFirestore in Frameworks */,
+				436944AA2B2671AF00154328 /* SDWebImageSwiftUI in Frameworks */,
 				43D27F462AE2FD4500A97AE8 /* FirebaseFirestoreSwift in Frameworks */,
 				43D27F3E2AE2FD4500A97AE8 /* FirebaseDatabaseSwift in Frameworks */,
 				43D27F5C2AE2FD4600A97AE8 /* FirebaseStorage in Frameworks */,
@@ -193,7 +196,7 @@
 				43FF916E2AFC2A610056B64F /* FavouriteVideos+CoreDataClass.swift */,
 				43FF916F2AFC2A610056B64F /* FavouriteVideos+CoreDataProperties.swift */,
 				43FF91742B0004510056B64F /* CRUDManager.swift */,
-				43FF91762B0149030056B64F /* VideoCacheManager.swift */,
+				43667E3F2B26177100D25545 /* VideoCacheManager.swift */,
 			);
 			path = LocalDB;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				43571F612AE6C004009CB825 /* ContentViewModel.swift */,
+				436944B52B2687BF00154328 /* Loading.gif */,
 				436F30DC2AE9406B0056CFDD /* SettingsViewModel.swift */,
 			);
 			path = ViewModel;
@@ -233,8 +237,8 @@
 			children = (
 				4317050E2AF681D30008F508 /* MimView.swift */,
 				4386013D2AF8068E00B54464 /* MimVideoView.swift */,
+				436944B32B2687B500154328 /* Loading.gif */,
 				4367714B2AF916DF00EC883A /* MimOverlayView.swift */,
-				43FF91722AFC558A0056B64F /* FavouriteOverlayView.swift */,
 			);
 			path = Mim;
 			sourceTree = "<group>";
@@ -288,6 +292,7 @@
 		438935A22AE41F4A00C51516 /* TabView */ = {
 			isa = PBXGroup;
 			children = (
+				43571F642AE6C8E4009CB825 /* ViewModel */,
 				438935A32AE41F5400C51516 /* CustomTabView.swift */,
 			);
 			path = TabView;
@@ -322,7 +327,6 @@
 		438935A82AE4445B00C51516 /* ContextMenu */ = {
 			isa = PBXGroup;
 			children = (
-				43571F642AE6C8E4009CB825 /* ViewModel */,
 				438935A92AE4446D00C51516 /* AddButton.swift */,
 				4304ECE32AE4848F0000D2FA /* ContextMenuView.swift */,
 			);
@@ -401,6 +405,7 @@
 				43D27F5B2AE2FD4600A97AE8 /* FirebaseStorage */,
 				4317050C2AF47DEC0008F508 /* Kingfisher */,
 				4387B1432B026F8200B728C7 /* AlertKit */,
+				436944A92B2671AF00154328 /* SDWebImageSwiftUI */,
 			);
 			productName = MimX;
 			productReference = 43D27F122AE2AD0700A97AE8 /* MimX.app */;
@@ -435,6 +440,7 @@
 				43D27F282AE2FD4500A97AE8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				4317050B2AF47DEC0008F508 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				4387B1422B026F8200B728C7 /* XCRemoteSwiftPackageReference "AlertKit" */,
+				436944A82B2671AF00154328 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = 43D27F132AE2AD0700A97AE8 /* Products */;
 			projectDirPath = "";
@@ -450,6 +456,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				436944B42B2687B500154328 /* Loading.gif in Resources */,
 				43D27F1F2AE2AD0900A97AE8 /* Preview Assets.xcassets in Resources */,
 				43D27F1C2AE2AD0900A97AE8 /* Assets.xcassets in Resources */,
 				43D27F272AE2FCF000A97AE8 /* GoogleService-Info.plist in Resources */,
@@ -475,7 +482,6 @@
 				436F30DD2AE9406B0056CFDD /* SettingsViewModel.swift in Sources */,
 				4333AAEC2B17C6A4009C709E /* PitchView.swift in Sources */,
 				4389359F2AE40C0200C51516 /* HomeView.swift in Sources */,
-				43FF91772B0149030056B64F /* VideoCacheManager.swift in Sources */,
 				438935A12AE40D5000C51516 /* FavouriteView.swift in Sources */,
 				438200AB2AF039C00071B1B0 /* PlayerView.swift in Sources */,
 				4333AAEE2B17C6AC009C709E /* SpeedView.swift in Sources */,
@@ -488,7 +494,6 @@
 				4355C35F2B2246B20012ECA9 /* VolumeView.swift in Sources */,
 				4333AAF22B17CA94009C709E /* ToolSheetView.swift in Sources */,
 				4387B14A2B02DFF400B728C7 /* TimelineSliderView.swift in Sources */,
-				43FF91732AFC558A0056B64F /* FavouriteOverlayView.swift in Sources */,
 				4386013E2AF8068E00B54464 /* MimVideoView.swift in Sources */,
 				4370FF432AEAD3170038F609 /* ToolEnum.swift in Sources */,
 				4389DE0C2AFBDFB800FD41DB /* CoreVideo.xcdatamodeld in Sources */,
@@ -498,6 +503,7 @@
 				438935A42AE41F5400C51516 /* CustomTabView.swift in Sources */,
 				437A031E2B2103E800718582 /* PreferredScheme.swift in Sources */,
 				43D27F162AE2AD0700A97AE8 /* MimXApp.swift in Sources */,
+				43667E402B26177100D25545 /* VideoCacheManager.swift in Sources */,
 				43FF91712AFC2A610056B64F /* FavouriteVideos+CoreDataProperties.swift in Sources */,
 				4317050F2AF681D30008F508 /* MimView.swift in Sources */,
 				43D5F8512B24B02C0000811E /* AVPlayer+Extension.swift in Sources */,
@@ -725,6 +731,14 @@
 				minimumVersion = 7.10.0;
 			};
 		};
+		436944A82B2671AF00154328 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.5;
+			};
+		};
 		4387B1422B026F8200B728C7 /* XCRemoteSwiftPackageReference "AlertKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sparrowcode/AlertKit";
@@ -748,6 +762,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4317050B2AF47DEC0008F508 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		436944A92B2671AF00154328 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 436944A82B2671AF00154328 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
 		};
 		4387B1432B026F8200B728C7 /* AlertKit */ = {
 			isa = XCSwiftPackageProductDependency;
