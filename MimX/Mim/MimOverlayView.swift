@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVKit
 
 struct MimOverlayView: View {
     @EnvironmentObject var vM : ContentViewModel
@@ -17,21 +18,22 @@ struct MimOverlayView: View {
             .overlay {
                 HStack(spacing:30){
                     Button(action: {
-                        vM.write(selectedVideo: video)
+                        withAnimation {
+                            vM.write(selectedVideo: video)
+                        }
                     }, label: {
                         Image(systemName: "star.circle.fill")
                             .imageScale(.medium)
                             .foregroundStyle(.white)
                             .clipShape(Circle())
                     })
-                    Button(action: {
-                        print("share")
-                    }, label: {
-                        Image(systemName: "square.and.arrow.up.fill")
-                            .imageScale(.medium)
-                            .foregroundStyle(.white)
-                            .clipShape(Circle())
-                    })
+                    ShareLink(item: video, preview: SharePreview("MimX-Video", image: Image(video.thumbnail))) {
+                        Label(
+                            title: { },
+                            icon: { Image(systemName: "square.and.arrow.up.fill")
+                                .foregroundStyle(.white)}
+                        )
+                    }
                     Button(action: {
                         withAnimation {
                             vM.selectedVideo = video

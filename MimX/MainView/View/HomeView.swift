@@ -20,8 +20,10 @@ struct HomeView: View {
                         .overlay(alignment:.bottom,content: {
                             MimOverlayView(video: video)
                         })
+                     
                 }else{
                     MimView(video: video)
+                        
                         .overlay(alignment:.bottom,content: {
                             MimOverlayView(video: video)
                         })
@@ -35,5 +37,6 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
+        .environmentObject(ContentViewModel())
 }
 

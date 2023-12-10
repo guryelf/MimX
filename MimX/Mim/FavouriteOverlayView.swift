@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct FavouriteOverlayView: View {
     @EnvironmentObject var vM : ContentViewModel
     @State var video: Video
@@ -25,14 +26,13 @@ struct FavouriteOverlayView: View {
                             .background(.blue)
                             .clipShape(Circle())
                     })
-                    Button(action: {
-                        print("share")
-                    }, label: {
-                        Image(systemName: "square.and.arrow.up.fill")
-                            .imageScale(.medium)
-                            .foregroundStyle(.white)
-                            .clipShape(Circle())
-                    })
+                    ShareLink(item: video, preview: SharePreview("MimX-Video", image: Image(video.thumbnail))) {
+                        Label(
+                            title: { },
+                            icon: { Image(systemName: "square.and.arrow.up.fill")
+                                .foregroundStyle(.white)}
+                        )
+                    }
                     Button(action: {
                         withAnimation {
                             vM.selectedVideo = video

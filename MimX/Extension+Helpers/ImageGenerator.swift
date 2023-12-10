@@ -14,6 +14,8 @@ class ImageGenerator{
     
     static let shared = ImageGenerator()
     
+    
+    
     func generateThumbnail(url: URL, second : Int = 1 , compressionQuality: Double = 0.05) -> URL?{
         let imgGenerator = AVAssetImageGenerator(asset: AVURLAsset(url: url))
         guard let cgImage = try? imgGenerator.copyCGImage(at: .init(seconds: Double(second), preferredTimescale: 1), actualTime: nil) else { return nil}

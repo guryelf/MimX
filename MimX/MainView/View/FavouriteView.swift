@@ -17,11 +17,13 @@ struct FavouriteView: View {
             ForEach(vM.favourites){video in
                 if vM.selectedVideo == video{
                     MimVideoView(video: video)
+                     
                         .overlay(alignment:.bottom,content: {
                             FavouriteOverlayView(video: video)
                         })
                 }else{
                     MimView(video: video)
+                      
                         .overlay(alignment:.bottom,content: {
                             FavouriteOverlayView(video: video)
                         })
@@ -34,4 +36,5 @@ struct FavouriteView: View {
 }
 #Preview {
     FavouriteView()
+        .environmentObject(ContentViewModel())
 }

@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import CoreData
 import Combine
+import AVFoundation
 
 class ContentViewModel : ObservableObject{
     @Published var isSettingsActive = false
@@ -34,7 +35,7 @@ class ContentViewModel : ObservableObject{
     }
     
 //    private func deleteAllData(forEntity entity: String) {
-//        
+//
 //        let deleteRequest = NSBatchDeleteRequest(fetchRequest: self.fetchRequest)
 //
 //        do {
@@ -43,6 +44,14 @@ class ContentViewModel : ObservableObject{
 //            print("Failed to delete data: \(error)")
 //        }
 //    }
+    func exportVideo(asset:AVAsset,outputURL : URL,completion: @escaping (Error?)->()) -> URL?{
+        guard let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality) else {
+            completion(NSError(domain: "Export Error", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to create export session"]))
+            return nil
+        }
+        return outputURL
+    }
+    
     func retrieveData(){
         let objects = CRUDManager.shared.retrieveData()
         for object in objects {

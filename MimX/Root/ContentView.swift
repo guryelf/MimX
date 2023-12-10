@@ -26,7 +26,6 @@ struct ContentView: View {
             }
             .onTapGesture {
                 withAnimation(.easeInOut) {
-                    print(vM.volume)
                     vM.isVolume = false
                 }
             }
@@ -43,6 +42,9 @@ struct ContentView: View {
             .onDisappear(perform: {
                 vM.selectedVideo = nil
             })
+            .onChange(of: vM.index, perform: { _ in
+                vM.selectedVideo = nil
+            })
             .navigationTitle(vM.index == 0 ?  "MimX - Ana Sayfa" : "MimX - Favoriler")
             .navigationBarTitleDisplayMode(.inline)
             //MARK: TAB VIEW
@@ -51,7 +53,6 @@ struct ContentView: View {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button(action: {
                             vM.isSettingsActive.toggle()
-                            
                         }, label: {
                             Image(systemName: "gear.circle.fill")
                                 .resizable()
@@ -80,4 +81,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .environmentObject(SettingsViewModel())
 }

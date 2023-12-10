@@ -28,6 +28,12 @@ struct VolumeView: View {
                         sliderWidth = sliderWidth > maxSliderWidth ? maxSliderWidth : sliderWidth
                         sliderWidth = sliderWidth >= 0 ? sliderWidth : 0
                         
+                        
+                        let progress = (sliderWidth / maxSliderWidth)*3
+                        sliderProgress = progress <= 3.0 && progress >= 0 ? progress : 3
+                        
+                        self.volume = Float(sliderProgress)
+                        
                     })
                         .onEnded({ value in
                             
@@ -36,17 +42,12 @@ struct VolumeView: View {
                             sliderWidth = sliderWidth >= 0 ? sliderWidth : 0
                             
                             lastDragged = sliderWidth
-                            
-                            let progress = (sliderWidth / maxSliderWidth)*3
-                            sliderProgress = progress <= 3.0 && progress >= 0 ? progress : 3
-                            
-                            self.volume = Float(sliderProgress)
                            
                         }))
         }
         .clipShape(RoundedRectangle(cornerRadius: 15))
         .overlay(alignment: .center) {
-            Image(systemName: "speaker.wave.2.circle.fill")
+            Image(systemName: self.volume == 0 ? "speaker.slash.circle.fill" : "speaker.wave.2.circle.fill")
                 .resizable()
                 .frame(width: 30, height: 30)
                 .foregroundStyle(.white)

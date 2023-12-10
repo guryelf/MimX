@@ -35,7 +35,15 @@ extension Video: Transferable {
 
     static var transferRepresentation: some TransferRepresentation {
         FileRepresentation(contentType: .movie) { video in
-            SentTransferredFile(URL(string: video.videoURL)!)
+            let data = try Data(contentsOf: URL(string: video.videoURL)!)
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let fileURL = documentsURL.appendingPathComponent("video\(NSUUID()).mp4")
+            do {
+                try data.write(to: fileURL)
+            } catch {
+                print(error)
+            }
+            return SentTransferredFile(fileURL)
         } importing: { received in
             let copy = URL.documentsDirectory.appending(path: "video\(NSUUID()).mp4")
 

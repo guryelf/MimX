@@ -31,7 +31,11 @@ struct MimVideoView: View {
         .frame(width: 125, height: 125)
         .clipShape(RoundedRectangle(cornerRadius: 15))
         .onAppear(perform: {
+            player.volume = cM.volume
             player.play()
+        })
+        .onTapGesture(count: 2, perform: {
+            cM.index == 0 ? cM.write(selectedVideo: video) : cM.deleteData(selectedVideo: video)
         })
         .onTapGesture {
             self.isPlaying.toggle()
@@ -77,4 +81,5 @@ extension MimVideoView{
 
 #Preview {
     MimVideoView(video: Video.mockVideo)
+        .environmentObject(ContentViewModel())
 }
