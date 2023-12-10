@@ -29,5 +29,10 @@ class SettingsViewModel : ObservableObject{
         }
     }
     
+    func deleteCache(){
+        VideoCacheManager.shared.videoCache.removeAllObjects()
+    }
+    
+    
     
 }
