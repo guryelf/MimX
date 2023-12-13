@@ -15,28 +15,28 @@ struct EditView: View {
     private var video : Video
     @StateObject private var vM : EditViewViewModel
     @StateObject private var eVM : EditViewModel
-    @StateObject private var aM = AudioEngineManager()
     init(video:Video) {
         self.video = video
         self._vM = StateObject(wrappedValue: EditViewViewModel(video: video))
         self._eVM = StateObject(wrappedValue: EditViewModel(video: video))
+        vM.getVideoPlayer(url: video.videoURL)
+        try? vM.getAudioPlayer(url: video.videoURL)
     }
     var body: some View {
         NavigationStack{
             VStack(spacing:20){
                 PlayerView(player: vM.player)
-                    .onChange(of: vM.rate, perform: { newValue in
+                    .onChange(of: vM.rate, perform: { _ in
                         vM.player?.rate = vM.rate
+                        vM.speedControl.rate = vM.rate
                         vM.isPlaying = true
                     })
                     .onChange(of: vM.pitch, perform: { _ in
-                        aM.setPitchValue(vM.pitch)
-                        aM.startEngine()
+                        vM.pitchControl.pitch = vM.pitch
                     })
-                //pitch implement
                     .onAppear(perform: {
-                        aM.startEngine()
                         vM.player?.pause()
+                        vM.audioPlayer?.pause()
                     })
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/3)
                 HStack(spacing: 0, content: {
@@ -44,10 +44,13 @@ struct EditView: View {
                         withAnimation {
                             if vM.isPlaying{
                                 vM.player?.pause()
+                                vM.audioPlayer?.pause()
                                 vM.isPlaying = false
                             }else{
                                 vM.player?.play()
+                                vM.audioPlayer?.play()
                                 vM.player?.rate = vM.rate
+                                vM.speedControl.rate = vM.rate
                                 vM.isPlaying = true
                             }
                         }
@@ -64,7 +67,6 @@ struct EditView: View {
                     })
                     TimelineSliderView(video:video, images: vM.images)
                 })
-                
                 HStack(spacing:25){
                     ForEach(ToolEnum.allCases,id: \.self){button in
                         AddButton(content: {

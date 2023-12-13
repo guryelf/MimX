@@ -18,18 +18,52 @@ class EditViewViewModel : ObservableObject{
             return generateSliderView(url: URL(string: video.videoURL)!)!
         }
     }
-    var asset : AVAsset
+    private var videoAsset : AVAsset?
+    private var audioAsset : AVAsset?
     var video: Video
     @Published var player : AVPlayer?
+    @Published var audioPlayer : AVAudioPlayerNode?
     @Published var isPlaying : Bool = false
     @Published var rate : Float = 1.0
     @Published var pitch : Float = 0.0
+    let engine = AVAudioEngine()
+    let speedControl = AVAudioUnitVarispeed()
+    let pitchControl = AVAudioUnitTimePitch()
+   
     init(video:Video) {
         self.video = video
-        self.asset = AVAsset(url: URL(string:video.videoURL)!)
         self.player = AVPlayer(url: URL(string:video.videoURL)!)
     }
+    func getVideoPlayer(url : String){
+        let asset = AVAsset(url: URL(string: url)!)
+        let composition = AVMutableComposition()
+        do{
+            let videoTrack = composition.addMutableTrack(withMediaType: .video, preferredTrackID: kCMPersistentTrackID_Invalid)
+            try videoTrack?.insertTimeRange(CMTimeRange(start: .zero, duration: asset.duration), of: asset.tracks(withMediaType: .video)[0], at: .zero)
+        }catch{
+            print(error.localizedDescription)
+        }
+        let playerItem = AVPlayerItem(asset: composition)
+        self.videoAsset = playerItem.asset
+        self.player = AVPlayer(playerItem: playerItem)
+    }
     
+    func getAudioPlayer(url: String) throws{
+        let asset = AVAsset(url: URL(string: url)!)
+        self.audioAsset = asset
+        let audioFile = try AVAudioFile(forReading: URL(string: url)!)
+        let audioPlayer = AVAudioPlayerNode()
+        engine.attach(audioPlayer)
+        engine.attach(pitchControl)
+        engine.attach(speedControl)
+        engine.connect(audioPlayer, to: speedControl, format: nil)
+        engine.connect(speedControl, to: pitchControl, format: nil)
+        engine.connect(pitchControl, to: engine.mainMixerNode, format: nil)
+        audioPlayer.scheduleFile(audioFile, at: nil)
+        
+        try? engine.start()
+        self.audioPlayer = audioPlayer
+    }
     
     @MainActor func generateSliderView(url:URL) -> [URL]?{
         let manager = FileManager.default

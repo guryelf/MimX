@@ -11,7 +11,6 @@ import SDWebImageSwiftUI
 struct FavouriteView: View {
     @State private var columns = Array(repeating: GridItem(.fixed(125)), count: 3)
     @Environment(\.managedObjectContext) var moc
-    @StateObject var mVM = MainViewModel()
     @EnvironmentObject var vM : ContentViewModel
     var body: some View {
         LazyVGrid(columns: columns,spacing: 10, content: {
