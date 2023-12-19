@@ -38,17 +38,13 @@ struct HomeView: View {
                 }
             })
         }
-        .onReceive(mVM.$videos){ videos in
-            
-            // hidden pagination to setup
+        /*
+        .onReceive(mVM.$videos) { video in
             DispatchQueue.global(qos: .background).async {
-                for _video in videos {
-                    let asset = AVAsset(url: URL(string: _video.videoURL)!)
-                    VideoCacheManager.shared.addToCache(key: _video.id, value: asset)
-                    print("Video cached")
-                }
+                mVM.cacheVideos(videos: video)
             }
         }
+         */
     }
 }
 

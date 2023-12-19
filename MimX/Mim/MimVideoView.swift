@@ -7,32 +7,28 @@
 
 import SwiftUI
 import AVKit
-struct MimVideoView: View {
+import AVFoundation
+
+struct MimVideoView: View{
     let video : Video
-    let cachedAsset: AVAsset?
-    @State var player : AVPlayer
     @State var isPlaying = false
     @EnvironmentObject var cM : ContentViewModel
+    @StateObject var vM : VideoPlayerManager
     init(video:Video) {
         self.video = video
-        self.player = AVPlayer(url: URL(string: video.videoURL ) ?? URL(fileURLWithPath: video.videoURL))
-        self.cachedAsset = VideoCacheManager.shared.getFromCache(key: video.id)
+        self._vM = StateObject(wrappedValue: VideoPlayerManager(video: video))
     }
     var body: some View {
         VStack{
-            if cachedAsset != nil{
-                let playeritem = AVPlayerItem(asset: cachedAsset!)
-                let cachedPlayer = AVPlayer(playerItem: playeritem)
-                PlayerView(player: cachedPlayer)
-            }else{
-                PlayerView(player: player)
-            }
+            PlayerView(player: vM.player)
         }
         .frame(width: 125, height: 125)
         .clipShape(RoundedRectangle(cornerRadius: 15))
         .onAppear(perform: {
-            player.volume = cM.volume
-            player.play()
+            vM.player?.volume = cM.volume
+            if !cM.editView{
+                vM.player?.play()
+            }
         })
         .onTapGesture(count: 2, perform: {
             cM.index == 0 ? cM.write(selectedVideo: video) : cM.deleteData(selectedVideo: video)
@@ -41,19 +37,19 @@ struct MimVideoView: View {
             self.isPlaying.toggle()
         }
         .onChange(of: cM.editView, perform: { _ in
-            player.pause()
+            vM.player?.pause()
         })
         .onChange(of: isPlaying, perform: { _ in
             if !cM.editView{
-                player.volume = cM.volume
-                play(player: player)
+                vM.player?.volume = cM.volume
+                play(player: vM.player!)
             }
         })
         .onChange(of: cM.volume, perform: { _ in
-            player.volume = cM.volume
+            vM.player?.volume = cM.volume
         })
         .onDisappear(perform: {
-            player.pause()
+            vM.player?.pause()
         })
     }
 }

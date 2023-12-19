@@ -11,7 +11,7 @@ import FirebaseFirestoreSwift
 import AVKit
 
 @MainActor
-class MainViewModel : ObservableObject{
+class MainViewModel : ObservableObject,CachingPlayerItemDelegate{
     
     @Published var videos = [Video]()
     
@@ -27,15 +27,20 @@ class MainViewModel : ObservableObject{
         let videos = videoData.documents.compactMap { try? $0.data(as: Video.self) }
         return videos
     }
-    func addToCache(videos : [Video]){
-        DispatchQueue.global(qos: .utility).async {
-            for video in videos{
-                let asset = VideoCacheManager.shared.convertAsset(video: video)
-                VideoCacheManager.shared.addToCache(key: video.videoURL, value: asset)
-                print("Added to cache")
+    
+    func cacheVideos(videos:[Video]){
+        for video in videos {
+            if !VideoCacheManager.shared.isCached(forKey: video.videoURL){
+                let playerItem = CachingPlayerItem(url: URL(string: video.videoURL)!)
+                playerItem.download()
+                playerItem.delegate = self
             }
         }
-
     }
-    
+    nonisolated func playerItem(_ playerItem: CachingPlayerItem, didFinishDownloadingData data: Data) {
+        print("cached automatically")
+        VideoCacheManager.shared.videoStorage?.async.setObject(data, forKey: playerItem.url.absoluteString, completion: { _ in })
+    }
 }
+
+

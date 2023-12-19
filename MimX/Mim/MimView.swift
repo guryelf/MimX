@@ -25,11 +25,7 @@ struct MimView: View {
                     cM.index == 0 ? cM.write(selectedVideo: video) : cM.deleteData(selectedVideo: video)
                 }
                 .onTapGesture {
-                    if VideoCacheManager.shared.getFromCache(key: video.id) == nil{
-                        let cachedAsset = AVAsset(url: URL(string: video.videoURL)!)
-                        VideoCacheManager.shared.addToCache(key: video.id, value: cachedAsset)
-                        cM.selectedVideo = video
-                    }
+                    cM.selectedVideo = video
                 }
         }
         .frame(width: 125, height: 125)
