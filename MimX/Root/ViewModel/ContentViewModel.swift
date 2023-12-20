@@ -42,7 +42,7 @@ class ContentViewModel : ObservableObject{
 //        do {
 //            try container.viewContext.execute(deleteRequest)
 //        } catch {
-//            print("Failed to delete data: \(error)")
+//            print(error.localizedDescription)
 //        }
 //    }
     
@@ -54,7 +54,8 @@ class ContentViewModel : ObservableObject{
             let id = object.value(forKey: "id") as! String
             let thumbnail = object.value(forKey: "thumbnail") as! String
             let tags = object.value(forKey: "tags") as! String
-            let video = Video(id: id, tags: tags, videoURL: videoURL, thumbnail: thumbnail)
+            let audioURL = object.value(forKey: "audioURL") as! String
+            let video = Video(id: id, tags: tags, videoURL: videoURL, thumbnail: thumbnail, audioURL: audioURL)
             if let index = self.favourites.firstIndex(where: { $0.videoURL == videoURL }){
                 self.favourites.remove(at: index)
             }

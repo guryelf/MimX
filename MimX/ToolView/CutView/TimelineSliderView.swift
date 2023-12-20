@@ -11,40 +11,77 @@ import AVKit
 
 struct TimelineSliderView: View {
     private var video: Video
-    private var images : [URL]
-    init(video:Video,images:[URL]){
+    private var images = [URL]()
+    @State private var width : CGFloat = 0
+    @State private var width1 : CGFloat = 0
+    @State private var playPosition : CGFloat = 50
+    @State private var isDragging = false
+    var totalWidth = UIScreen.main.bounds.width-100
+    init(video:Video, images: [URL] = []) {
         self.video = video
         self.images = images
     }
     var body: some View {
-        GeometryReader{ proxy in
-            Bar(proxy: proxy, video: video, images: images)
-                .position(x: proxy.size.width / 2, y: proxy.size.height / 2)
-            Thumb(proxy: proxy, imageName: "chevron.left")
-                .position(x: proxy.size.width , y: proxy.size.height / 2)
-                .gesture(DragGesture()
-                         
-                )
-            Thumb(proxy: proxy, imageName: "chevron.right")
-                .position(x: proxy.size.width, y: proxy.size.height / 2)
-                .gesture(DragGesture()
-                    .onChanged({ value in
-                        
-                    })
-                )
+        VStack {
+            ZStack(alignment: .leading) {
+                Bar(video: video, images: images)
+                    .frame(height: 100)
+                HStack(spacing:0){
+                    Thumb(imageName: "chevron.left.circle.fill", color: .blue, width: 15)
+                        .frame(height: 100)
+                        .offset(x: self.width1)
+                        .gesture(DragGesture()
+                            .onChanged({ value in
+                                isDragging = true
+                                if value.location.x >= 0 && value.location.x <= self.width - 30 {
+                                    self.width1 = value.location.x
+                                    self.playPosition = playPosition <= self.width1 ? self.width1 : playPosition
+                                }
+                            })
+                                .onEnded({ _ in
+                                    isDragging = false
+                                }))
+                    Thumb(imageName: "", color: Color(uiColor: .systemGray3), width: 8)
+                        .opacity( isDragging ? 0 : 1)
+                        .offset(x: self.width1 + playPosition)
+                        .gesture(DragGesture()
+                            .onChanged({ value in
+                                if value.location.x >= 0 && value.location.x >= self.width1 && value.location.x <= self.width {
+                                    
+                                    self.playPosition = playPosition >= self.width ? playPosition : 0
+                                    self.playPosition = playPosition <= self.width1 ? playPosition : 0
+                                    self.playPosition = value.location.x
+                                }
+                            }))
+                    Thumb(imageName: "chevron.right.circle.fill",color: .blue,width: 15)
+                        .frame(height: 100)
+                        .offset(x: self.width - 15)
+                        .gesture(DragGesture()
+                            .onChanged({ value in
+                                isDragging = true
+                                if value.location.x <= self.totalWidth && value.location.x >= self.width1 + 30 {
+                                    self.width = value.location.x
+                                    self.playPosition = playPosition >= self.width ? self.width : playPosition
+                                }
+                            })
+                                .onEnded({ _ in
+                                    isDragging = false
+                                }))
+                }
+            }
         }
-        .frame(width: UIScreen.main.bounds.width, height: 100)
+        .frame(width: totalWidth, height: 100)
+        .padding()
     }
 }
-
-
 fileprivate struct Thumb : View {
-    let proxy: GeometryProxy
     let imageName:String
+    let color: Color
+    let width : CGFloat
     var body: some View {
         RoundedRectangle(cornerRadius: 20)
-            .frame(width: 15,height: proxy.size.height-20)
-            .foregroundStyle(.blue)
+            .frame(width: width)
+            .foregroundStyle(color)
             .overlay(alignment: .center) {
                 ZStack{
                     Image(systemName: imageName)
@@ -54,32 +91,28 @@ fileprivate struct Thumb : View {
     }
 }
 fileprivate struct Bar : View {
-    private let proxy : GeometryProxy
-    private var images : [URL]
-    private var video: Video
-    init(proxy:GeometryProxy,video:Video,images:[URL]){
-        self.proxy = proxy
+    var images = [URL]()
+    var video: Video
+    init(video:Video,images: [URL] = []){
         self.video = video
         self.images = images
     }
     var body: some View {
-        Rectangle()
-            .frame(width: proxy.size.width, height: proxy.size.height)
-            .overlay {
-                HStack(spacing:0){
-                    ForEach(images,id: \.self) { image in
-                        KFImage(image)
-                            .resizable()
-                            .frame(width: 40,height: proxy.size.height)
-                    }
+        ZStack(content: {
+            Rectangle()
+            HStack(spacing:0){
+                ForEach(images,id: \.self) { image in
+                    KFImage(image)
+                        .resizable(capInsets: .init(.zero),resizingMode: .stretch)
+                        
                 }
-                .frame(width: 40)
             }
+            .clipped()
+        })
     }
 }
 
-
 #Preview {
-    TimelineSliderView(video: Video.mockVideo, images: [])
+    TimelineSliderView(video: Video.mockVideo,images: FileManager.default.isExists(name: Video.mockVideo.videoURL) ?? [])
+    
 }
-

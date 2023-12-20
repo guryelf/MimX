@@ -58,6 +58,8 @@
 		43D27F462AE2FD4500A97AE8 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 43D27F452AE2FD4500A97AE8 /* FirebaseFirestoreSwift */; };
 		43D27F5C2AE2FD4600A97AE8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 43D27F5B2AE2FD4600A97AE8 /* FirebaseStorage */; };
 		43D5F8512B24B02C0000811E /* URLSession+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5F8502B24B02C0000811E /* URLSession+Extension.swift */; };
+		43D766182B39E12E00F3D2A0 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D766172B39E12E00F3D2A0 /* AudioPlayer.swift */; };
+		43DDCB152B3A4648005AD7AB /* TemporaryFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DDCB142B3A4648005AD7AB /* TemporaryFileManager.swift */; };
 		43FF91702AFC2A610056B64F /* FavouriteVideos+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF916E2AFC2A610056B64F /* FavouriteVideos+CoreDataClass.swift */; };
 		43FF91712AFC2A610056B64F /* FavouriteVideos+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF916F2AFC2A610056B64F /* FavouriteVideos+CoreDataProperties.swift */; };
 		43FF91752B0004510056B64F /* CRUDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF91742B0004510056B64F /* CRUDManager.swift */; };
@@ -110,6 +112,8 @@
 		43D27F1E2AE2AD0900A97AE8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		43D27F262AE2FCF000A97AE8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		43D5F8502B24B02C0000811E /* URLSession+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Extension.swift"; sourceTree = "<group>"; };
+		43D766172B39E12E00F3D2A0 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		43DDCB142B3A4648005AD7AB /* TemporaryFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryFileManager.swift; sourceTree = "<group>"; };
 		43FF916E2AFC2A610056B64F /* FavouriteVideos+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavouriteVideos+CoreDataClass.swift"; sourceTree = "<group>"; };
 		43FF916F2AFC2A610056B64F /* FavouriteVideos+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavouriteVideos+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		43FF91742B0004510056B64F /* CRUDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRUDManager.swift; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 			children = (
 				43667E3F2B26177100D25545 /* VideoCacheManager.swift */,
 				434EBD102B2C986B007CFD90 /* CachingPlayerItem.swift */,
+				43DDCB142B3A4648005AD7AB /* TemporaryFileManager.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -265,6 +270,7 @@
 			children = (
 				438200AA2AF039C00071B1B0 /* PlayerView.swift */,
 				434EBD122B30E8D9007CFD90 /* VideoPlayerManager.swift */,
+				43D766172B39E12E00F3D2A0 /* AudioPlayer.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -494,6 +500,7 @@
 				43FF91702AFC2A610056B64F /* FavouriteVideos+CoreDataClass.swift in Sources */,
 				43D27F182AE2AD0700A97AE8 /* ContentView.swift in Sources */,
 				438935AA2AE4446D00C51516 /* AddButton.swift in Sources */,
+				43D766182B39E12E00F3D2A0 /* AudioPlayer.swift in Sources */,
 				4367714C2AF916DF00EC883A /* MimOverlayView.swift in Sources */,
 				43571F532AE51638009CB825 /* EditView.swift in Sources */,
 				43FF91792B0174F40056B64F /* FileManager+Extension.swift in Sources */,
@@ -516,6 +523,7 @@
 				4333AAF22B17CA94009C709E /* ToolSheetView.swift in Sources */,
 				4387B14A2B02DFF400B728C7 /* TimelineSliderView.swift in Sources */,
 				4386013E2AF8068E00B54464 /* MimVideoView.swift in Sources */,
+				43DDCB152B3A4648005AD7AB /* TemporaryFileManager.swift in Sources */,
 				4370FF432AEAD3170038F609 /* ToolEnum.swift in Sources */,
 				4389DE0C2AFBDFB800FD41DB /* CoreVideo.xcdatamodeld in Sources */,
 				435E8BE02B17660C007232BA /* URL+Extension.swift in Sources */,

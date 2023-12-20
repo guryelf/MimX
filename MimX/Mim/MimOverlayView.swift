@@ -37,8 +37,14 @@ struct MimOverlayView: View {
                     }
                     Button(action: {
                         withAnimation {
-                                vM.selectedVideo = video
-                                vM.editView.toggle()
+                            URLSession.shared.downloadAudio(audioURL: video.audioURL) { url in
+                                let audioURL = url.absoluteString
+                                let video = Video(id: video.id, tags: video.tags, videoURL: video.videoURL, thumbnail: video.thumbnail, audioURL: audioURL)
+                                DispatchQueue.main.async {
+                                    vM.selectedVideo = video
+                                    vM.editView.toggle()
+                                }
+                            }
                         }
                     }, label: {
                         Image(systemName: "pencil.circle.fill")

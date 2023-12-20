@@ -9,7 +9,7 @@ import Foundation
 import AVFoundation
 import SwiftUI
 
-@MainActor
+
 class ImageGenerator{
     
     static let shared = ImageGenerator()
@@ -21,7 +21,7 @@ class ImageGenerator{
         guard let cgImage = try? imgGenerator.copyCGImage(at: .init(seconds: Double(second), preferredTimescale: 1), actualTime: nil) else { return nil}
         let uiImage = UIImage(cgImage: cgImage)
         guard let imageData = uiImage.jpegData(compressionQuality: compressionQuality)
-                ,let path = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first
+                ,let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         else { return nil }
         let save = path.appendingPathComponent("Thumbnail\(NSUUID()).jpg")
         do {
@@ -54,6 +54,6 @@ class ImageGenerator{
     
     func saveImages(url: URL,images: [Data]) -> [URL]{
         let manager = FileManager.default
-        return manager.createFolderAndSave(name: url.absoluteString, dataToWrite: images)
+        return manager.createFolderAndSave(name: url.absoluteString, dataToWrite: images, fileExtension: "jpeg")
     }
 }

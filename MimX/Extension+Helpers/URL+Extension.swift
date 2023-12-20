@@ -22,6 +22,13 @@ extension URL : Comparable{
         }
         return false
     }
+    
+    func convertPathExtension(url:String) -> URL{
+        let pathUrl = URL(string: url)!
+        let fileExtension = "wav"
+        let replacedString = url.replacingOccurrences(of: pathUrl.pathExtension, with: fileExtension)
+        return URL(string: replacedString)!
+    }
 }
 
 

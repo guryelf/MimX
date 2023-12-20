@@ -46,7 +46,6 @@ struct SettingsView: View {
                                 .foregroundStyle(.red)
                             Text("Önbelleği Temizle")
                             Spacer()
-                            Text("\(vM.totalSize) MB")
                         }
                     }
                 }

@@ -14,7 +14,7 @@ class VideoCacheManager{
     static let shared = VideoCacheManager()
     private init(){}
     
-    let mConfig = MemoryConfig(expiry: .never, countLimit: 10, totalCostLimit: 10)
+    let mConfig = MemoryConfig(expiry: .never, countLimit: 50 , totalCostLimit: 5000)
     let dConfig = DiskConfig(name: "VideoCache")
     lazy var videoStorage: Cache.Storage<String,Data>? = {
         return try? Cache.Storage(diskConfig: dConfig, memoryConfig: mConfig, transformer: TransformerFactory.forData())
@@ -28,7 +28,7 @@ class VideoCacheManager{
                 playerItem = CachingPlayerItem(data: data, mimeType: "video/mp4", fileExtension: "mp4")
                 print("cached video using")
             case .error(let error):
-                playerItem = CachingPlayerItem(url: URL(string: forKey)!)
+                playerItem.delegate = VideoPlayerManager.shared
                 print("not cached ")
                 print(error.localizedDescription)
             }

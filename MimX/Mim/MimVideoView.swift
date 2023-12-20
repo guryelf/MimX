@@ -13,21 +13,22 @@ struct MimVideoView: View{
     let video : Video
     @State var isPlaying = false
     @EnvironmentObject var cM : ContentViewModel
-    @StateObject var vM : VideoPlayerManager
+    var vM = VideoPlayerManager()
+    @State private var player : AVPlayer
     init(video:Video) {
         self.video = video
-        self._vM = StateObject(wrappedValue: VideoPlayerManager(video: video))
+        self.player = AVPlayer(playerItem: vM.cachedPlayer(forKey: video.videoURL))
     }
     var body: some View {
         VStack{
-            PlayerView(player: vM.player)
+            PlayerView(player: player)
         }
         .frame(width: 125, height: 125)
         .clipShape(RoundedRectangle(cornerRadius: 15))
         .onAppear(perform: {
-            vM.player?.volume = cM.volume
+            player.volume = cM.volume
             if !cM.editView{
-                vM.player?.play()
+                player.play()
             }
         })
         .onTapGesture(count: 2, perform: {
@@ -37,19 +38,19 @@ struct MimVideoView: View{
             self.isPlaying.toggle()
         }
         .onChange(of: cM.editView, perform: { _ in
-            vM.player?.pause()
+            player.pause()
         })
         .onChange(of: isPlaying, perform: { _ in
             if !cM.editView{
-                vM.player?.volume = cM.volume
-                play(player: vM.player!)
+                player.volume = cM.volume
+                play(player: player)
             }
         })
         .onChange(of: cM.volume, perform: { _ in
-            vM.player?.volume = cM.volume
+            player.volume = cM.volume
         })
         .onDisappear(perform: {
-            vM.player?.pause()
+            player.pause()
         })
     }
 }

@@ -10,28 +10,25 @@ import AVKit
 
 struct PlayerView: UIViewControllerRepresentable {
     
-    let player : AVPlayer?
-    var resizeAspect : AVLayerVideoGravity = .resizeAspect
+    var player : AVPlayer? = nil
+    var videoGravity : AVLayerVideoGravity = .resizeAspect
     
-    
-
     init(player: AVPlayer?) {
         self.player = player
     }
-    
-    init(player:AVPlayer?,resizeAspect: AVLayerVideoGravity) {
+
+    init(player:AVPlayer?,videoGravity: AVLayerVideoGravity) {
         self.player = player
-        self.resizeAspect = resizeAspect
+        self.videoGravity = videoGravity
     }
     
     func makeUIViewController(context: Context) -> AVPlayerViewController {
         let playerViewController = AVPlayerViewController()
         playerViewController.player = player
         playerViewController.showsPlaybackControls = false
-        playerViewController.videoGravity = resizeAspect
+        playerViewController.videoGravity = videoGravity
         playerViewController.allowsVideoFrameAnalysis = false
         playerViewController.player?.automaticallyWaitsToMinimizeStalling = false
-        player?.currentItem?.audioTimePitchAlgorithm = .init(rawValue: "Custom Pitch")
         return playerViewController
     }
     

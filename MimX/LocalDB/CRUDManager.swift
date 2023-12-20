@@ -23,6 +23,7 @@ class CRUDManager{
         video.setValue(selectedVideo.videoURL, forKeyPath: "videoURL")
         video.setValue(selectedVideo.thumbnail, forKey: "thumbnail")
         video.setValue(selectedVideo.tags, forKey: "tags")
+        video.setValue(selectedVideo.audioURL, forKey: "audioURL")
         do{
             try context.save()
         }catch{

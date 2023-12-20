@@ -15,10 +15,6 @@ class SettingsViewModel : ObservableObject{
     @AppStorage("systemTheme") var systemTheme : Int = PrefScheme.allCases.first!.rawValue
     @Environment(\.colorScheme) var colorScheme
     
-    //MARK: Video Volume to be set
-    var totalSize : Int{
-        return FileManager.default.calculateCachesDirectorySize()
-    }
     
     func selectTheme() -> ColorScheme?{
         guard let theme = PrefScheme(rawValue: systemTheme) else {return nil}

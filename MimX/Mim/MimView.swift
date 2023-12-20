@@ -13,6 +13,9 @@ struct MimView: View {
     var video : Video
     @EnvironmentObject var cM : ContentViewModel
     @StateObject var vM = MainViewModel()
+    init(video:Video) {
+        self.video = video
+    }
     var body: some View {
         VStack{
             KFImage(URL(string: video.thumbnail))

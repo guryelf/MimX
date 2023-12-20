@@ -20,6 +20,7 @@ extension FavouriteVideos {
     @NSManaged public var tags: String?
     @NSManaged public var thumbnail: String?
     @NSManaged public var videoURL: String?
+    @NSManaged public var audioURL : String?
 
 }
 
