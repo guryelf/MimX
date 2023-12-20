@@ -14,14 +14,14 @@ class VideoCacheManager{
     static let shared = VideoCacheManager()
     private init(){}
     
-    let mConfig = MemoryConfig(expiry: .never, countLimit: 10, totalCostLimit: 10)
+    let mConfig = MemoryConfig(expiry: .never, countLimit: 20, totalCostLimit: .zero)
     let dConfig = DiskConfig(name: "VideoCache")
     lazy var videoStorage: Cache.Storage<String,Data>? = {
         return try? Cache.Storage(diskConfig: dConfig, memoryConfig: mConfig, transformer: TransformerFactory.forData())
       }()
     
     func returnPlayerItem(_ forKey: String) -> CachingPlayerItem{
-        var playerItem = CachingPlayerItem(url: URL(string: forKey)!)
+        var playerItem : CachingPlayerItem? = nil
         videoStorage?.async.object(forKey: forKey, completion: { result in
             switch result {
             case .value(let data):
@@ -33,7 +33,7 @@ class VideoCacheManager{
                 print(error.localizedDescription)
             }
         })
-        return playerItem
+        return playerItem ?? CachingPlayerItem(url: URL(string: forKey)!)
     }
     func isCached(forKey : String) -> Bool{
         var isCached = false
