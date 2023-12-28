@@ -14,6 +14,7 @@ struct EditView: View {
     @State private var isShowing = false
     @State private var isPlaying = false
     private var video : Video
+    var pM = VideoPlayerManager.shared
     @State private var player : AVPlayer
     @State private var audioPlayer : AudioPlayer
     @StateObject private var vM : EditViewViewModel
@@ -22,7 +23,7 @@ struct EditView: View {
         self.video = video
         self._vM = StateObject(wrappedValue: EditViewViewModel(video: video))
         self._eVM = StateObject(wrappedValue: EditViewModel(video: video))
-        self.player = AVPlayer(playerItem: VideoPlayerManager.shared.cachedPlayer(forKey: video.videoURL))
+        self.player = AVPlayer(playerItem: pM.cachedPlayer(forKey: video.videoURL))
         self.audioPlayer = AudioPlayer(url: video.audioURL)
     }
     var body: some View {

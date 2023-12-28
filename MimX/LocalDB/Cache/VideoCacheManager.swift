@@ -20,20 +20,14 @@ class VideoCacheManager{
         return try? Cache.Storage(diskConfig: dConfig, memoryConfig: mConfig, transformer: TransformerFactory.forData())
       }()
     
-    func returnPlayerItem(_ forKey: String) -> CachingPlayerItem{
-        var playerItem = CachingPlayerItem(url: URL(string: forKey)!)
-        videoStorage?.async.object(forKey: forKey, completion: { result in
-            switch result {
-            case .value(let data):
-                playerItem = CachingPlayerItem(data: data, mimeType: "video/mp4", fileExtension: "mp4")
-                print("cached video using")
-            case .error(let error):
-                playerItem.delegate = VideoPlayerManager.shared
-                print("not cached ")
-                print(error.localizedDescription)
-            }
-        })
-        return playerItem
+    func returnPlayerItem(_ forKey: String,completion: @escaping (CachingPlayerItem?,Error?) -> ()) {
+        do{
+            let data = try videoStorage?.object(forKey: forKey)
+            let playerItem = CachingPlayerItem(data: data!, mimeType: "video/mp4", fileExtension: "mp4")
+            completion(playerItem,nil)
+        }catch{
+            completion(nil,error)
+        }
     }
     func isCached(forKey : String) -> Bool{
         var isCached = false

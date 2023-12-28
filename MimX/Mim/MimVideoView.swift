@@ -13,7 +13,7 @@ struct MimVideoView: View{
     let video : Video
     @State var isPlaying = false
     @EnvironmentObject var cM : ContentViewModel
-    var vM = VideoPlayerManager()
+    var vM = VideoPlayerManager.shared
     @State private var player : AVPlayer
     init(video:Video) {
         self.video = video

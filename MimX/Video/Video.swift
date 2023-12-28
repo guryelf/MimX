@@ -50,7 +50,7 @@ extension Video: Transferable {
             let audioCopy = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("audio\(NSUUID()).m4a")
             DispatchQueue.main.sync {
                 guard let _ = try? FileManager.default.copyItem(at: received.file, to: videoCopy) else {return }
-                VideoPlayerManager.shared.extractAudioFromVideo(inputURL: received.file, outputURL: audioCopy) { error in
+                ExtractionManager.shared.extractAudioFromVideo(inputURL: received.file, outputURL: audioCopy) { error in
                     if let error = error{
                         print(error.localizedDescription)
                     }
