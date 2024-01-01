@@ -22,6 +22,7 @@ struct PlayerView: UIViewControllerRepresentable {
         self.videoGravity = videoGravity
     }
     
+    
     func makeUIViewController(context: Context) -> AVPlayerViewController {
         let playerViewController = AVPlayerViewController()
         playerViewController.player = player

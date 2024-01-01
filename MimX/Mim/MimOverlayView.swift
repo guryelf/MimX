@@ -10,6 +10,7 @@ import AVKit
 
 struct MimOverlayView: View {
     @EnvironmentObject var vM : ContentViewModel
+    var mVM = MainViewModel()
     @State var video: Video
     var body: some View {
         RoundedRectangle(cornerRadius: 15)
@@ -37,7 +38,7 @@ struct MimOverlayView: View {
                     }
                     Button(action: {
                         withAnimation {
-                            ExtractionManager.shared.downloadAudio(audioURL: video.audioURL) { url in
+                            mVM.downloadAudio(audioURL: video.audioURL) { url in
                                 let audioURL = url.absoluteString
                                 let video = Video(id: video.id, tags: video.tags, videoURL: video.videoURL, thumbnail: video.thumbnail, audioURL: audioURL)
                                 DispatchQueue.main.async {
@@ -54,10 +55,7 @@ struct MimOverlayView: View {
                     })
                 }
             }
-            
+        
     }
 }
 
-#Preview {
-    MimOverlayView(video: Video.mockVideo)
-}

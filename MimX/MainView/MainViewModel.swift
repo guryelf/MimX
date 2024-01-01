@@ -10,17 +10,19 @@ import SwiftUI
 import FirebaseFirestoreSwift
 import AVKit
 
-@MainActor
+
 class MainViewModel : ObservableObject,CachingPlayerItemDelegate{
     
     @Published var videos = [Video]()
     
+    @MainActor
     init() {
         Task{
             self.videos = await downloadVideos()
         }
     }
     
+    @MainActor
     func downloadVideos() async -> [Video]{
         let path = Firestore.firestore().collection("videos")
         guard let videoData = try? await path.getDocuments() else { return []}
@@ -28,15 +30,26 @@ class MainViewModel : ObservableObject,CachingPlayerItemDelegate{
         return videos
     }
     
-    func cacheVideos(videos:[Video]){
-        for video in videos {
-            if !VideoCacheManager.shared.isCached(forKey: video.videoURL){
-                let playerItem = CachingPlayerItem(url: URL(string: video.videoURL)!)
-                playerItem.download()
-                playerItem.delegate = self
-            }
-        }
+    func downloadThumbnail(_ thumbnail : String) -> Data{
+        var data = Data()
+        URLSession.shared.dataTask(with: URL(string: thumbnail)!) { (outputData, _, _) in
+            guard let thumbnailData = outputData else { return }
+            data = thumbnailData
+        }.resume()
+        return data
     }
+    
+    func downloadAudio(audioURL : String,completion: @escaping (URL) -> () ) {
+        guard let audioURL = URL(string: audioURL) else {return}
+        URLSession.shared.dataTask(with: audioURL) { data, response, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            let url = TemporaryFileManager.shared.saveDataToTemporaryDirectory(data: data, fileName: "audio\(NSUUID()).m4a")
+            completion(url)
+        }.resume()
+    }
+    
     nonisolated func playerItem(_ playerItem: CachingPlayerItem, didFinishDownloadingData data: Data) {
         print("cached automatically")
         VideoCacheManager.shared.videoStorage?.async.setObject(data, forKey: playerItem.url.absoluteString, completion: { _ in })

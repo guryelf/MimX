@@ -14,6 +14,17 @@ struct SpeedView: View {
             VStack(spacing:30){
                 Text("\(rate,specifier: "%.1f")x")
                     .font(.title)
+                Button {
+                    rate = 1.0
+                } label: {
+                    RoundedRectangle(cornerRadius: 15)
+                        .frame(width: 100, height: 30)
+                        .foregroundStyle(Color.gray)
+                        .overlay(alignment: .center) {
+                            Text("Reset")
+                                .foregroundStyle(.white)
+                        }
+                }
                 Slider(value: $rate, in: 0.5...3,  step: 0.1) {
                     Text("Speed")
                 } minimumValueLabel: {

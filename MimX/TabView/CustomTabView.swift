@@ -20,6 +20,7 @@ struct CustomTabView: View {
                     //HomeView
                     Button (action:{
                         withAnimation {
+                            
                             vM.index = 0
                         }
                     } ,label: {
@@ -28,7 +29,7 @@ struct CustomTabView: View {
                                 opacity: vM.index == 0 ? 1 : 0)
                     })
                     //ADD OR EDIT
-                    PhotosPicker(selection: $aVM.picker, matching: .videos, label: {
+                    PhotosPicker(selection: $aVM.picker, matching: .not(.images), label: {
                         AddIcon(icon: "plus.circle.fill",
                                 fgColor: .white,
                                 width:40,
@@ -36,8 +37,10 @@ struct CustomTabView: View {
                                 opacity: 1)
                     })
                     .padding(.bottom,50)
+                    
                     Button(action: {
                         withAnimation {
+                            
                             vM.index = 1
                         }
                     }, label: {

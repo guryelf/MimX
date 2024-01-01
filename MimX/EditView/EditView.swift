@@ -10,13 +10,14 @@ import AVKit
 import AVFoundation
 
 struct EditView: View {
+    @State private var time : Double = 0
     @State private var selectedTool : ToolEnum?
     @State private var isShowing = false
     @State private var isPlaying = false
     private var video : Video
     var pM = VideoPlayerManager.shared
     @State private var player : AVPlayer
-    @State private var audioPlayer : AudioPlayer
+    private var audioPlayer : AudioPlayer
     @StateObject private var vM : EditViewViewModel
     @StateObject private var eVM : EditViewModel
     init(video:Video)  {
@@ -24,39 +25,54 @@ struct EditView: View {
         self._vM = StateObject(wrappedValue: EditViewViewModel(video: video))
         self._eVM = StateObject(wrappedValue: EditViewModel(video: video))
         self.player = AVPlayer(playerItem: pM.cachedPlayer(forKey: video.videoURL))
-        self.audioPlayer = AudioPlayer(url: video.audioURL)
+        self.audioPlayer = AudioPlayer()
     }
     var body: some View {
         NavigationStack{
             PlayerView(player: player)
                 .frame(width:UIScreen.main.bounds.width,height: 300)
                 .onAppear(perform: {
+                    player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1), queue: .main) { time in
+                        self.time = time.seconds
+                        if self.time == player.currentItem!.duration.seconds{
+                            isPlaying = false
+                        }
+                    }
                     player.volume = 0.0
                     player.pause()
-                    audioPlayer.pause()
+                    audioPlayer.stopSound()
+                })
+                .onChange(of: vM.pitch, perform: { newValue in
+                    audioPlayer.updatePitch(newValue)
+                })
+                .onChange(of: vM.rate, perform: { newValue in
+                    player.rate = newValue
+                    player.pause()
+                    audioPlayer.updateRate(newValue)
                 })
                 .onChange(of: isPlaying, perform: { value in
                     if value{
-                        player.play()
-                        audioPlayer.play()
+                        if self.time == player.currentItem?.duration.seconds{
+                            player.seek(to: .zero,toleranceBefore: .zero,toleranceAfter: .zero)
+                            player.play()
+                            player.rate = vM.rate
+                            audioPlayer.playSound(withFileName: video.audioURL, time: 0.0)
+                        }else{
+                            player.play()
+                            player.rate = vM.rate
+                            audioPlayer.playSound(withFileName: video.audioURL, time: time)
+                        }
                     }else{
                         player.pause()
-                        audioPlayer.pause()
+                        audioPlayer.stopSound()
                     }
-                })
-                .onChange(of: vM.pitch, perform: { value in
-                    audioPlayer.setPitch(value)
-                })
-                .onChange(of: vM.rate, perform: { value in
-                    player.rate = value
-                    
                 })
             HStack(spacing: 0) {
                 AddButton(content: {
                     Button {
                         self.isPlaying.toggle()
                     } label: {
-                        Image(systemName: isPlaying ? "pause.fill" : "play.fill")
+                        Image(systemName: isPlaying  ? "pause.fill" : "play.fill")
                             .resizable()
                             .frame(width: 25, height: 25)
                     }
@@ -109,7 +125,8 @@ struct EditView: View {
             }
         }
         .onDisappear(perform: {
-            audioPlayer.stop()
+            player.pause()
+            audioPlayer.stopSound()
         })
     }
 }

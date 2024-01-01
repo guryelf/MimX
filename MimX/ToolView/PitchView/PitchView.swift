@@ -12,6 +12,17 @@ struct PitchView: View {
     var body: some View {
         GeometryReader{proxy in
             VStack(spacing:30){
+                Button {
+                    pitch = 0.0
+                } label: {
+                    RoundedRectangle(cornerRadius: 15)
+                        .frame(width: 100, height: 30)
+                        .foregroundStyle(Color.gray)
+                        .overlay(alignment: .center) {
+                            Text("Reset")
+                                .foregroundStyle(.white)
+                        }
+                }
                 Slider(value: $pitch, in: -2400...2400,  step: 100) {
                     Text("Speed")
                 }onEditingChanged: { value in
