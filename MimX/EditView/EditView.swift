@@ -42,30 +42,21 @@ struct EditView: View {
                     player.pause()
                     audioPlayer.stopSound()
                 })
+                .onChange(of: isPlaying, perform: { value in
+                    playbackControls(isPlaying: value)
+                })
                 .onChange(of: vM.pitch, perform: { newValue in
                     audioPlayer.updatePitch(newValue)
                 })
                 .onChange(of: vM.rate, perform: { newValue in
                     player.rate = newValue
-                    player.pause()
+                    if !isPlaying{
+                        player.pause()
+                    }
                     audioPlayer.updateRate(newValue)
                 })
-                .onChange(of: isPlaying, perform: { value in
-                    if value{
-                        if self.time == player.currentItem?.duration.seconds{
-                            player.seek(to: .zero,toleranceBefore: .zero,toleranceAfter: .zero)
-                            player.play()
-                            player.rate = vM.rate
-                            audioPlayer.playSound(withFileName: video.audioURL, time: 0.0)
-                        }else{
-                            player.play()
-                            player.rate = vM.rate
-                            audioPlayer.playSound(withFileName: video.audioURL, time: time)
-                        }
-                    }else{
-                        player.pause()
-                        audioPlayer.stopSound()
-                    }
+                .onChange(of: vM.reverb, perform: { value in
+                    audioPlayer.updateReverb(value)
                 })
             HStack(spacing: 0) {
                 AddButton(content: {
@@ -78,28 +69,34 @@ struct EditView: View {
                     }
                     .frame(width: 40, height: 40)
                 }, bgColor: .blue, fgColor: .white)
-                TimelineSliderView(video:video, images: vM.images)
+                TimelineSliderView(video:video)
                     .frame(width: UIScreen.main.bounds.width-100, height: 100)
             }
-            HStack(spacing:25){
-                ForEach(ToolEnum.allCases,id: \.self){button in
-                    AddButton(content: {
-                        Button(action: {
-                            withAnimation {
-                                self.selectedTool = button
-                                self.isShowing = true
-                            }
-                        }, label: {
-                            VStack(spacing:10,content: {
-                                Image(systemName: button.image)
-                                    .imageScale(.large)
-                                Text(button.title)
+            .padding(.horizontal,20)
+            ScrollView(.horizontal){
+                HStack(alignment: .center, spacing: 0, content: {
+                    ForEach(ToolEnum.allCases,id: \.self){button in
+                        AddButton(content: {
+                            Button(action: {
+                                withAnimation {
+                                    self.selectedTool = button
+                                    self.isShowing = true
+                                }
+                            }, label: {
+                                VStack(spacing:5,content: {
+                                    Image(systemName: button.image)
+                                        .imageScale(.small)
+                                    Text(button.title)
+                                        .font(.subheadline)
+                                })
+                                .padding(.horizontal)
                             })
-                        })
-                        .frame(width: 100, height: 60)
-                    }, bgColor:  .blue
-                              , fgColor: .white)
-                }
+                            .frame(width: 90, height: 45)
+                        }, bgColor:  .blue
+                                  , fgColor: .white)
+                    }
+                })
+                .frame(height: 50)
             }
             .toolbar{
                 ToolbarItem(placement: .topBarLeading) {
@@ -115,7 +112,7 @@ struct EditView: View {
             if isShowing{
                 ToolSheetView(isPresented: $isShowing) {
                     if let selectedTool = selectedTool{
-                        vM.sheetContent(tool: selectedTool, rate: $vM.rate, pitch: $vM.pitch)
+                        vM.sheetContent(tool: selectedTool, rate: $vM.rate, pitch: $vM.pitch, reverb: $vM.reverb)
                     }
                 }
                 .ignoresSafeArea()
@@ -128,6 +125,26 @@ struct EditView: View {
             player.pause()
             audioPlayer.stopSound()
         })
+    }
+}
+
+extension EditView{
+    func playbackControls(isPlaying : Bool){
+        if isPlaying{
+            if self.time == player.currentItem?.duration.seconds{
+                player.seek(to: .zero,toleranceBefore: .zero,toleranceAfter: .zero)
+                player.play()
+                player.rate = vM.rate
+                audioPlayer.playSound(withFileName: video.audioURL, time: 0.0)
+            }else{
+                player.play()
+                player.rate = vM.rate
+                audioPlayer.playSound(withFileName: video.audioURL, time: time)
+            }
+        }else{
+            player.pause()
+            audioPlayer.stopSound()
+        }
     }
 }
 

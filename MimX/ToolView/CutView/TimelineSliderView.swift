@@ -11,20 +11,20 @@ import AVKit
 
 struct TimelineSliderView: View {
     private var video: Video
-    private var images = [URL]()
+    @StateObject var vM : EditViewViewModel
     @State private var width : CGFloat = 0
     @State private var width1 : CGFloat = 0
     @State private var playPosition : CGFloat = 50
     @State private var isDragging = false
     var totalWidth = UIScreen.main.bounds.width-100
-    init(video:Video, images: [URL] = []) {
+    init(video:Video) {
         self.video = video
-        self.images = images
+        self._vM = StateObject(wrappedValue: EditViewViewModel(video: video))
     }
     var body: some View {
         VStack {
             ZStack(alignment: .leading) {
-                Bar(video: video, images: images)
+                Bar(video: video, images: vM.generateSliderView(url: URL(string:video.videoURL)!) ?? [])
                     .frame(height: 100)
                 HStack(spacing:0){
                     Thumb(imageName: "chevron.left.circle.fill", color: .blue, width: 15)
@@ -113,6 +113,6 @@ fileprivate struct Bar : View {
 }
 
 #Preview {
-    TimelineSliderView(video: Video.mockVideo,images: FileManager.default.isExists(name: Video.mockVideo.videoURL) ?? [])
+    TimelineSliderView(video: Video.mockVideo)
     
 }

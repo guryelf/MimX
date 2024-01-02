@@ -27,6 +27,7 @@
 		435E8BE02B17660C007232BA /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435E8BDF2B17660C007232BA /* URL+Extension.swift */; };
 		43616BB52B14D55B009369D0 /* EditView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43616BB42B14D55B009369D0 /* EditView-ViewModel.swift */; };
 		43616BB82B151207009369D0 /* ImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43616BB72B151207009369D0 /* ImageGenerator.swift */; };
+		43618E432B438CB400DB3E3B /* ReverbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43618E422B438CB400DB3E3B /* ReverbView.swift */; };
 		4361C8A92B3DC3670085462C /* ExtractionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4361C8A82B3DC3670085462C /* ExtractionManager.swift */; };
 		43667E402B26177100D25545 /* VideoCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43667E3F2B26177100D25545 /* VideoCacheManager.swift */; };
 		4367714C2AF916DF00EC883A /* MimOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4367714B2AF916DF00EC883A /* MimOverlayView.swift */; };
@@ -85,6 +86,7 @@
 		435E8BDF2B17660C007232BA /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		43616BB42B14D55B009369D0 /* EditView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditView-ViewModel.swift"; sourceTree = "<group>"; };
 		43616BB72B151207009369D0 /* ImageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGenerator.swift; sourceTree = "<group>"; };
+		43618E422B438CB400DB3E3B /* ReverbView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverbView.swift; sourceTree = "<group>"; };
 		4361C8A82B3DC3670085462C /* ExtractionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractionManager.swift; sourceTree = "<group>"; };
 		43667E3F2B26177100D25545 /* VideoCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCacheManager.swift; sourceTree = "<group>"; };
 		4367714B2AF916DF00EC883A /* MimOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimOverlayView.swift; sourceTree = "<group>"; };
@@ -202,7 +204,6 @@
 			children = (
 				4316E35D2AF018EB004296BB /* ViewModel */,
 				43571F522AE51638009CB825 /* EditView.swift */,
-				4370FF422AEAD3170038F609 /* ToolEnum.swift */,
 			);
 			path = EditView;
 			sourceTree = "<group>";
@@ -250,6 +251,14 @@
 			path = "Extension+Helpers";
 			sourceTree = "<group>";
 		};
+		43618E412B438CA600DB3E3B /* ReverbView */ = {
+			isa = PBXGroup;
+			children = (
+				43618E422B438CB400DB3E3B /* ReverbView.swift */,
+			);
+			path = ReverbView;
+			sourceTree = "<group>";
+		};
 		4367714E2AF966D200EC883A /* Mim */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,11 +292,13 @@
 		4387B1482B02DFE500B728C7 /* ToolView */ = {
 			isa = PBXGroup;
 			children = (
+				43618E412B438CA600DB3E3B /* ReverbView */,
 				4333AAEA2B17C69B009C709E /* TextView */,
 				4333AAE92B17C694009C709E /* PitchView */,
 				4333AAE82B17C690009C709E /* SpeedView */,
 				4341884A2B10F53E006608CC /* CutView */,
 				4333AAF12B17CA94009C709E /* ToolSheetView.swift */,
+				4370FF422AEAD3170038F609 /* ToolEnum.swift */,
 			);
 			path = ToolView;
 			sourceTree = "<group>";
@@ -529,6 +540,7 @@
 				437A031E2B2103E800718582 /* PreferredScheme.swift in Sources */,
 				43D27F162AE2AD0700A97AE8 /* MimXApp.swift in Sources */,
 				434EBD132B30E8D9007CFD90 /* VideoPlayerManager.swift in Sources */,
+				43618E432B438CB400DB3E3B /* ReverbView.swift in Sources */,
 				43667E402B26177100D25545 /* VideoCacheManager.swift in Sources */,
 				43FF91712AFC2A610056B64F /* FavouriteVideos+CoreDataProperties.swift in Sources */,
 				4361C8A92B3DC3670085462C /* ExtractionManager.swift in Sources */,

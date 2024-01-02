@@ -15,20 +15,25 @@ enum ToolEnum : Int , CaseIterable{
     case speed
     case pitch
     case text
+    case reverb
     
     var title : String{
         switch self {
+        case .reverb:
+            return "Yankı "
         case .speed:
-            return "Speed"
+            return "Hız"
         case .pitch:
-            return "Pitch"
+            return "Perde"
         case .text:
-            return "Text"
+            return "Yazı"
         }
     }
     
     var image : String{
         switch self {
+        case.reverb:
+            return "waveform.path"
         case .speed:
             return "forward.end.alt.fill"
         case .pitch:

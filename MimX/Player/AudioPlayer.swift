@@ -5,6 +5,7 @@ class AudioPlayer {
     var audioPlayerNode: AVAudioPlayerNode!
     var audioFile: AVAudioFile!
     var pitchEffect: AVAudioUnitTimePitch!
+    var reverbEffect: AVAudioUnitReverb!
     
     init() {
         setupAudioEngine()
@@ -14,20 +15,23 @@ class AudioPlayer {
         audioEngine = AVAudioEngine()
         audioPlayerNode = AVAudioPlayerNode()
         pitchEffect = AVAudioUnitTimePitch()
-
+        reverbEffect = AVAudioUnitReverb()
+        
         audioEngine.attach(audioPlayerNode)
         audioEngine.attach(pitchEffect)
-
+        audioEngine.attach(reverbEffect)
+        
         audioEngine.connect(audioPlayerNode, to: pitchEffect, format: nil)
-        audioEngine.connect(pitchEffect, to: audioEngine.mainMixerNode, format: nil)
-
+        audioEngine.connect(pitchEffect, to: reverbEffect, format: nil)
+        audioEngine.connect(reverbEffect, to: audioEngine.mainMixerNode, format: nil)
+        
         do {
             try audioEngine.start()
         } catch {
             print(error.localizedDescription)
         }
     }
-
+    
     func playSound(withFileName fileName: String, time: Double) {
         do {
             audioFile = try AVAudioFile(forReading: URL(string: fileName)!)
@@ -35,7 +39,7 @@ class AudioPlayer {
             let startFrame = AVAudioFramePosition(time * sampleRate)
             audioPlayerNode.stop()
             audioPlayerNode.scheduleSegment(audioFile, startingFrame: startFrame, frameCount: AVAudioFrameCount(audioFile.length - startFrame), at: nil, completionHandler: nil)
-
+            
             if !audioEngine.isRunning{
                 try audioEngine.start()
             }
@@ -58,5 +62,8 @@ class AudioPlayer {
     }
     func updateRate(_ rate: Float){
         pitchEffect.rate = rate
+    }
+    func updateReverb(_ reverb : Float){
+        reverbEffect.wetDryMix = reverb
     }
 }
