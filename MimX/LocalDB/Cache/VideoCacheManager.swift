@@ -15,20 +15,25 @@ class VideoCacheManager{
     private init(){}
     
     let mConfig = MemoryConfig(expiry: .never, countLimit: 50 , totalCostLimit: 5000)
-    let dConfig = DiskConfig(name: "VideoCache")
+    let dConfig = DiskConfig(name: "VideoCache",expiry:.seconds(1200))
     lazy var videoStorage: Cache.Storage<String,Data>? = {
         return try? Cache.Storage(diskConfig: dConfig, memoryConfig: mConfig, transformer: TransformerFactory.forData())
-      }()
+    }()
     
-    func returnPlayerItem(_ forKey: String,completion: @escaping (CachingPlayerItem?,Error?) -> ()) {
+    func returnPlayerItem(_ forKey: String,completion: @escaping (CachingPlayerItem) -> ()) {
         do{
             let data = try videoStorage?.object(forKey: forKey)
             let playerItem = CachingPlayerItem(data: data!, mimeType: "video/mp4", fileExtension: "mp4")
-            completion(playerItem,nil)
+            completion(playerItem)
         }catch{
-            completion(nil,error)
+            print(error.localizedDescription)
+            let playerItem = CachingPlayerItem(url: URL(string: forKey)!)
+            playerItem.delegate = VideoPlayerManager.shared
+            completion(playerItem)
         }
     }
+    
+ 
     func isCached(forKey : String) -> Bool{
         var isCached = false
         videoStorage?.async.object(forKey: forKey, completion: { result in
@@ -41,6 +46,8 @@ class VideoCacheManager{
         })
         return isCached
     }
-
+    func removeExpiredObjects(){
+        try? videoStorage?.removeExpiredObjects()
+    }
 }
 

@@ -14,16 +14,10 @@ final class VideoPlayerManager :  CachingPlayerItemDelegate{
     
     private init(){}
     
-    func cachedPlayer(forKey: String) -> CachingPlayerItem{
+    func cachedPlayerItem(forKey: String) -> CachingPlayerItem{
         var playerItem : CachingPlayerItem? = nil
-        VideoCacheManager.shared.returnPlayerItem(forKey) { outputItem,error in
-            if outputItem != nil{
-                playerItem = outputItem
-            }else{
-                print(error?.localizedDescription)
-                playerItem = CachingPlayerItem(url: URL(string: forKey)!)
-                playerItem?.delegate = self
-            }
+        VideoCacheManager.shared.returnPlayerItem(forKey) { outputItem  in
+            playerItem = outputItem
         }
         return playerItem!
     }
@@ -31,10 +25,8 @@ final class VideoPlayerManager :  CachingPlayerItemDelegate{
     func playerItem(_ playerItem: CachingPlayerItem, didFinishDownloadingData data: Data) {
         print("File is downloaded")
         VideoCacheManager.shared.videoStorage?.async.setObject(data, forKey: playerItem.url.absoluteString, completion: { _ in })
+        VideoCacheManager.shared.removeExpiredObjects()
     }
-    
-    
-    
     
 }
 

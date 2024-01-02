@@ -15,13 +15,23 @@ struct PlayerView: UIViewControllerRepresentable {
     
     init(player: AVPlayer?) {
         self.player = player
+        setupAudioSession()
     }
 
     init(player:AVPlayer?,videoGravity: AVLayerVideoGravity) {
         self.player = player
         self.videoGravity = videoGravity
+        setupAudioSession()
     }
     
+    func setupAudioSession() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: .mixWithOthers)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
     
     func makeUIViewController(context: Context) -> AVPlayerViewController {
         let playerViewController = AVPlayerViewController()

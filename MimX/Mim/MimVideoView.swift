@@ -17,7 +17,7 @@ struct MimVideoView: View{
     @State private var player : AVPlayer
     init(video:Video) {
         self.video = video
-        self.player = AVPlayer(playerItem: vM.cachedPlayer(forKey: video.videoURL))
+        self.player = AVPlayer(playerItem: vM.cachedPlayerItem(forKey: video.videoURL))
     }
     var body: some View {
         VStack{
@@ -28,7 +28,7 @@ struct MimVideoView: View{
         .onAppear(perform: {
             player.volume = cM.volume
             if !cM.editView{
-                player.play()
+                isPlaying.toggle()
             }
         })
         .onTapGesture(count: 2, perform: {
@@ -43,7 +43,7 @@ struct MimVideoView: View{
         .onChange(of: isPlaying, perform: { _ in
             if !cM.editView{
                 player.volume = cM.volume
-                play(player: player)
+                play()
             }
         })
         .onChange(of: cM.volume, perform: { _ in
@@ -57,7 +57,7 @@ struct MimVideoView: View{
 
 
 extension MimVideoView{
-    func play(player : AVPlayer){
+    func play(){
         player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1.0, preferredTimescale: CMTimeScale(NSEC_PER_SEC)), queue: nil) { value in
             if value == player.currentItem?.duration{
                 player.seek(to: .zero)

@@ -38,13 +38,7 @@ struct HomeView: View {
                 }
             })
         }
-        /*
-        .onReceive(mVM.$videos) { video in
-            DispatchQueue.global(qos: .background).async {
-                mVM.cacheVideos(videos: video)
-            }
-        }
-         */
+ 
     }
 }
 

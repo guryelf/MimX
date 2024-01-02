@@ -11,7 +11,6 @@ import SDWebImageSwiftUI
 struct ContentView: View {
     @StateObject var vM = ContentViewModel()
     @EnvironmentObject var sVM : SettingsViewModel
-    @State private var isLoading = false
     var body: some View {
         NavigationStack{
             ScrollView{
@@ -21,17 +20,21 @@ struct ContentView: View {
                         HomeView()
                             .environmentObject(vM)
                             .transition(.move(edge: .leading))
+                            .blur(radius: vM.isLoading ? 5 : 0)
                     }else if vM.index == 1{
                         FavouriteView()
                             .environmentObject(vM)
                             .transition(.move(edge: .trailing))
+                            .blur(radius: vM.isLoading ? 5 : 0)
+
                     }
                     AnimatedImage(name: "Loading.gif", isAnimating: .constant(true))
                         .resizable()
                         .frame(width: vM.isLoading ? 200 : 0, height:  vM.isLoading ? 200 : 0)
+                        .padding(.top,50)
+                        .shadow(color: sVM.systemTheme == 0 || sVM.systemTheme == 1 ? .white : .blue , radius: 10, x: 0, y: 0)
                 }
             }
-            .shadow(radius: vM.isLoading ? 100 : 0)
             .onTapGesture {
                 withAnimation(.easeInOut) {
                     vM.isVolume = false
@@ -46,9 +49,6 @@ struct ContentView: View {
                             vM.isVolume.toggle()
                         }
                     }
-            })
-            .onDisappear(perform: {
-                vM.selectedVideo = nil
             })
             .onChange(of: vM.index, perform: { _ in
                 vM.selectedVideo = nil
@@ -80,6 +80,9 @@ struct ContentView: View {
                             .onDisappear(perform: {
                                 vM.selectedVideo = nil
                             })
+                            .onAppear(perform: {
+                                vM.isLoading = false
+                            })
                     }
                 }
         }
@@ -91,3 +94,4 @@ struct ContentView: View {
     ContentView()
         .environmentObject(SettingsViewModel())
 }
+

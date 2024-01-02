@@ -11,7 +11,7 @@ import FirebaseFirestoreSwift
 import AVKit
 
 
-class MainViewModel : ObservableObject,CachingPlayerItemDelegate{
+class MainViewModel : ObservableObject{
     
     @Published var videos = [Video]()
     
@@ -50,10 +50,7 @@ class MainViewModel : ObservableObject,CachingPlayerItemDelegate{
         }.resume()
     }
     
-    nonisolated func playerItem(_ playerItem: CachingPlayerItem, didFinishDownloadingData data: Data) {
-        print("cached automatically")
-        VideoCacheManager.shared.videoStorage?.async.setObject(data, forKey: playerItem.url.absoluteString, completion: { _ in })
-    }
+
 }
 
 

@@ -9,7 +9,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct FavouriteView: View {
-    @State private var columns = Array(repeating: GridItem(.fixed(125)), count: 3)
+    private var columns = Array(repeating: GridItem(.fixed(125)), count: 3)
     @Environment(\.managedObjectContext) var moc
     @EnvironmentObject var vM : ContentViewModel
     var body: some View {

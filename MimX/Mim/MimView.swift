@@ -12,7 +12,6 @@ import AVKit
 struct MimView: View {
     var video : Video
     @EnvironmentObject var cM : ContentViewModel
-    @StateObject var vM = MainViewModel()
     init(video:Video) {
         self.video = video
     }
@@ -21,9 +20,6 @@ struct MimView: View {
             KFImage(URL(string: video.thumbnail))
                 .cacheOriginalImage()
                 .resizable()
-                .overlay(alignment: .bottom) {
-                    MimOverlayView(video: video)
-                }
                 .onTapGesture(count:2) {
                     cM.index == 0 ? cM.write(selectedVideo: video) : cM.deleteData(selectedVideo: video)
                 }

@@ -38,6 +38,7 @@ struct MimOverlayView: View {
                     }
                     Button(action: {
                         withAnimation {
+                            vM.isLoading.toggle()
                             mVM.downloadAudio(audioURL: video.audioURL) { url in
                                 let audioURL = url.absoluteString
                                 let video = Video(id: video.id, tags: video.tags, videoURL: video.videoURL, thumbnail: video.thumbnail, audioURL: audioURL)

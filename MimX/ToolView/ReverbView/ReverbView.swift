@@ -1,21 +1,21 @@
 //
-//  SpeedView.swift
+//  ReverbView.swift
 //  MimX
 //
-//  Created by Furkan Güryel on 29.11.2023.
+//  Created by Furkan Güryel on 2.01.2024.
 //
 
 import SwiftUI
 
-struct SpeedView: View {
-    @Binding var rate : Float
+struct ReverbView: View {
+    @Binding var reverb: Float
     var body: some View {
         GeometryReader{proxy in
             VStack(spacing:30){
-                Text("\(rate,specifier: "%.1f")x")
+                Text("%\(reverb,specifier: "%.1f")")
                     .font(.title)
                 Button {
-                    rate = 1.0
+                    reverb = 0.0
                 } label: {
                     RoundedRectangle(cornerRadius: 15)
                         .frame(width: 100, height: 30)
@@ -25,14 +25,14 @@ struct SpeedView: View {
                                 .foregroundStyle(.white)
                         }
                 }
-                Slider(value: $rate, in: 0.5...3,  step: 0.1) {
-                    Text("Speed")
+                Slider(value: $reverb, in: 0...100,  step: 1) {
+                    Text("Reverb")
                 } minimumValueLabel: {
-                    Text("0.5x")
+                    Text("%0")
                 } maximumValueLabel: {
-                    Text("3.0x")
+                    Text("%100")
                 }onEditingChanged: { value in
-                    print("onEditingChanged: \(rate)")
+                    print("onEditingChanged: \(reverb)")
                 }
             }
             .frame(width: proxy.size.width, height: proxy.size.height,alignment: .center)
@@ -45,5 +45,5 @@ struct SpeedView: View {
 }
 
 #Preview {
-    SpeedView(rate: .constant(1.0))
+    ReverbView(reverb: .constant(1.0))
 }

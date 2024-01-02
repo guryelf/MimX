@@ -14,12 +14,9 @@ class TemporaryFileManager {
     private let temporaryDirectoryURL: URL
     
     private init() {
-        // Geçici klasör oluştur
         let temporaryDirectory = FileManager.default.temporaryDirectory
-        let temporaryDirectoryName = "MyAppTempData"
+        let temporaryDirectoryName = "TempData"
         temporaryDirectoryURL = temporaryDirectory.appendingPathComponent(temporaryDirectoryName, isDirectory: true)
-        
-        // Geçici klasörü oluştur
         createTemporaryDirectory()
     }
     
@@ -27,8 +24,11 @@ class TemporaryFileManager {
         do {
             try FileManager.default.createDirectory(at: temporaryDirectoryURL, withIntermediateDirectories: true, attributes: nil)
         } catch {
-            fatalError("Geçici klasör oluşturulamadı: \(error.localizedDescription)")
+            fatalError(error.localizedDescription)
         }
+    }
+    func returnTempDirect() -> URL{
+        return temporaryDirectoryURL
     }
     
     func saveDataToTemporaryDirectory(data: Data, fileName: String) -> URL {
@@ -37,7 +37,7 @@ class TemporaryFileManager {
         do {
             try data.write(to: fileURL)
         } catch {
-            fatalError("Veri geçici klasöre kaydedilemedi: \(error.localizedDescription)")
+            fatalError(error.localizedDescription)
         }
         return fileURL
     }
@@ -48,7 +48,7 @@ class TemporaryFileManager {
         do {
             try FileManager.default.removeItem(at: fileURL)
         } catch {
-            print("Veri geçici klasörden silinemedi: \(error.localizedDescription)")
+            print(error.localizedDescription)
         }
     }
     
@@ -60,12 +60,11 @@ class TemporaryFileManager {
                 try FileManager.default.removeItem(at: fileURL)
             }
         } catch {
-            print("Geçici klasör temizlenemedi: \(error.localizedDescription)")
+            print(error.localizedDescription)
         }
     }
     
     deinit {
-        // Uygulama kapatıldığında geçici klasörü temizle
         clearTemporaryDirectory()
     }
 }
