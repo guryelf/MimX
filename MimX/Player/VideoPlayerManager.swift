@@ -24,7 +24,9 @@ final class VideoPlayerManager :  CachingPlayerItemDelegate{
     
     func playerItem(_ playerItem: CachingPlayerItem, didFinishDownloadingData data: Data) {
         print("File is downloaded")
-        VideoCacheManager.shared.videoStorage?.async.setObject(data, forKey: playerItem.url.absoluteString, completion: { _ in })
+        if !VideoCacheManager.shared.isCached(forKey: playerItem.url.absoluteString){
+            VideoCacheManager.shared.videoStorage?.async.setObject(data, forKey: playerItem.url.absoluteString, completion: { _ in })
+        }
         VideoCacheManager.shared.removeExpiredObjects()
     }
     

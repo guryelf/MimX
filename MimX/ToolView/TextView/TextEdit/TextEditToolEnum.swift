@@ -37,11 +37,11 @@ enum TextEditToolEnum : Int, CaseIterable{
     var options : Array<Any> {
         switch self {
         case .fontSize:
-            return [0,5,10,15,20,25,30,35,40,45]
+            return [5,10,15,20,25,30,35,40,45,50,55,60,65,70]
         case .bgColor:
-            return [.black,.pink,.blue,.red,.green,.brown,.gray,.purple,.indigo,.mint] as [Color]
+            return [.black,.white,.pink,.blue,.red,.green] as [Color]
         case .fontColor:
-            return [.black,.pink,.blue,.red,.green,.brown,.gray,.purple,.indigo,.mint] as [Color]
+            return [.black,.white,.pink,.blue,.red,.green] as [Color]
         }
     }
     

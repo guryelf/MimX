@@ -40,6 +40,7 @@ struct ToolSheetView<Content:View>: View {
                     }
             }
         }
+        .ignoresSafeArea()
         
     }
 }

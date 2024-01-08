@@ -29,10 +29,12 @@ struct EditView: View {
     var body: some View {
         NavigationStack{
             PlayerView(player: player)
-                .frame(width:UIScreen.main.bounds.width,height: 300)
+                .frame(height: 300)
                 .overlay(content: {
-                    if tVM.isNewText{
+                    if tVM.isNewText || tVM.selectedBox != nil{
                         TextEditorView(tVM: tVM)
+                    }else{
+                        
                     }
                 })
                 .onAppear(perform: {

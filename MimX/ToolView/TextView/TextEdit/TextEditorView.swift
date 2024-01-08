@@ -8,16 +8,19 @@
 import SwiftUI
 
 struct TextEditorView: View {
-    @State private var text = ""
     @ObservedObject var tVM : TextEditorViewModel
     var body: some View {
-        TextField("", text: $text)
+        TextField("", text: $tVM.text)
+            .font(.system(size: CGFloat(tVM.fontSize)))
+            .foregroundStyle(tVM.selectedFontColor)
+            .background(tVM.selectedBgColor)
             .frame(width: 150,height: 30)
-            .background(RoundedRectangle(cornerRadius: 5).stroke(.gray, lineWidth: 2))
+            .background(RoundedRectangle(cornerRadius: 5)
+                .stroke(.gray, lineWidth: 2))
             .overlay(alignment: .topTrailing) {
                 Button {
-                    if !text.isEmpty{
-                       
+                    if !tVM.text.isEmpty{
+                        tVM.saveChanges()
                     }
                 } label: {
                     Image(systemName: "checkmark.circle.fill")
@@ -25,6 +28,9 @@ struct TextEditorView: View {
                         .frame(width: 20, height: 20)
                         .foregroundStyle(.blue)
                 }
+                .onChange(of: tVM.customFontSize, perform: { value in
+                    tVM.updateFontSize(Int(value) ?? tVM.fontSize)
+                })
             }
     }
 }

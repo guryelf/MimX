@@ -10,48 +10,71 @@ import Foundation
 import SwiftUI
 
 struct TextEditSheetView: View {
-    @State private var selectedTool: TextEditToolEnum = .fontSize
-    @State var fontSize: CGFloat = 0
-    @State var selectedColor: Color = .black
+    @State private var selectedTool: TextEditToolEnum = .bgColor
+    @ObservedObject var tVM : TextEditorViewModel
     var body: some View {
         VStack {
-            Picker(selectedTool.title, selection: $selectedTool) {
-                ForEach(TextEditToolEnum.allCases, id: \.self) { tool in
-                    Text(tool.title)
-                        .tag(tool)
+            HStack{
+                Button {
+                    withAnimation {
+                        tVM.fontSize = 0
+                        tVM.selectedBgColor = .clear
+                        tVM.selectedFontColor = .black
+                    }
+                    
+                } label: {
+                    RoundedRectangle(cornerRadius: 15)
+                        .frame(width: 100, height: 30)
+                        .foregroundStyle(Color.gray)
+                        .overlay(alignment: .center) {
+                            Text("Tümünü Sıfırla")
+                                .foregroundStyle(.white)
+                        }
                 }
+                Button {
+                    tVM.text = ""
+                    tVM.isNewText = false
+                    tVM.selectedBox = nil
+                } label: {
+                    RoundedRectangle(cornerRadius: 15)
+                        .frame(width: 100, height: 30)
+                        .foregroundStyle(Color.red)
+                        .overlay(alignment: .center) {
+                            Text("İptal et")
+                                .foregroundStyle(.white)
+                        }
+                }
+                
             }
-            .pickerStyle(SegmentedPickerStyle())
+            ScrollView(.horizontal){
+                Picker(selectedTool.title, selection: $selectedTool) {
+                    ForEach(TextEditToolEnum.allCases, id: \.self) { tool in
+                        Text(tool.title)
+                            .tag(tool)
+                    }
+                }
+                .pickerStyle(SegmentedPickerStyle())
+            }
             switch selectedTool {
             case .fontSize:
-                Picker("Font Size", selection: $fontSize) {
-                    ForEach(selectedTool.options as! [Int], id: \.self) { size in
-                        Text("\(size)")
-                            .tag(size)
-                    }
-                }
-                .pickerStyle(InlinePickerStyle())
-                .frame(width: 200, height: 150)
-                .padding()
-            case .bgColor, .fontColor:
-                LazyVGrid(columns: [GridItem](repeating: GridItem(), count: selectedTool.options.count)) {
-                    ForEach(selectedTool.options as! [Color], id: \.self) { color in
-                        Rectangle()
-                            .fill(color)
-                            .frame(width: 50, height: 50)
-                            .cornerRadius(15)
-                            .padding(5)
-                            .onTapGesture {
-                                self.selectedColor = color
-                            }
-                    }
-                }
+                FontSizeView(selectedTool: selectedTool, fontSize: $tVM.fontSize, customFontSize: $tVM.customFontSize)
+                    .frame(width: 200, height: 150)
+            case .bgColor:
+                BackgroundColorView(selectedTool: selectedTool, selectedBgColor: $tVM.selectedBgColor)
+            case .fontColor:
+                FontColorView(selectedTool: selectedTool, selectedColor: $tVM.selectedFontColor)
             }
+            
+            
         }
+        .onDisappear(perform: {
+            tVM.selectedBox = nil
+        })
+        .padding(.top,20)
     }
 }
 
 #Preview {
-    TextEditSheetView()
+    TextEditSheetView(tVM: TextEditorViewModel())
 }
 
