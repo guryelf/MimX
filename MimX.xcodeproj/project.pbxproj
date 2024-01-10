@@ -68,6 +68,7 @@
 		43D27F5C2AE2FD4600A97AE8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 43D27F5B2AE2FD4600A97AE8 /* FirebaseStorage */; };
 		43D766182B39E12E00F3D2A0 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D766172B39E12E00F3D2A0 /* AudioPlayer.swift */; };
 		43DDCB152B3A4648005AD7AB /* TemporaryFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DDCB142B3A4648005AD7AB /* TemporaryFileManager.swift */; };
+		43F404DD2B4E142F00C15465 /* TextBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F404DC2B4E142F00C15465 /* TextBoxView.swift */; };
 		43FF91702AFC2A610056B64F /* FavouriteVideos+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF916E2AFC2A610056B64F /* FavouriteVideos+CoreDataClass.swift */; };
 		43FF91712AFC2A610056B64F /* FavouriteVideos+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF916F2AFC2A610056B64F /* FavouriteVideos+CoreDataProperties.swift */; };
 		43FF91752B0004510056B64F /* CRUDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF91742B0004510056B64F /* CRUDManager.swift */; };
@@ -130,6 +131,7 @@
 		43D27F262AE2FCF000A97AE8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		43D766172B39E12E00F3D2A0 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		43DDCB142B3A4648005AD7AB /* TemporaryFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryFileManager.swift; sourceTree = "<group>"; };
+		43F404DC2B4E142F00C15465 /* TextBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBoxView.swift; sourceTree = "<group>"; };
 		43FF916E2AFC2A610056B64F /* FavouriteVideos+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavouriteVideos+CoreDataClass.swift"; sourceTree = "<group>"; };
 		43FF916F2AFC2A610056B64F /* FavouriteVideos+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavouriteVideos+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		43FF91742B0004510056B64F /* CRUDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRUDManager.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				436469862B4B58180093E706 /* TextEdit */,
 				4333AAEF2B17C6B1009C709E /* TextSheetView.swift */,
 				4364697D2B476D110093E706 /* TextBox.swift */,
+				43F404DC2B4E142F00C15465 /* TextBoxView.swift */,
 			);
 			path = TextView;
 			sourceTree = "<group>";
@@ -597,6 +600,7 @@
 				434EBD132B30E8D9007CFD90 /* VideoPlayerManager.swift in Sources */,
 				43618E432B438CB400DB3E3B /* ReverbView.swift in Sources */,
 				43667E402B26177100D25545 /* VideoCacheManager.swift in Sources */,
+				43F404DD2B4E142F00C15465 /* TextBoxView.swift in Sources */,
 				43FF91712AFC2A610056B64F /* FavouriteVideos+CoreDataProperties.swift in Sources */,
 				4361C8A92B3DC3670085462C /* ExtractionManager.swift in Sources */,
 				436469882B4B5B590093E706 /* TextEditToolEnum.swift in Sources */,

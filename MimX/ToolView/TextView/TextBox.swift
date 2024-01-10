@@ -28,3 +28,8 @@ struct TextBox: Identifiable,Hashable{
     }
 
 }
+
+extension TextBox{
+    static let mockText = TextBox(id: UUID(),text: "mock",offset: CGSize(width: 100, height: 20))
+    
+}

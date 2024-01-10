@@ -9,11 +9,12 @@ import SwiftUI
 
 struct TextSheetView: View {
     @ObservedObject var vM : TextEditorViewModel
+    var columns = Array(repeating: GridItem(.fixed(125),spacing: 0), count: 3)
     var body: some View {
         GeometryReader{proxy in
             if !vM.isNewText && vM.selectedBox == nil{
                 ScrollView{
-                    HStack(spacing:0){
+                    LazyVGrid(columns: columns,spacing: 15) {
                         AddButton(content: {
                             Button {
                                 vM.isNewText = true
@@ -27,16 +28,13 @@ struct TextSheetView: View {
                         ForEach(vM.textBoxes,id: \.self) { box in
                             RoundedRectangle(cornerRadius: 15)
                                 .frame(width: 60, height: 60)
-                                .foregroundStyle(.gray)
+                                .foregroundStyle(box.bgColor)
                                 .onTapGesture {
-                                    vM.selectedBox = box
-                                    vM.text = box.text
-                                    vM.fontSize = Int(box.fontSize)
-                                    vM.selectedBgColor = box.bgColor
-                                    vM.selectedFontColor = box.fontColor
+                                    vM.selectBox(box: box)
                                 }
                                 .overlay {
                                     Text(box.text.first?.description ?? "")
+                                        .foregroundStyle(box.fontColor)
                                 }
                                 .overlay(alignment: .topLeading) {
                                     Button {
@@ -63,7 +61,7 @@ struct TextSheetView: View {
             }
         }
         .onDisappear(perform: {
-            vM.isNewText.toggle()
+            vM.isNewText = false
         })
         .ignoresSafeArea()
         .background(Color(.systemGray5))

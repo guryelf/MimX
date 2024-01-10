@@ -34,7 +34,12 @@ struct EditView: View {
                     if tVM.isNewText || tVM.selectedBox != nil{
                         TextEditorView(tVM: tVM)
                     }else{
-                        
+                        ForEach(tVM.textBoxes,id: \.self){box in
+                            TextBoxView(textBox: box) 
+                                .onTapGesture {
+                                    tVM.selectBox(box: box)
+                                }
+                        }
                     }
                 })
                 .onAppear(perform: {

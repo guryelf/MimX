@@ -17,9 +17,7 @@ struct TextEditSheetView: View {
             HStack{
                 Button {
                     withAnimation {
-                        tVM.fontSize = 0
-                        tVM.selectedBgColor = .clear
-                        tVM.selectedFontColor = .black
+                        tVM.discardChanges()
                     }
                     
                 } label: {
@@ -32,9 +30,9 @@ struct TextEditSheetView: View {
                         }
                 }
                 Button {
-                    tVM.text = ""
-                    tVM.isNewText = false
                     tVM.selectedBox = nil
+                    tVM.discardChanges()
+                    tVM.isNewText = false
                 } label: {
                     RoundedRectangle(cornerRadius: 15)
                         .frame(width: 100, height: 30)

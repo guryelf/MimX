@@ -10,7 +10,7 @@ import AVKit
 import SDWebImageSwiftUI
 
 struct HomeView: View {
-    @State private var columns = Array(repeating: GridItem(.fixed(125)), count: 3)
+    private var columns = Array(repeating: GridItem(.fixed(125)), count: 3)
     @StateObject var mVM = MainViewModel()
     @EnvironmentObject var vM : ContentViewModel
     var body: some View {
